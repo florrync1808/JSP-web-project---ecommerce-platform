@@ -5,9 +5,10 @@
 
     <!--Dropdown menu, show/hide based on menu state.-->
     <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" x-show="open" @click.outside="open = false">
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Account</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Track Order</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">History</a>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Log out</a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700">Home</a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700">Shop Online</a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700">Account</a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700">Order History</a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700">Log Out</a>
     </div>
 </div>
