@@ -28,7 +28,10 @@
                     </button>
                     
                     <!-- Profile dropdown -->
-                        <%@ include file = "UserNavBarDropDown.jsp" %>
+                        <%@ include file = "../secureUser/UserNavBarDropDown.jsp" %>
+                        <%@ include file = "../secureStaff/StaffNavBarDropDown.jsp" %>
+                        <%@ include file = "../secureAdmin/AdminNavBarDropDown.jsp" %>
+                        <%@ include file = "PublicNavBarDropDown.jsp" %>
                 </div>
         </div>
     </div>
