@@ -17,7 +17,7 @@
                     </h1>
                     <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
                     <div class="mt-8">
-                        <a href="Register.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
+                        <a href="Products.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="py-4">
                 <article x-data="slider" class="relative container mx-auto rounded-md flex flex-shrink-0 overflow-hidden ">
                     <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
-                        <span x-text="currentIndex"></span>
+                        <span x-text="currentIndex"></span> / 
                         <span x-text="images.length"></span>
                     </div>
 
@@ -50,12 +50,8 @@
 
             <!--test links-->
             <div class="container mx-auto pt-8 text-white">
-                <a href="Register.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Register</a>
-                <a href="Login.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Login</a>
-                <a href="Products.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Products</a>
                 <a href="tabletemplate.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Table template - to display rows of item manage, history etc</a>
-                <a href="dashboardtemplate.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">dashboard templatec</a>
-                <a href="errorPage.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Error page</a>
+                <a href="dashboardtemplate.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">dashboard template</a>
             </div>
         </div>
 

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : Products
-    Created on : Apr 15, 2023, 11:44:29 PM
-    Author     : cbiev
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,16 +16,19 @@
                 </div>
 
                 <!--card container-->
-                <div class="flex flex-wrap justify-center items-center">
+                <div class="grid grid-cols-4 gap-4">
                     
                     <!--product card --> 
                     <div class="bg-white shadow-md w-42 h-52 m-3 py-3 px-1 rounded-3xl flex flex-col justify-around items-center overflow-hidden">
                         <img class="h-1/2 w-full sm:h-full sm:w-1/2 object-cover" 
-                                 src="./assets/images/products/Albuca_Concordiana_1.jpeg"
-                                 alt="insert product name here"/>
+                                 src="./assets/images/products/Albuca_Concordiana_1.jpeg" alt="insert product name here"/>
                         <div class="flex-1 w-full flex flex-col items-baseline justify-around  h-1/2  px-6 sm:h-full sm:items-baseline">
                             <div class="flex flex-col justify-start items-baseline break-all">
-                                 <p class="text-md font-bold mb-0 text-gray-600 font-sans pr-3">Albuca_Concordiana</p>
+                                 <p class="text-sm font-bold mb-0 text-gray-600 font-sans pr-3">Albuca Concordiana</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-xs text-gray-500">Green & cute </p>
                             </div>
 
                             <div class="w-full flex justify-between items-center pt-3">
