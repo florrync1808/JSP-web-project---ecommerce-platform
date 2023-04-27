@@ -17,7 +17,7 @@
                     </h1>
                     <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
                     <div class="mt-8">
-                        <a href="Register.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
+                        <a href="Products.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="py-4">
                 <article x-data="slider" class="relative container mx-auto rounded-md flex flex-shrink-0 overflow-hidden ">
                     <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
-                        <span x-text="currentIndex"></span>/
+                        <span x-text="currentIndex"></span> / 
                         <span x-text="images.length"></span>
                     </div>
 
@@ -35,20 +35,8 @@
                                 x-transition:leave="transition transform duration-300" x-transition:leave-start="opacity-100"
                                 x-transition:leave-end="opacity-0">
                             <img :src="image" alt="Image" class="absolute inset-0 z-10 h-full w-full object-cover opacity-70" />
-                            <figcaption class="absolute inset-x-0 bottom-1 z-20 w-96 mx-auto p-4 font-light text-sm text-center tracking-widest leading-snug bg-gray-300 bg-opacity-80">
-                                LATEST PROMOTIONS!!
-                            </figcaption>
                         </figure>
                     </template>
-
-                    <button @click="back()"
-                             class="absolute left-14 top-1/2 -translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
-                        <svg class=" w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7">
-                        </path>
-                        </svg>
-                    </button>
 
                     <button @click="next()"
                              class="absolute right-14 top-1/2 translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
@@ -60,15 +48,10 @@
                 </article>
             </div>
 
-            
             <!--test links-->
             <div class="container mx-auto pt-8 text-white">
-                <a href="Register.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Register</a>
-                <a href="Login.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Login</a>
-                <a href="Products.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Products</a>
                 <a href="tabletemplate.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Table template - to display rows of item manage, history etc</a>
-                <a href="dashboardtemplate.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">dashboard templatec</a>
-                <a href="errorPage.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Error page</a>
+                <a href="dashboardtemplate.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">dashboard template</a>
             </div>
         </div>
 
@@ -79,121 +62,23 @@
                 <div>
                     <h1 class="text-xl font-semibold text-gray-800 dark:text-white text-center dark:text-gray-50">Top Selling</h1>
                 </div>
+                
+                <!--card for product-->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-8 md:mt-10">
+                    
+                    <!--for loop here max loop 3-->
                     <div class="bg-gray-50 dark:bg-gray-800 p-8">
                         <div class="">
-                            <h2 class="text-xl text-gray-600 dark:text-white">Lounge Chair</h2>
-                            <p class="text-xl font-semibold text-gray-800 dark:text-white mt-2"></p>
+                            <h2 class="text-lg text-gray-600 dark:text-white">Product Name</h2>
+                            <p class="text-sm font-semibold text-gray-800 dark:text-white mt-2">Price hre</p>
                         </div>
                         <div class="flex justify-center items-center mt-8 md:mt-24">
-                            <img class="" src="https://i.ibb.co/8403ZFZ/pexels-hormel-2762247-removebg-preview-2-1.png" alt="A chair with designed back" role="img" />
-                        </div>
-                        <div class="flex justify-end items-center space-x-2 mt-16 md:mt-32">
-                            <button aria-label="show in red color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#DC2626" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                            <button aria-label="show in white color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="white" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                            <button aria-label="show in black color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#111827" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
+                            <img class="" src="./assets/products/Callisia_pink_1.jpeg" alt="Insert Image here" role="img" />
                         </div>
                     </div>
-                    <div class="bg-gray-50 dark:bg-gray-800 p-8">
-                        <div class="">
-                            <h2 class="text-xl text-gray-600 dark:text-white">Lounge Chair</h2>
-                            <p class="text-xl font-semibold text-gray-800 dark:text-white mt-2"></p>
-                        </div>
-                        <div class="flex justify-center items-center mt-8 md:mt-24">
-                            <img class="" src="https://i.ibb.co/WBdnRqb/eugene-chystiakov-3ne-Swyntb-Q8-unsplash-1-removebg-preview-2-1.png" alt="A chair with wooden legs" role="img" />
-                        </div>
-                        <div class="flex justify-end items-center space-x-2 mt-8 md:mt-24">
-                            <button aria-label="show in white color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="white" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                            <button aria-label="show in black color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#111827" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 dark:bg-gray-800 p-8">
-                        <div class="">
-                            <h2 class="text-xl text-gray-600 dark:text-white">Lounge Chair</h2>
-                            <p class="text-xl font-semibold text-gray-800 dark:text-white mt-2"></p>
-                        </div>
-                        <div class="flex justify-center items-center mt-8 md:mt-24">
-                            <img class="" src="https://i.ibb.co/R2fbCvj/kari-shea-It-Mgg-D0-Egu-Y-unsplash-removebg-preview-2-1.png" alt="A sofa chair with wooden legs" role="img" />
-                        </div>
-                        <div class="flex justify-end items-center space-x-2 mt-16 md:mt-32">
-                            <button aria-label="show in green color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#047857" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                            <button aria-label="show in brown color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#92400E" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
+                    <!--for loop end here-->
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-8 mt-4 md:mt-6 lg:mt-8">
-                    <div class="bg-gray-50 dark:bg-gray-800 p-8">
-                        <div>
-                            <h2 class="text-xl leading-tight text-gray-600 dark:text-white">Sectional Sofa</h2>
-                            <p class="text-xl font-semibold text-gray-800 dark:text-white mt-2"></p>
-                        </div>
-                        <div class="flex justify-center items-center mt-28 md:mt-3">
-                            <img src="https://i.ibb.co/CPdBFwZ/pexels-pixabay-276583-removebg-preview-1-1.png" alt="A large sectional sofa" role="img" />
-                        </div>
-                        <div class="flex justify-end items-center space-x-2 mt-36 md:mt-12">
-                            <button aria-label="show in yellow color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#F59E0B" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                            <button aria-label="show in light gray color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#9CA3AF" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 dark:bg-gray-800 p-8">
-                        <div>
-                            <h2 class="text-xl leading-tight text-gray-600 dark:text-white">Two Seater Sofa</h2>
-                            <p class="text-xl font-semibold text-gray-800 dark:text-white mt-2"></p>
-                        </div>
-                        <div class="flex justify-center items-center mt-28 md:mt-1">
-                            <img src="https://i.ibb.co/238nZzf/pexels-andrea-piacquadio-3757055-removebg-preview-1-1.png" alt="A beautiful two seater sofa" role="img" />
-                        </div>
-                        <div class="flex justify-end items-center space-x-2 mt-36 md:mt-12">
-                            <button aria-label="show in black color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#111827" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                            <button aria-label="show in green color" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="5" cy="5" r="4.75" fill="#047857" stroke="#6B7280" stroke-width="0.5" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>  
 
@@ -202,11 +87,8 @@
                 Alpine.data('slider', () => ({
                         currentIndex: 1,
                         images: [
-                            'https://source.unsplash.com/1600x900/?beach',
-                            'https://source.unsplash.com/1600x900/?cat',
-                            'https://source.unsplash.com/1600x900/?dog',
-                            'https://source.unsplash.com/1600x900/?lego',
-                            'https://source.unsplash.com/1600x900/?textures&patterns'
+                            './assets/images/company/promo2.png',
+                            './assets/images/company/promo1.png',
                         ],
                         back() {
                             if (this.currentIndex > 1) {
