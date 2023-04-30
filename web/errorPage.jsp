@@ -26,6 +26,6 @@
         </div>
         <div class="px-4 items-center flex justify-center flex-col-reverse">
             <a href="index.jsp" class="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center bg-blue-950 text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-opacity-50">Take me there!</a>
-        </div>       
+        </div>
     </body>
 </html>
