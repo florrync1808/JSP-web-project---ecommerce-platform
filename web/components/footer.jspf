@@ -1,0 +1,37 @@
+        <footer class="bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-6 py-8">
+
+                <hr class="my-4 border-gray-200 dark:border-gray-700 md:my-10" />
+
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-sm">
+                    <div>
+                        <p class="font-semibold text-gray-800 dark:text-white">Quick Link</p>
+
+                        <div class="mt-5 flex flex-col items-start space-y-2">
+                            <a href="#" class="text-gray-600 transition-colors duration-300 hover:text-blue-500 hover:underline dark:text-gray-300 dark:hover:text-blue-400">Home</a>
+                            <a href="#" class="text-gray-600 transition-colors duration-300 hover:text-blue-500 hover:underline dark:text-gray-300 dark:hover:text-blue-400">Shop Online</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold text-gray-800 dark:text-white">Contact Us</p>
+
+                        <div class="mt-5 flex flex-col items-start space-y-2">
+                            <a href="tel:+6010941234" class="text-gray-600 transition-colors duration-300 hover:text-blue-500 hover:underline dark:text-gray-300 dark:hover:text-blue-400">+601 094 1234</a>
+                            <a href="mailto:info@pepegaco.com" class="text-gray-600 transition-colors duration-300 hover:text-blue-500 hover:underline dark:text-gray-300 dark:hover:text-blue-400">info@pepegaco.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4 border-gray-200 dark:border-gray-700 md:my-8" />
+
+                <div class="flex flex-col items-center justify-between sm:flex-row">
+                    <a href="index.jsp" class="text-md font-bold text-gray-800 transition-colors duration-300 hover:text-gray-700 dark:text-white
+                       dark:hover:text-gray-300">Pepega Co.</a>
+                    <p class="mt-4 text-sm text-gray-500 dark:text-gray-300 sm:mt-0">© Copyright 2023. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>
