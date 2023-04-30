@@ -10,7 +10,7 @@
              shadow-lg overflow-y-auto">
             <div class="container mx-auto rounded p-4 mt-2 overflow-y-auto">
                 <div class="bg-white rounded px-8 py-8 max-w-lg mx-auto">           
-                    <h1 class="font-bold text-2xl mb-3 text-center" x-text="modalHeaderText">Admin Login</h1>
+                    <h1 class="font-bold text-2xl mb-3 text-center" x-text="modalHeaderText">Staff Login</h1>
                     <div :class="{'text-green-700': status, 'text-red-700': isError}" 
                          class="modal-body text-center">
                         <p x-text="modalBodyText"></p>

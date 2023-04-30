@@ -5,8 +5,8 @@
 
     <!--Dropdown menu, show/hide based on menu state.-->
     <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" x-show="open" @click.outside="open = false">
-        <a href="Login.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">User Sign In</a>        
-        <a href="Register.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">New User Sign Up</a>        
-        <a href="AdminLogin.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Admin Sign In</a>        
+        <a href="Login.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">User Login</a>        
+        <a href="Register.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " >New User Sign Up</a>        
+        <a href="StaffLogin.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Staff Login</a>        
     </div>
 </div>
