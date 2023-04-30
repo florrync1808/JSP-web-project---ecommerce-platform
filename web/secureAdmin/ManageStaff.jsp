@@ -1,1 +1,2 @@
-Manage Staff
+<%@ include file = "adminNav.jsp" %>
+            Manage Staff

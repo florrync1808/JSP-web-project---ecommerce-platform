@@ -24,6 +24,10 @@
     <role-name>staffRole</role-name>
     <group-name>staffGroup</group-name>
   </security-role-mapping>
+  <security-role-mapping>
+    <role-name>userRole</role-name>
+    <group-name>userGroup</group-name>
+  </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">
