@@ -1,3 +1,7 @@
+
+
+
+
 <nav class="bg-blue-950">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
@@ -30,11 +34,13 @@
 
                                         <!--Dropdown menu, show/hide based on menu state.-->
                                         <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" x-show="open" @click.outside="open = false">
-                                            <a href="Login.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Login</a>        
-                                            <a href="Register.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " >Sign Up</a>        
-                                            <!--<a href="StaffLogin.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Staff Login</a>-->        
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Account</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Manage Order</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">View All Products</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Log out</a>
                                         </div>
                                     </div>
+
                                 </div>
                                 </div>
                                 </div>
