@@ -8,7 +8,7 @@
     <jsp-config>
         <jsp-property-group>
             <description>footer and header settings</description>
-            <url-pattern>/index.jsp</url-pattern>
+            <url-pattern>/*</url-pattern>
             <include-prelude>/components/header.jspf</include-prelude>
             <include-coda>/components/footer.jspf</include-coda>
         </jsp-property-group>

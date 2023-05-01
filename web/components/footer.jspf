@@ -26,7 +26,7 @@
                 <hr class="my-4 border-gray-200 dark:border-gray-700 md:my-8" />
 
                 <div class="flex flex-col items-center justify-between sm:flex-row">
-                    <a href="index.jsp" class="text-md font-bold text-gray-800 transition-colors duration-300 hover:text-gray-700 dark:text-white
+                    <a href="/pepegacoJAVAEE6/" class="text-md font-bold text-gray-800 transition-colors duration-300 hover:text-gray-700 dark:text-white
                        dark:hover:text-gray-300">Pepega Co.</a>
                     <p class="mt-4 text-sm text-gray-500 dark:text-gray-300 sm:mt-0">© Copyright 2023. All Rights Reserved.</p>
                 </div>
