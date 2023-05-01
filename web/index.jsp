@@ -12,9 +12,9 @@
 
             <!--Dropdown menu, show/hide based on menu state.-->
             <!--<div class="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" x-show="open" @click.outside="open = false">-->      
-                <a href="/pepegacoJAVAEE6/secureUser/UserDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User Login</a>        
-                <a href="./secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Login</a>        
-                <a href="./secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Login</a>        
+                <a href="/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User Login</a>        
+                <a href="/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Login</a>        
+                <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Login</a>        
             <!--</div>-->
 <!--        </div>-->
     <!--</div>-->
@@ -24,7 +24,7 @@
 <div class="p-8">
     <div class="container mx-auto bg-slate-400 h-min rounded-md flex items-center px-12">
         <div class="w-40">
-            <img src="./assets/images/company/Pepega_Co.png">
+            <img src="/pepegacoJAVAEE6/assets/images/company/Pepega_Co.png">
         </div>
         <div class="sm:ml-20 text-gray-50 py-10 px-4 text-center sm:text-left">
             <h1 class="text-3xl md:text-5xl font-bold mb-4">
@@ -33,7 +33,7 @@
             </h1>
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">
-                <a href="Products.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
+                <a href="/pepegacoJAVAEE6/view/Products.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
                     <p class="text-sm font-semibold text-gray-800 dark:text-white mt-2">Price hre</p>
                 </div>
                 <div class="flex justify-center items-center mt-8 md:mt-24">
-                    <img class="" src="./assets/products/Callisia_pink_1.jpeg" alt="Insert Image here" role="img" />
+                    <img class="" src="/pepegacoJAVAEE6/assets/images/products/Callisia_pink_1.jpeg" alt="Insert Image here" role="img" />
                 </div>
             </div>
             <!--for loop end here-->
@@ -97,8 +97,8 @@
         Alpine.data('slider', () => ({
                 currentIndex: 1,
                 images: [
-                    './assets/images/company/promo2.png',
-                    './assets/images/company/promo1.png',
+                    '/pepegacoJAVAEE6/assets/images/company/promo2.png',
+                    '/pepegacoJAVAEE6/assets/images/company/promo1.png',
                 ],
                 back() {
                     if (this.currentIndex > 1) {

@@ -12,7 +12,7 @@
             session = request.getSession(true);
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/pepegacoJAVAEE6/index.jsp");
         %>
     </body>
 </html>
