@@ -20,7 +20,7 @@ public class CountriesDA {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection(host, user, password);
-             stmt = conn.prepareStatement(sqlQueryStr);
+            stmt = conn.prepareStatement(sqlQueryStr);
         } catch (Exception ex) {
             ex.getMessage();
         }
@@ -62,5 +62,28 @@ public class CountriesDA {
         }
 
         return countries;
+    }
+
+//    private static Connection conn2;
+
+
+    public static String login(domain.LoginPost loginPost) {
+        // https://krazytech.com/programs/a-login-application-in-java-using-model-view-controllermvc-design-pattern
+        Connection conn2;
+        String query = "select * from CUSTOMERS where name=? and password=?";
+        try {
+            PreparedStatement stmt = conn2.prepareStatement(query);
+            stmt.setString(1, loginPost.getEmail());
+            stmt.setString(2, loginPost.getPassword());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return "true";
+            } else {
+                return "false";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
     }
 }
