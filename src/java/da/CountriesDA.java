@@ -64,12 +64,11 @@ public class CountriesDA {
         return countries;
     }
 
-//    private static Connection conn2;
+    private static Connection conn2;
 
 
     public static String login(domain.LoginPost loginPost) {
         // https://krazytech.com/programs/a-login-application-in-java-using-model-view-controllermvc-design-pattern
-        Connection conn2;
         String query = "select * from CUSTOMERS where name=? and password=?";
         try {
             PreparedStatement stmt = conn2.prepareStatement(query);
