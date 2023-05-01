@@ -37,13 +37,8 @@
                         </div>
                     </div>
                 </div>  
-
-
             </div>
-
         </div>
-
-
         <!--cart section-->
         <%@ include file = "components/cart.jsp" %>
     </div>
