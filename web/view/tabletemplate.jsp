@@ -1,9 +1,5 @@
 
-<!DOCTYPE html>
-<html>
-    <%@ include file = "components/Header.jsp" %>
-    <body>
-        <%@ include file = "components/TopNavBar.jsp" %>
+
         <div class="p-8 min-h-screen">
             <div class="inline-block min-w-full py-2 align-middle">
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-md">
@@ -67,9 +63,6 @@
                 </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-    </body>
-    <%@ include file = "components/Footer.jsp" %>
-</html>
+
 
 
