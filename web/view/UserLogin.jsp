@@ -9,30 +9,41 @@
                 <p x-text="modalBodyText"></p>
             </div>
             <div class="mt-4">
+                <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") != null) { %>
+//                if thr is login user
+                redirect to dashboard
+                <%
+                response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
+                %>
 
-               <form name="form" action="/pepegacoJAVAEE6/userLoginServlet" method="post" onsubmit="return validate()">
+                <% } else { %>
+                do nothing
+                <% }%>
+                <%=session.getAttribute("userName") %>
+                <%=session.getAttribute("userRole") %>
+                <form name="form" action="/pepegacoJAVAEE6/PleaseWorkLogin" method="POST" onsubmit="return validate()">
                     <!--E-mail input-->
                     <div class="relative mb-6">
                         <label for="email" class="ml-3">Username</label>
                         <input type="text" name="username"
-                               class="focus:text-black peer block min-h-[auto] w-full rounded border-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                               class="focus:text-black peer block min-h-[auto] w-full rounded border-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                placeholder="Username"/>
                     </div>
-                    
+
                     <!--Password input-->
                     <div class="relative mb-6" data-te-input-wrapper-init>
                         <label for="password" class="ml-3">Password</label>
                         <input
                             type="password" name="password"
-                            class="focus:text-black peer block min-h-[auto] w-full rounded border-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                            class="focus:text-black peer block min-h-[auto] w-full rounded border-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             id="exampleInputPassword2"
                             placeholder="Password" />
                     </div>
-                    
+
                     <span class="text-red-500">
                         <%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%>
                     </span>
-                    
+
                     <!--Sign in button-->
                     <input
                         type="submit" value="Login"
@@ -67,6 +78,8 @@
                        dark:hover:text-primary-500 dark:focus:text-primary-500
                        dark:active:text-primary-600">Register</a>
                 </p>
+                <a href="/pepegacoJAVAEE6/PleaseWorkLogin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Logout</a>
+
             </div>
         </div>
     </div>

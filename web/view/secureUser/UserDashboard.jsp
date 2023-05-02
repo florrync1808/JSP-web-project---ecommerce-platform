@@ -2,7 +2,7 @@
     <div class="bg-white rounded shadow-lg p-4 px-4 w-full">
         <div class="grid gap-4 gap-y-2 text-sm">
             <div class="text-gray-600">
-                <p class="font-medium text-lg text-center">Welcome, <%=request.getAttribute("userName") %></p>
+                <p class="font-medium text-lg text-center">Welcome, <%=session.getAttribute("userName") %></p>
             </div>
 
             <div>

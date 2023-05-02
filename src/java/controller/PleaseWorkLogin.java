@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package controller;
 
 import java.io.IOException;
@@ -6,11 +10,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import model.LoginBean;
 import model.LoginDao;
 
-@WebServlet(name = "UserLoginServlet", urlPatterns = {"/UserLoginServlet"})
-public class UserLoginServlet extends HttpServlet {
+/**
+ *
+ * @author zx
+ */
+@WebServlet(name = "PleaseWorkLogin", urlPatterns = {"/PleaseWorkLogin"})
+public class PleaseWorkLogin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,14 +35,17 @@ public class UserLoginServlet extends HttpServlet {
         LoginDao loginDao = new LoginDao(); //creating object for LoginDao. This class contains main logic of the application.
 
         String userValidate = loginDao.authenticateUser(loginBean); //Calling authenticateUser function
-
+        HttpSession session = request.getSession(false);
+        
         if (userValidate.equals("SUCCESS")) //If function returns success string then user will be rooted to Home page
         {
-            request.setAttribute("userName", userName); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
-            request.getRequestDispatcher("/pepegacoJAVAEE6/index.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
+            session.setAttribute("userName", userName); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+            session.setAttribute("userRole", "userRole");
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
+//            request.getRequestDispatcher("/pepegacoJAVAEE6/index.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
         } else {
             request.setAttribute("errMessage", userValidate); //If authenticateUser() function returnsother than SUCCESS string it will be sent to Login page again. Here the error message returned from function has been stored in a errMessage key.
-            request.getRequestDispatcher("/pepegacoJAVAEE6/view/UserLogin.jsp").forward(request, response);//forwarding the request
+//            request.getRequestDispatcher("/pepegacoJAVAEE6/view/UserLogin.jsp").forward(request, response);//forwarding the request
         }
     }
 
