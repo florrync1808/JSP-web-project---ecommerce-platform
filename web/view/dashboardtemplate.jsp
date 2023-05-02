@@ -1,10 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-    <%@ include file = "components/Header.jsp" %>
     <body>
-        <%@ include file = "components/TopNavBar.jsp" %>
-
         <!-- component -->
         <div class="min-h-screen p-8 bg-gray-100 flex items-center justify-center">
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
@@ -109,5 +106,4 @@
         </div>
 
     </body>
-    <%@ include file = "components/Footer.jsp" %>
 </html>
