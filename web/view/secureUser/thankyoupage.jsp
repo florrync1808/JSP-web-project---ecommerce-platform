@@ -1,4 +1,8 @@
-
+ <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") { 
+       response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");}
+    else { }%>
+    <!--this page only viewable by user-->
+    
 <div class="flex items-center justify-center h-screen">
     <div>
         <div class="flex flex-col items-center space-y-2">
