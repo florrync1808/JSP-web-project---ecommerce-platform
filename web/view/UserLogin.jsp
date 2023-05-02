@@ -10,9 +10,13 @@
             </div>
             <div class="mt-4">
                 <!--if thr is login user redirect to dashboard else do nth-->
-                <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") != null) { 
-                response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
-                         } else { }%>
+                <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") == "userRole") { 
+                        response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
+                   }
+                   else if(session.getAttribute("userName") != null && session.getAttribute("userRole") == "staffRole") {
+                        response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp");
+                   }     
+                   else { }%>
                 <form name="form" action="/pepegacoJAVAEE6/UserLoginServlet" method="POST" onsubmit="return validate()">
                     <!--E-mail input-->
                     <div class="relative mb-6">
