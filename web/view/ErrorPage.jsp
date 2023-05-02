@@ -11,7 +11,7 @@
                             <h1 class="my-2 text-gray-800 font-bold text-2xl">
                                 You look a little lost!
                             </h1>
-                            <p class="my-2 text-gray-800">Please visit our hompage to get where you need to go.</p>
+                            <p class="my-2 text-gray-800">Please visit our homepage to get where you need to go.</p>
                         </div>
                     </div>
                     <div>
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="px-4 items-center flex justify-center flex-col-reverse">
-            <a href="index.jsp" class="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center bg-blue-950 text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-opacity-50">Take me there!</a>
+            <a href="/pepegacoJAVAEE6/index.jsp" class="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center bg-blue-950 text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-opacity-50">Take me there!</a>
         </div>
     </body>
 </html>
