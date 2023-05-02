@@ -57,9 +57,6 @@
                                                            dark:focus:text-primary-500 dark:active:text-primary-600">Forgot password?</a>
                                                     </div>
                                                 </div>-->
-
-
-
                     <!--Sign in button-->
                     <button
                         type="submit"
