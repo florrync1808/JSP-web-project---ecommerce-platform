@@ -3,13 +3,13 @@
 <jsp:setProperty name="loginPost" property="*"/>
 
 <%
-    String result = da.CountriesDA.login(loginPost);
+    String result = controller.userLoginServlet.login(loginPost);
             session.setAttribute("logging", loginPost.getEmail());
             session.setAttribute("logging2", loginPost.getPassword());
 
 
     if (result.equals("true")) {
-        session.setAttribute("email", loginPost.getEmail());
+        session.setAttribute("username", loginPost.getEmail());
         session.setAttribute("userRole", "user");
 
         response.sendRedirect("pepegacoJAVAEE6/web/view/secureUser/UserDashboard.jsp");
@@ -27,8 +27,6 @@
 
 %>
 
- <%=
-                                loginPost.getEmail()
-                            %><%=
-                                loginPost.getPassword()
-                            %>
+ <%=loginPost.getEmail()%>
+ <%=loginPost.getPassword()%>
+ 
