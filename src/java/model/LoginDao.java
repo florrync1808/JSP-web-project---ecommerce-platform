@@ -36,6 +36,6 @@ public class LoginDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "Invalid user credentials"; // Return appropriate message in case of failure
+        return "Invalid Login Credentials"; // Return appropriate message in case of failure
     }
 }

@@ -13,7 +13,7 @@
                 <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") != null) { 
                 response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
                          } else { }%>
-                <form name="form" action="/pepegacoJAVAEE6/PleaseWorkLogin" method="POST" onsubmit="return validate()">
+                <form name="form" action="/pepegacoJAVAEE6/UserLoginServlet" method="POST" onsubmit="return validate()">
                     <!--E-mail input-->
                     <div class="relative mb-6">
                         <label for="email" class="ml-3">Username</label>
@@ -32,9 +32,9 @@
                             placeholder="Password" />
                     </div>
 
-                    <span class="text-red-500">
-                        <%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%>
-                    </span>
+                    <p class="text-red-500 text-center">
+                        <%=(session.getAttribute("errMessage") == null) ? "" : session.getAttribute("errMessage")%>
+                    </p>
 
                     <!--Sign in button-->
                     <input
@@ -42,7 +42,8 @@
                         class="mt-3 text-lg font-semibold bg-gray-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">   
                     </input>
                 </form>
-
+                         <% session.setAttribute("errMessage", ""); %>
+                   
                 <script>
                     function validate()
                     {
@@ -70,7 +71,6 @@
                        dark:hover:text-primary-500 dark:focus:text-primary-500
                        dark:active:text-primary-600">Register</a>
                 </p>
-                <a href="/pepegacoJAVAEE6/PleaseWorkLogin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Logout</a>
 
             </div>
         </div>
