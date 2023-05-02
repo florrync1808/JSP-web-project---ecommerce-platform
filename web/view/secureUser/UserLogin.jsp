@@ -1,4 +1,8 @@
 
+<%@page import="domain.LoginPost"%>
+<jsp:useBean id="loginPost" class="domain.LoginPost" scope="session"/>
+<jsp:setProperty name="loginPost" property="*"/>
+
 <div x-show.transition="status || isError"  
      class="bg-slate-200 mx-aut my-auto absolute w-full h-full flex items-center
      shadow-lg overflow-y-auto">
@@ -44,12 +48,11 @@
                 <!--Register link-->
                 <p class="mt-6 text-center text-neutral-800 dark:text-neutral-200">
                     Not a member?
-                    <a href="#!" class="text-primary transition duration-150
+                    <a href="/pepegacoJAVAEE6/view/Register.jsp" class="text-primary transition duration-150
                        ease-in-out hover:text-primary-600 focus:text-primary-600
                        active:text-primary-700 dark:text-primary-400
                        dark:hover:text-primary-500 dark:focus:text-primary-500
-                       dark:active:text-primary-600">Register</a
-                    >
+                       dark:active:text-primary-600">Register</a>
                 </p>
             </div>
         </div>
