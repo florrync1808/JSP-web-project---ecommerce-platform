@@ -8,6 +8,10 @@
         <servlet-name>UserLoginServlet</servlet-name>
         <servlet-class>controller.UserLoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DisplayProductsServlet</servlet-name>
+        <servlet-class>controller.DisplayProductsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>UserLoginServlet</servlet-name>
         <url-pattern>/UserLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayProductsServlet</servlet-name>
+        <url-pattern>/DisplayProductsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
