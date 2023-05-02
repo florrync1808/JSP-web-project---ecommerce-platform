@@ -9,18 +9,10 @@
                 <p x-text="modalBodyText"></p>
             </div>
             <div class="mt-4">
-                <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") != null) { %>
-//                if thr is login user
-                redirect to dashboard
-                <%
+                <!--if thr is login user redirect to dashboard else do nth-->
+                <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") != null) { 
                 response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
-                %>
-
-                <% } else { %>
-                do nothing
-                <% }%>
-                <%=session.getAttribute("userName") %>
-                <%=session.getAttribute("userRole") %>
+                         } else { }%>
                 <form name="form" action="/pepegacoJAVAEE6/PleaseWorkLogin" method="POST" onsubmit="return validate()">
                     <!--E-mail input-->
                     <div class="relative mb-6">
