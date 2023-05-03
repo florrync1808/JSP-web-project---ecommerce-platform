@@ -4,15 +4,19 @@
         <servlet-name>LoadStaffList</servlet-name>
         <servlet-class>controller.LoadStaffList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewReport</servlet-name>
+        <servlet-class>controller.ViewReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoadStaffList</servlet-name>
         <url-pattern>/LoadStaffList</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>DisplayProductsServlet</servlet-name>
         <url-pattern>/DisplayProductsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReport</servlet-name>
+        <url-pattern>/ViewReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
