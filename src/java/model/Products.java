@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.io.Serializable;
@@ -21,6 +24,10 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author End User
+ */
 @Entity
 @Table(name = "PRODUCTS")
 @XmlRootElement
@@ -68,8 +75,6 @@ public class Products implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private List<OrderLists> orderListsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<CartLists> cartListsList;
 
     public Products() {
@@ -106,14 +111,14 @@ public class Products implements Serializable {
     public double getProductPrice() {
         return productPrice;
     }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
     
     public String getProductPriceinString() {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(this.getProductPrice());
-    }
-
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
     }
 
     public String getProductDesc() {
@@ -146,15 +151,6 @@ public class Products implements Serializable {
 
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
-    }
-
-    @XmlTransient
-    public List<OrderLists> getOrderListsList() {
-        return orderListsList;
-    }
-
-    public void setOrderListsList(List<OrderLists> orderListsList) {
-        this.orderListsList = orderListsList;
     }
 
     @XmlTransient
