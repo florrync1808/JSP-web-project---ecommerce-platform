@@ -13,7 +13,7 @@
             </h1>
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">
-                <a href="/pepegacoJAVAEE6/view/Products.jsp" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
+                <a href="/pepegacoJAVAEE6/DisplayProductsServlet" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
             </div>
         </div>
     </div>
