@@ -3,8 +3,8 @@
     } else if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "staffRole") {
 
         response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
-     } else {
-     }%>
+    } else {
+    }%>
 <!--this page can be viewed by admin & staff-->
 
 <%@page import="java.text.SimpleDateFormat"%>
@@ -16,6 +16,11 @@
     SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
 
+<!--here is the pop up for success or nt-->
+<p class="text-red-500 text-center">
+    <%=(session.getAttribute("success") == null ? "" : session.getAttribute("AddItemconfirmationMsg")%>
+</p>
+
 <div class="p-8 min-h-screen">
     <div class="px-12">
         <div class="flex flex-row col-span-2">
@@ -23,7 +28,7 @@
                 <p class="text-xl font-bold">Products List</p>
             </div>
             <div class="grow-0">
-                <a href="AddProduct">
+                <a href="/pepegacoJAVAEE6/AddProduct">
                     <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="addProduct">Add Product</button>
                 </a>
             </div>
@@ -89,4 +94,5 @@
         </div>
     </div>
 </div>
+    <%=(session.setAttribute("success", null)%>
 
