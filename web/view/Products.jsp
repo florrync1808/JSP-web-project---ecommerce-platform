@@ -34,7 +34,7 @@
                             </div>
                             <p class="text-xs leading-3 text-gray-600 dark:text-white pt-2"><%= item.getProductDesc() %></p>
                             <div class="flex items-center justify-between pt-5">
-                                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"><%= item.getProductPrice() %></p>
+                                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"> RM <%= item.getProductPriceinString() %> </p>
                                 <div class="flex itemms-center">
                                     <button class="bg-gray-700 mr-5 text-white px-1 py-0 rounded-sm shadow-md duration-300 hover:-translate-y-1 hover:shadow-lg" >&#10010</button>
                                 </div>

@@ -2,6 +2,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -104,6 +105,11 @@ public class Products implements Serializable {
 
     public double getProductPrice() {
         return productPrice;
+    }
+    
+    public String getProductPriceinString() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(this.getProductPrice());
     }
 
     public void setProductPrice(double productPrice) {
