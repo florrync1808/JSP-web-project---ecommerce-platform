@@ -36,15 +36,13 @@ public class AddProductServlet extends HttpServlet {
             boolean success = productService.addItem(product);
             utx.commit();
             
-            HttpSession session = request.getSession();
             if (success == true){
             confirmMsg = "Added Succesfully!";
             }
             else{
             confirmMsg = "Add Item Failed!";
             }
-  
-            session.setAttribute("success", success);
+            HttpSession session = request.getSession();
             session.setAttribute("AddItemconfirmationMsg", confirmMsg);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/ProductList.jsp");
         } catch (Exception ex) {
