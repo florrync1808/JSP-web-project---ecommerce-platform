@@ -16,39 +16,35 @@ public class StaffsService {
         this.mgr = mgr;
     }
 
-    public boolean addStaff(Staffs staff) {
-        mgr.persist(staff);
+    public boolean addItem(Staffs item) {
+        mgr.persist(item);
         return true;
     }
 
-    public Staffs findStaffById(String staffId) {
-        Staffs staff = mgr.find(Staffs.class, staffId);
-        return staff;
+    public Staffs findItemByCode(String code) {
+        Staffs item = mgr.find(Staffs.class, code);
+        return item;
     }
 
-    public boolean deleteStaff(String staffId) {
-        Staffs staff = findStaffById(staffId);
-        if (staff != null) {
-            mgr.remove(staff);
+    public boolean deleteItem(String code) {
+        Staffs item = findItemByCode(code);
+        if (item != null) {
+            mgr.remove(item);
             return true;
         }
         return false;
     }
 
     public List<Staffs> findAll() {
-        List staffList = mgr.createNamedQuery("Staffs.findAll").getResultList();
-        return staffList;
+        List itemList = mgr.createNamedQuery("Staffs.findAll").getResultList();
+        return itemList;
     }
 
-    public boolean updateItem(Staffs staff) {
-        Staffs tempStaff = findStaffById(staff.getStaffId());
-        if (tempStaff != null) {
-            tempStaff.setName(staff.getName());
-            tempStaff.setBirthdate(staff.getBirthdate());
-            tempStaff.setContactNo(staff.getContactNo());
-            tempStaff.setEmail(staff.getEmail());
-            tempStaff.setEmploymentStatus(staff.getEmploymentStatus());
-            tempStaff.setPassword(staff.getPassword());
+    public boolean updateItem(Staffs item) {
+        Staffs tempItem = findItemByCode(item.getStaffId());
+        if (tempItem != null) {
+            tempItem.setName(item.getName());
+            tempItem.setBirthdate(item.getBirthdate());
             return true;
         }
         return false;

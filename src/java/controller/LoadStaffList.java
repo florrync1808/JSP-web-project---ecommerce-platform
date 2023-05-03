@@ -20,8 +20,8 @@ public class LoadStaffList extends HttpServlet {
             List<Staffs> staffsList = staffsService.findAll();
 
             HttpSession session = request.getSession();
-            session.setAttribute("staffsList", staffsList);
-            response.sendRedirect("secureAdmin/DisplayItemList.jsp");
+            session.setAttribute("staffL", staffsList);
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {
             Logger.getLogger(LoadStaffList.class.getName()).log(Level.SEVERE, null, ex);
         }
