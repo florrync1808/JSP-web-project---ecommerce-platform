@@ -27,9 +27,7 @@ public class AddProductServlet extends HttpServlet {
             String desc = request.getParameter("desc");
             double price = Double.parseDouble(request.getParameter("price"));
             String photo = request.getParameter("photo");
-            
 
-            
             Products product = new Products(id, name, price, desc, photo);
             ProductService productService = new ProductService(em);
             utx.begin();

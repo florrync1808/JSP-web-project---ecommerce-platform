@@ -2,7 +2,7 @@
 <%@page import="model.Products"%>
 
 <%
-  List<Products> ProductList = (List)session.getAttribute("ProductList");
+  List<Products> ProductList = (List)session.getAttribute("productList");
 %>
 
 <div class="p-8 min-h-screen ">

@@ -12,7 +12,7 @@
 <%@page import="model.Products"%>
 
 <%
-    List<Products> ProductList = (List) session.getAttribute("ProductList");
+    List<Products> ProductList = (List) session.getAttribute("productList");
     SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
 
