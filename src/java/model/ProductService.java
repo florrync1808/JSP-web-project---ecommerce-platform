@@ -37,7 +37,7 @@ public class ProductService {
     }
 
     public List<Products> findAll() {
-        List itemList = mgr.createNamedQuery("Item.findAll").getResultList();
+        List itemList = mgr.createNamedQuery("Products.findAll").getResultList();
         return itemList;
     }
 

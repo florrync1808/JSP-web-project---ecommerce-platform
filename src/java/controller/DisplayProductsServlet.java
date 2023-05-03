@@ -20,10 +20,10 @@ public class DisplayProductsServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ProductService itemService = new ProductService(em);
-            List<Products> itemList = itemService.findAll();
+            ProductService productService = new ProductService(em);
+            List<Products> productList = productService.findAll();
             HttpSession session = request.getSession();
-            session.setAttribute("ProductList", itemList);
+            session.setAttribute("ProductList", productList);
             response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
         } catch (Exception ex) {
 //            System.out.println(ex);
