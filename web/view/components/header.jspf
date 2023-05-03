@@ -44,32 +44,36 @@
 
                             <!--Dropdown menu, show/hide based on menu state.-->
                             <div class="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" x-show="open" @click.outside="open = false">      
-                                <% if (request.getUserPrincipal() != null) { %>
-                                <% if (request.isUserInRole("adminRole")) { %>
-                                <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Dashboard</a>    
-                                <a href="/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
-                                <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
-                                <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Staff</a>
-                                <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageProducts.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Products</a>
-                                <a href="/pepegacoJAVAEE6/view/secureAdmin/GenerateReport.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Generate Report</a>
-                                <a href="/pepegacoJAVAEE6/view/Logout.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Logout</a>
-                                <% } else if (request.isUserInRole("staffRole")) { %>
-                                <a href="/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Dashboard</a> 
-                                <a href="/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Account</a>
-                                <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
-                                <a href="/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
-                                <a href="/pepegacoJAVAEE6/view/Logout.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Logout</a>
-                                <% } else { %>
-                                <a href="/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User Dashboard</a>    
-                                <a href="/pepegacoJAVAEE6/view/Products.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Shop Online</a>
-                                <a href="/pepegacoJAVAEE6/view/secureUser/UserAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Account</a>
-                                <a href="/pepegacoJAVAEE6/view/secureUser/OrderHistory.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Order History</a>
-                                <a href="/pepegacoJAVAEE6/view/Logout.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Logout</a>
-                                <% } %>
 
+                                <% if (request.getUserPrincipal() != null || session.getAttribute("userName") != null) { %>
+                                    <% if (request.isUserInRole("adminRole")) { %>
+                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Dashboard</a>    
+                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Staff</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageProducts.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Products</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/GenerateReport.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Generate Report</a>
+                                        <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Logout</a>
+
+                                    <% } else if (session.getAttribute("userRole").equals("staffRole")) { %>
+                                        <a href="/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Dashboard</a> 
+                                        <a href="/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Account</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
+                                        <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Logout</a>
+                                    
+                                    <% } else if (session.getAttribute("userRole").equals("userRole")) { %>
+                                        <a href="/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User Dashboard</a>    
+                                        <a href="/pepegacoJAVAEE6/view/Products.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Shop Online</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureUser/UserAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Account</a>
+                                        <a href="/pepegacoJAVAEE6/view/secureUser/OrderHistory.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Order History</a>
+                                        <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Logout</a>
+                                    <% } else { %>
+                                    
+                                    <% }%>
                                 <% } else { %>
-                                <a href="/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User Login</a>        
-                                <a href="/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Login</a>        
+
+                                <a href="/pepegacoJAVAEE6/view/UserLogin.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User/Staff Login</a>         
                                 <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Login</a>    
                                 <% }%>
                             </div>

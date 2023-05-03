@@ -7,6 +7,30 @@
     <servlet-mapping>
         <servlet-name>LoadStaffList</servlet-name>
         <url-pattern>/LoadStaffList</url-pattern>
+    </servlet-mapping>    
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <servlet-class>controller.UserLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <url-pattern>/UserLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DisplayProductsServlet</servlet-name>
+        <servlet-class>controller.DisplayProductsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayProductsServlet</servlet-name>
+        <url-pattern>/DisplayProductsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -38,30 +62,6 @@
         <auth-constraint>
             <description/>
             <role-name>adminRole</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>staff</display-name>
-        <web-resource-collection>
-            <web-resource-name>staff</web-resource-name>
-            <description/>
-            <url-pattern>/view/secureStaff/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>staffRole</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>user</display-name>
-        <web-resource-collection>
-            <web-resource-name>user</web-resource-name>
-            <description/>
-            <url-pattern>/view/secureUser/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>userRole</role-name>
         </auth-constraint>
     </security-constraint>
     <login-config>
