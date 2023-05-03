@@ -30,7 +30,7 @@
                     <tr>
                         <!-- loop through staff-info database, now show one row only -->
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6">1</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">string</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getStaffId() %></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Jone Smith</td>
                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">1990-12-01</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0109448932</td>
