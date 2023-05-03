@@ -1,6 +1,4 @@
-
-
-        <div class="p-8 min-h-screen">
+<div class="p-8 min-h-screen">
             <div class="inline-block min-w-full py-2 align-middle">
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-md">
                     <table class="min-w-full divide-y divide-gray-300">
@@ -54,15 +52,26 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                                    </div>
+                                    <div class="" role="none">
+                                        <a href="#" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <div class="" role="none">
+                                        <a href="#" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+                                            Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
 
 
 
