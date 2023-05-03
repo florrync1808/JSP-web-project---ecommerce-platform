@@ -23,7 +23,7 @@
                 <p class="text-xl font-bold">Products List</p>
             </div>
             <div class="grow-0">
-                <a href="AddProduct">
+                <a href="AddProduct.html">
                     <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="addProduct">Add Product</button>
                 </a>
             </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="inline-block min-w-full py-2 align-middle">
         <div class="overflow-x-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-md">
-            <table class="divide-y divide-gray-300 table-fixed overflow-x-scroll">
+            <table class="divide-y divide-gray-300 min-w-full table-fixed overflow-x-scroll">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Product ID</th>

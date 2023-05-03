@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Add New Product</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="">
+            <div class="antialiased text-gray-900 px-6">
+                <div class="max-w-xl mx-auto py-12 divide-y md:max-w-4xl">
+                    <div class="">
+                        <h2 class="p-2 text-xl font-bold">Add New Product</h2>
+                        <div class="mt-8">
+                            <div class="grid grid-cols-1 gap-6">
+                                <form action="/pepegacoJAVAEE6/AddProductServlet">
+                                    <label class="block p-2">
+                                        <span class="text-gray-700">Product ID</span>
+                                        <input name="pid" type="text" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                    </label>
+                                    <label class="block p-2">
+                                        <span class="text-gray-700">Name</span>
+                                        <input name="pname" type="text" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="eg Albuca Concordiana"/>
+                                    </label>
+                                    <label class="block p-2">
+                                        <span class="text-gray-700">Description</span>
+                                        <textarea name="pdesc" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"rows="3" placeholder="Briefly describe the product"></textarea>
+                                    </label>
+                                    <label class="block p-2">
+                                        <span class="text-gray-700">Price (RM)</span>
+                                        <input name="pprice" type="number" required step="0.01" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                                               focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+                                               [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="eg 12.90"/>
+                                    </label>
+                                    <label class="block p-2">
+                                        <span class="text-gray-700">Product Image</span>
+                                        <input type="file" class="p-2 pl-0 block w-full text-sm text-slate-500
+                                               file:mr-4 file:py-2 file:px-4
+                                               file:rounded-full
+                                               file:text-sm file:font-semibold
+                                               file:bg-white file:border file:border-blue-950 file:text-blue-950
+                                               hover:file:bg-blue-950 hover:file:text-white
+                                               "/>
+                                    </label>
+                                    <div class="p-2 pl-0 flex flex-row">
+                                        <div class="p-2">
+                                            <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="addProduct">
+                                                <input type="submit" value="Add">
+                                            </button>
+                                        </div>
+                                        <div class="p-2">
+                                            <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="addProduct">
+                                                <input type="reset" value="Reset">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
