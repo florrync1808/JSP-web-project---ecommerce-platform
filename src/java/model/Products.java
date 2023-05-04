@@ -1,4 +1,3 @@
-
 package model;
 
 import java.io.Serializable;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Products.findAll", query = "SELECT p FROM Products p"),
     @NamedQuery(name = "Products.findByProductId", query = "SELECT p FROM Products p WHERE p.productId = :productId"),
-    @NamedQuery(name = "Products.findByProductName", query = "SELECT p FROM Products p WHERE p.productName = :productName"),
+    @NamedQuery(name = "Products.findByProductName", query = "SELECT p FROM Products p WHERE p.productName = :productName "),
     @NamedQuery(name = "Products.findByProductPrice", query = "SELECT p FROM Products p WHERE p.productPrice = :productPrice"),
     @NamedQuery(name = "Products.findByProductDesc", query = "SELECT p FROM Products p WHERE p.productDesc = :productDesc"),
     @NamedQuery(name = "Products.findByProductPhoto", query = "SELECT p FROM Products p WHERE p.productPhoto = :productPhoto"),
@@ -72,10 +71,9 @@ public class Products implements Serializable {
     private List<OrderLists> orderListsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<CartLists> cartListsList;
-    
+
 //    Timestamp ts = new Timestamp(System.currentTimeMillis());
 //    Date date = ts;
-
     public Products() {
     }
 
@@ -89,7 +87,7 @@ public class Products implements Serializable {
         this.productPrice = productPrice;
         this.productDesc = productDesc;
         this.productPhoto = productPhoto;
-        
+
     }
 
     public String getProductId() {
@@ -111,7 +109,7 @@ public class Products implements Serializable {
     public double getProductPrice() {
         return productPrice;
     }
-    
+
     public String getProductPriceinString() {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(this.getProductPrice());
@@ -195,5 +193,5 @@ public class Products implements Serializable {
     public String toString() {
         return "model.Products[ productId=" + productId + " ]";
     }
-    
+
 }
