@@ -36,8 +36,18 @@
 
                     <!--profile icon-->
                     <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0" x-data="{ open: false }">                    
+
+                        <% if (session.getAttribute("userName") != null && session.getAttribute("userRole").equals("userRole")) {
+                             %>
+                        <!--cart icon-->
+                        <a href="/pepegacoJAVAEE6/AddToCartServlet"><button class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"  @click="open = ! open" >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" /> </svg>
+                        </button></a>
+                        <% } else { } %> 
+                        
                         <!--Profile dropdown--> 
                         <div class="relative ml-3"  x-data="{ open: false }">
+
                             <button type="button"  @click="open = ! open" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" >
                                 <svg class="h-8 w-8 rounded-full" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#E5E5E5;" d="M256,0C114.616,0,0,114.616,0,256s114.616,256,256,256s256-114.616,256-256S397.384,0,256,0z"></path> <path style="fill:#FFFFFF;" d="M256,466.432c-116.032,0-210.432-94.4-210.432-210.432S139.968,45.568,256,45.568 S466.432,139.968,466.432,256S372.032,466.432,256,466.432z M256,61.568C148.792,61.568,61.568,148.792,61.568,256 S148.792,450.432,256,450.432S450.432,363.208,450.432,256S363.208,61.568,256,61.568z"></path> <path d="M256,118.76c22.216,0,40.296,18.08,40.296,40.296s-18.08,40.296-40.296,40.296s-40.296-18.08-40.296-40.296 C215.704,136.84,233.776,118.76,256,118.76 M256,102.76c-31.088,0-56.296,25.208-56.296,56.296s25.208,56.296,56.296,56.296 s56.296-25.208,56.296-56.296S287.088,102.76,256,102.76L256,102.76z"></path> <path d="M189.24,245.448l39.096,84.76h-70.448v-48.664C157.888,256.088,176.632,248.008,189.24,245.448 M198.944,228.288 c0,0-57.056,0.76-57.056,53.256s0,64.664,0,64.664s111.072,0,111.456,0L198.944,228.288L198.944,228.288z M253.336,346.208 L253.336,346.208L253.336,346.208L253.336,346.208z"></path> <path d="M322.768,245.44c12.336,2.52,31.344,10.552,31.344,36.104v48.664h-70.448L322.768,245.44 M313.056,228.288l-54.392,117.92 l0,0H370.12c0,0,0-12.176,0-64.664C370.112,229.048,313.056,228.288,313.056,228.288L313.056,228.288z"></path> <polygon style="fill:#F00000;" points="256,228.288 216.824,228.288 256,315.016 295.176,228.288 "></polygon> </g></svg>
                             </button>
@@ -46,31 +56,30 @@
                             <div class="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" x-show="open" @click.outside="open = false">      
 
                                 <% if (request.getUserPrincipal() != null || session.getAttribute("userName") != null) { %>
-                                    <% if (request.isUserInRole("adminRole")) { %>
-                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Dashboard</a>    
-                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Staff</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageProducts.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Products</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureAdmin/GenerateReport.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Generate Report</a>
-                                        <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Logout</a>
+                                <% if (request.isUserInRole("adminRole")) { %>
+                                <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Dashboard</a>    
+                                <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
+                                <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
+                                <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Staff</a>
+                                <a href="/pepegacoJAVAEE6/view/secureAdmin/GenerateReport.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Generate Report</a>
+                                <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Logout</a>
 
-                                    <% } else if (session.getAttribute("userRole").equals("staffRole")) { %>
-                                        <a href="/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Dashboard</a> 
-                                        <a href="/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Account</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
-                                        <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Logout</a>
-                                    
-                                    <% } else if (session.getAttribute("userRole").equals("userRole")) { %>
-                                        <a href="/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User Dashboard</a>    
-                                        <a href="/pepegacoJAVAEE6/view/Products.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Shop Online</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureUser/UserAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Account</a>
-                                        <a href="/pepegacoJAVAEE6/view/secureUser/OrderHistory.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Order History</a>
-                                        <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Logout</a>
-                                    <% } else { %>
-                                    
-                                    <% }%>
+                                <% } else if (session.getAttribute("userRole").equals("staffRole")) { %>
+                                <a href="/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Dashboard</a> 
+                                <a href="/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Account</a>
+                                <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
+                                <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
+                                <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Logout</a>
+
+                                <% } else if (session.getAttribute("userRole").equals("userRole")) { %>
+                                <a href="/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User Dashboard</a>    
+                                <a href="/pepegacoJAVAEE6/view/Products.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Shop Online</a>
+                                <a href="/pepegacoJAVAEE6/view/secureUser/UserAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Account</a>
+                                <a href="/pepegacoJAVAEE6/view/secureUser/OrderHistory.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 ">Order History</a>
+                                <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Logout</a>
+                                <% } else { %>
+
+                                <% }%>
                                 <% } else { %>
 
                                 <a href="/pepegacoJAVAEE6/view/UserLogin.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User/Staff Login</a>         

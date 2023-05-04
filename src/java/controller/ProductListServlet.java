@@ -1,3 +1,4 @@
+
 package controller;
 
 import java.io.IOException;
@@ -13,23 +14,23 @@ import java.util.logging.*;
 import model.ProductService;
 import model.Products;
 
-public class DisplayProductsServlet extends HttpServlet {
+
+public class ProductListServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+       try {
             ProductService productService = new ProductService(em);
             List<Products> productList = productService.findAll();
             HttpSession session = request.getSession();
             session.setAttribute("ProductList", productList);
-            response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp");
         } catch (Exception ex) {
             Logger.getLogger(DisplayProductsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

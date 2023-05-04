@@ -1,61 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <servlet>
-        <servlet-name>LoadStaffList</servlet-name>
-        <servlet-class>controller.LoadStaffList</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ViewReport</servlet-name>
-        <servlet-class>controller.ViewReport</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MakePayment</servlet-name>
-        <servlet-class>controller.MakePayment</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddPayment</servlet-name>
-        <servlet-class>controller.AddPayment</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoadStaffList</servlet-name>
-        <url-pattern>/LoadStaffList</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>UserLoginServlet</servlet-name>
-        <servlet-class>controller.UserLoginServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserLoginServlet</servlet-name>
-        <url-pattern>/UserLoginServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>DisplayProductsServlet</servlet-name>
-        <servlet-class>controller.DisplayProductsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DisplayProductsServlet</servlet-name>
-        <url-pattern>/DisplayProductsServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ViewReport</servlet-name>
-        <url-pattern>/ViewReport</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MakePayment</servlet-name>
-        <url-pattern>/MakePayment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddPayment</servlet-name>
-        <url-pattern>/AddPayment</url-pattern>
-    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30

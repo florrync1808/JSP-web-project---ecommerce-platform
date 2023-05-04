@@ -5,9 +5,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,16 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cbiev
+ * @author End User
  */
 @Entity
 @Table(name = "CART_LISTS")
@@ -46,11 +42,12 @@ public class CartLists implements Serializable {
     @NotNull
     @Column(name = "ITEM_QTY")
     private int itemQty;
+    @JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")
+    @ManyToOne(optional = false)
+    private Carts cartId;
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
     @ManyToOne(optional = false)
     private Products productId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cartListId")
-    private List<Carts> cartsList;
 
     public CartLists() {
     }
@@ -80,21 +77,20 @@ public class CartLists implements Serializable {
         this.itemQty = itemQty;
     }
 
+    public Carts getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Carts cartId) {
+        this.cartId = cartId;
+    }
+
     public Products getProductId() {
         return productId;
     }
 
     public void setProductId(Products productId) {
         this.productId = productId;
-    }
-
-    @XmlTransient
-    public List<Carts> getCartsList() {
-        return cartsList;
-    }
-
-    public void setCartsList(List<Carts> cartsList) {
-        this.cartsList = cartsList;
     }
 
     @Override
