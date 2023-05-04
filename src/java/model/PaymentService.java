@@ -63,4 +63,13 @@ public class PaymentService {
         Customers c = mgr.find(Customers.class, code);
         return c;
     }
+    
+//    public CustomerAddresses findCustomerPrimaryAdd(String custId){
+//        CustomerAddresses address = mgr.find(CustomerAddresses.class, custId);
+//        
+//        if(address.getIsPrimary()== true){
+//            
+//        }
+//         
+//    }
 }

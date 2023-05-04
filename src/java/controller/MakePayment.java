@@ -31,16 +31,13 @@ public class MakePayment extends HttpServlet {
             throws ServletException, IOException {
         try  {
             //receive session from the jsp 
-//            HttpSession cusSession = request.getSession(true);
-//            String custId = (String)cusSession.getAttribute("custId");
-//            
-//            //get CustomerDetails
-            PaymentService paymentService = new PaymentService(em);
-//            Customers customer = paymentService.findCustomerDetails(custId);
-            Customers customer = paymentService.findCustomerDetails("CU000001");
+            HttpSession session = request.getSession(true);
+            String custId = (String)session.getAttribute("customerId");
             
-            HttpSession session = request.getSession();
-//            session.setAttribute("custId", custId);
+            //get CustomerDetails
+            PaymentService paymentService = new PaymentService(em);
+            Customers customer = paymentService.findCustomerDetails(custId);
+            
             session.setAttribute("customer", customer);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Payment.jsp");
 

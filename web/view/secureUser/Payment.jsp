@@ -6,7 +6,7 @@
 
 <%@page import="model.Customers"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% Customers customer = (Customers) session.getAttribute("customer");%>
+<% Customers customer = (Customers) session.getAttribute("customer"); %>
 
 <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") {
         response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
