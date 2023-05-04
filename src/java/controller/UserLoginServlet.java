@@ -35,7 +35,7 @@ public class UserLoginServlet extends HttpServlet {
             session.setAttribute("userName", userName); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
             session.setAttribute("userRole", "staffRole");
             session.setAttribute("UserDBName", loginDao.getUserHumanNameDB());
-            session.setAttribute("customerId", loginDao.getUserIdDB());
+            session.setAttribute("staffId", loginDao.getUserIdDB());
             session.setAttribute("userEmail", loginDao.getUserEmailDB());
             response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp");
         } else {
