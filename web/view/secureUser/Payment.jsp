@@ -47,7 +47,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <label class="leading-loose">Shipping Address</label>
-                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" value="<%=customer.getLine1()%>, <%=customer.getLine2()%>, <%=customer.getCity()%>, <%=customer.getPostcode()%><%=customer.getState()%>">
                                     <div class="grid place-items-end">
                                         <a class="leading-loose text-blue-600 underline text-base pr-2" href="">Change Address</a>
                                     </div>

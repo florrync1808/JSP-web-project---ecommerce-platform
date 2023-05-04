@@ -30,6 +30,7 @@ public class MakePayment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try  {
+            System.out.println("adfjl");
             //receive session from the jsp 
             HttpSession session = request.getSession(true);
             String custId = (String)session.getAttribute("customerId");
@@ -37,7 +38,8 @@ public class MakePayment extends HttpServlet {
             //get CustomerDetails
             PaymentService paymentService = new PaymentService(em);
             Customers customer = paymentService.findCustomerDetails(custId);
-            
+            CardProfiles card = paymentService.findCard(custId);
+            session.setAttribute("card", card);
             session.setAttribute("customer", customer);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Payment.jsp");
 

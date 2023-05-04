@@ -64,12 +64,10 @@ public class PaymentService {
         return c;
     }
     
-//    public CustomerAddresses findCustomerPrimaryAdd(String custId){
-//        CustomerAddresses address = mgr.find(CustomerAddresses.class, custId);
-//        
-//        if(address.getIsPrimary()== true){
-//            
-//        }
-//         
-//    }
+    public CardProfiles findCard(String custId){
+        CardProfiles card = mgr.find(CardProfiles.class, custId);
+        return card;
+    }
+    
+    
 }
