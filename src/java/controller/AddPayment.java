@@ -6,8 +6,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
@@ -15,38 +14,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.*;
+import javax.transaction.UserTransaction;
 
 /**
  *
  * @author End User
  */
-public class MakePayment extends HttpServlet {
+public class AddPayment extends HttpServlet {
 
     @PersistenceContext
-        EntityManager em;
-    
-    
+    EntityManager em;
+    @Resource
+    UserTransaction utx;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try  {
-            //receive session from the jsp 
-//            HttpSession cusSession = request.getSession(true);
-//            String custId = (String)cusSession.getAttribute("custId");
-//            
-//            //get CustomerDetails
-            PaymentService paymentService = new PaymentService(em);
-//            Customers customer = paymentService.findCustomerDetails(custId);
-            Customers customer = paymentService.findCustomerDetails("CU000001");
-            
-            HttpSession session = request.getSession();
-//            session.setAttribute("custId", custId);
-            session.setAttribute("customer", customer);
-            response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Payment.jsp");
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            //obtain input form user/view
+            HttpSession paymentSession = request.getSession(true);
+            String custId = (String)paymentSession.getAttribute("custId");
+            String country = request.getParameter("fname");
+            String fullName = request.getParameter("lname");
+            String capital1 = request.getParameter("cap");
+            String image = request.getParameter("img");
 
-           
-        }catch (Exception ex) {
-            Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
+            //interact with the model/entity class
+//            Countryflags countryflags = new Countryflags(country, fullName, capital1, image);
+//            ItemService itemService = new ItemService(em);
+//            utx.begin();
+//            boolean success = itemService.addItem(countryflags);
+            utx.commit();
+            HttpSession session = request.getSession();
+//            session.setAttribute("success", success);
+            response.sendRedirect("viewItem.jsp");
+        } catch (Exception ex) {
+//            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

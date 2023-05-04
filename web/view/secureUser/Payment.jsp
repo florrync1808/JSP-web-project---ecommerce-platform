@@ -4,10 +4,14 @@
     Author     : End User
 --%>
 
+<%@page import="model.Customers"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") { 
-       response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");}
-    else { }%>
+<% Customers customer = (Customers) session.getAttribute("customer");%>
+
+<% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") {
+        response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
+    } else {
+    }%>
 <form method="post" action="AddPayment">
 
     <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
@@ -31,20 +35,24 @@
 
                             <div class="flex flex-col">
                                 <label class="leading-loose">Name</label>
-                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" value="<%=customer.getName()%>">
                             </div>
                             <div class="flex flex-col">
                                 <label class="leading-loose">Contact Number</label>
-                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" value="<%=customer.getContactNo()%>">
                             </div>
                             <div class="flex flex-col">
                                 <label class="leading-loose">Email Address</label>
-                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" value="<%=customer.getEmail()%>">
                             </div>
                             <div class="flex flex-col">
                                 <label class="leading-loose">Shipping Address</label>
                                 <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                    <div class="grid place-items-end">
+                                        <a class="leading-loose text-blue-600 underline text-base pr-2" href="">Change Address</a>
+                                    </div>
                             </div>
+
 
                         </div>
                         <div class="pt-4 flex items-center space-x-4">
@@ -76,23 +84,36 @@
                 <div class="flex justify-center">
 
 
-                    <div class="relative ml-3"  x-data="{ open: false }">
+                    <div class="max-w-md mx-auto"  x-data="{ payment: 'cash'}">
                         <label class="leading-loose pr-5">Payment Method: </label>
-                        <!--                                <button type="button"  @click="open = ! open" class="bg-blue-950 my-1 ml-1 text-white px-4 py-3 rounded-md focus:outline-none" >
-                                                            Card Payment
-                                                        </button>
-                                                        <button class="bg-blue-950 my-1 ml-1 text-white px-4 py-3 rounded-md focus:outline-none">Cash On Delivery</button>-->
 
-                        <INPUT TYPE="radio" name="paymentMethod" value="card" @click="open = ! open"/>  Card Payment  
-                        <INPUT TYPE="radio" name="paymentMethod" value="1"/>  Cash On Delivery
 
-                        <!--Dropdown menu, show/hide based on menu state.-->
-                        <div class="" x-show="open" @click.outside="open = false">
-                            <%@ include file = "CardPayment.jsp" %>       
+                        <input type="radio" name="paymentMethod" value="card" x-model="payment"/>  Card Payment  
+                        <input type="radio" name="paymentMethod" value="cash" x-model="payment"/>  Cash On Delivery
+
+                        <div class="flex-row" id="card" x-show="payment == $el.id">
+
+                            <label class="leading-loose">Select Payment Account</label>
+                            <div class="mt-8 mb-10">
+                                <!--CardProfile=%> -->
+                                <span class="mt-16 px-4 py-2 rounded mt-5 border-2 border-gray-600">card 1</span>
+                                <span class="mt-16 px-4 py-2 rounded mt-5 border-2 border-gray-600">card 1</span>
+                                <span class="mt-16 px-4 py-2 rounded mt-5 border-2 border-gray-600">card 1</span>
+                                
+                            </div>
+                            <div class="" x-data="{ open: false }">
+                                <div>
+                                <span class="mt-12 px-4 py-2 rounded mt-5 border-2 border-gray-600" @click="open = ! open">+ Add Payment</span>
+                                </div>
+                                <div x-show="open" >
+
+                                    <%@ include file = "CardPayment.jsp" %>       
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="flex justify-center">
                     <input type="submit" value="Pay Now"
                            class="mt-5 px-4 py-3 rounded-full bg-blue-300 text-blue-900 focus:ring focus:outline-none w-5/6 text-xl font-semibold transition-colors"/>

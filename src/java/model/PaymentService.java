@@ -60,7 +60,7 @@ public class PaymentService {
     }
     
     public Customers findCustomerDetails(String code) {
-        Customers item = mgr.find(Customers.class, code);
-        return item;
+        Customers c = mgr.find(Customers.class, code);
+        return c;
     }
 }

@@ -12,6 +12,10 @@
         <servlet-name>MakePayment</servlet-name>
         <servlet-class>controller.MakePayment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPayment</servlet-name>
+        <servlet-class>controller.AddPayment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoadStaffList</servlet-name>
         <url-pattern>/LoadStaffList</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>MakePayment</servlet-name>
         <url-pattern>/MakePayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPayment</servlet-name>
+        <url-pattern>/AddPayment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -13,9 +13,7 @@
 <%@page import="model.OrderLists"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat" %>
-<%! @PersistenceContext
-    EntityManager em;
-%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
         <% List<Products> productList = (List) session.getAttribute("productList");%>
