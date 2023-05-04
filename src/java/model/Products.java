@@ -2,6 +2,7 @@
 package model;
 
 import java.io.Serializable;
+//import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
@@ -71,6 +72,9 @@ public class Products implements Serializable {
     private List<OrderLists> orderListsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<CartLists> cartListsList;
+    
+//    Timestamp ts = new Timestamp(System.currentTimeMillis());
+//    Date date = ts;
 
     public Products() {
     }
@@ -85,6 +89,7 @@ public class Products implements Serializable {
         this.productPrice = productPrice;
         this.productDesc = productDesc;
         this.productPhoto = productPhoto;
+        
     }
 
     public String getProductId() {
