@@ -26,6 +26,7 @@ public class ProductService {
     }
 
     public Products findProductByName(String name) {
+        try{
         //query that early difined in Products class
         Query q = mgr.createNamedQuery("Products.findByProductName");
         
@@ -34,8 +35,14 @@ public class ProductService {
         
         //retrieve result
         Products product = (Products) q.getSingleResult();
-        
         return product;
+        
+        }catch(NoResultException ex){
+            Products product = null;
+            return product;
+        }
+
+        
     }
     
     public static void main(String[] args) {

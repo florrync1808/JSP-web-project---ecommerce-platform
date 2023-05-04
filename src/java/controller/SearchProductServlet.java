@@ -40,8 +40,13 @@ public class SearchProductServlet extends HttpServlet {
             if (input.charAt(2) == '0') {
                 Products product = productService.findProductByID(input);
                 session.setAttribute("product", product);
-            } else {
+            }
+            else if (input.charAt(2) != '0')  {
                 Products product = productService.findProductByName(input);
+                session.setAttribute("product", product);
+            }
+            else{
+                Products product = null;
                 session.setAttribute("product", product);
             }
 
@@ -49,6 +54,7 @@ public class SearchProductServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
