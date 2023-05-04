@@ -26,27 +26,28 @@ public class ProductService {
     }
 
     public Products findProductByName(String name) {
-        try{
-        //query that early difined in Products class
-        Query q = mgr.createNamedQuery("Products.findByProductName");
         
-        //set the name into the query
-        q.setParameter("productName", name);
-        
-        //retrieve result
-        Products product = (Products) q.getSingleResult();
-        return product;
-        
-        }catch(NoResultException ex){
+        try {
+            //query that early difined in Products class
+            Query q = mgr.createNamedQuery("Products.findByProductName");
+
+            //set the name into the query
+            q.setParameter("productName", name);
+
+            //retrieve result
+            Products product = (Products) q.getSingleResult();
+            return product;
+
+        } catch (NoResultException ex) {
+            // if no result, then return null
             Products product = null;
             return product;
         }
 
-        
     }
-    
+
     public static void main(String[] args) {
-        
+
     }
 
     public boolean deleteProduct(String id) {
@@ -72,5 +73,5 @@ public class ProductService {
         }
         return false;
     }
-    
+
 }
