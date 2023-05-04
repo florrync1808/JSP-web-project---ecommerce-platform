@@ -1,5 +1,5 @@
  <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") { 
-       response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");}
+       response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");}
     else { }%>
     <!--this page only viewable by user-->
     
