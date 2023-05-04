@@ -18,7 +18,7 @@
     <div class="m-8 p-8 bg-white shadow-md rounded-md dark:bg-gray-800">
         <!--section title-->
         <div class="px-3">
-            <p class="text-xl font-bold">Cart</p>
+            <p class="text-xl font-bold dark:text-white">Cart</p>
             <hr class="my-4 border-gray-900"/>
         </div>    
 
