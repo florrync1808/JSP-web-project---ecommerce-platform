@@ -35,7 +35,7 @@
                             <div class="flex itemms-center">
                                 <% if (request.isUserInRole("adminRole")) {} 
                                 else if (session.getAttribute("userName") == null ||session.getAttribute("userRole").equals("userRole")) { %>
-                                <a href="/pepegacoJAVAEE6/AddToCartServlet">
+                                <a href="/pepegacoJAVAEE6/AddToCartServlet?product_id=<%= item.getProductId()%>">
                                     <button class="bg-gray-700 mr-5 text-white px-1 py-0 rounded-sm shadow-md duration-300 hover:-translate-y-1 hover:shadow-lg" >&#10010</button>
                                 </a>
                                 <% } %>

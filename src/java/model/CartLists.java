@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,36 +17,34 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author End User
+ * @author cbiev
  */
 @Entity
 @Table(name = "CART_LISTS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CartLists.findAll", query = "SELECT c FROM CartLists c"),
-    @NamedQuery(name = "CartLists.findByCartListId", query = "SELECT c FROM CartLists c WHERE c.cartListId = :cartListId"),
+    @NamedQuery(name = "CartLists.findById", query = "SELECT c FROM CartLists c WHERE c.id = :id"),
     @NamedQuery(name = "CartLists.findByItemQty", query = "SELECT c FROM CartLists c WHERE c.itemQty = :itemQty")})
 public class CartLists implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
-    @Column(name = "CART_LIST_ID")
-    private String cartListId;
+    @Column(name = "ID")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "ITEM_QTY")
     private int itemQty;
-    @JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
     @ManyToOne(optional = false)
-    private Carts cartId;
+    private Customers customerId;
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
     @ManyToOne(optional = false)
     private Products productId;
@@ -52,21 +52,21 @@ public class CartLists implements Serializable {
     public CartLists() {
     }
 
-    public CartLists(String cartListId) {
-        this.cartListId = cartListId;
+    public CartLists(Integer id) {
+        this.id = id;
     }
 
-    public CartLists(String cartListId, int itemQty) {
-        this.cartListId = cartListId;
+    public CartLists(Integer id, int itemQty) {
+        this.id = id;
         this.itemQty = itemQty;
     }
 
-    public String getCartListId() {
-        return cartListId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCartListId(String cartListId) {
-        this.cartListId = cartListId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public int getItemQty() {
@@ -77,12 +77,12 @@ public class CartLists implements Serializable {
         this.itemQty = itemQty;
     }
 
-    public Carts getCartId() {
-        return cartId;
+    public Customers getCustomerId() {
+        return customerId;
     }
 
-    public void setCartId(Carts cartId) {
-        this.cartId = cartId;
+    public void setCustomerId(Customers customerId) {
+        this.customerId = customerId;
     }
 
     public Products getProductId() {
@@ -96,7 +96,7 @@ public class CartLists implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cartListId != null ? cartListId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -107,7 +107,7 @@ public class CartLists implements Serializable {
             return false;
         }
         CartLists other = (CartLists) object;
-        if ((this.cartListId == null && other.cartListId != null) || (this.cartListId != null && !this.cartListId.equals(other.cartListId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -115,7 +115,7 @@ public class CartLists implements Serializable {
 
     @Override
     public String toString() {
-        return "model.CartLists[ cartListId=" + cartListId + " ]";
+        return "model.CartLists[ id=" + id + " ]";
     }
     
 }

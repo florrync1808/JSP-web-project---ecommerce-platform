@@ -4,6 +4,10 @@
         <servlet-name>LoadStaffList</servlet-name>
         <servlet-class>controller.LoadStaffList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <servlet-class>controller.UpdateCartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoadStaffList</servlet-name>
         <url-pattern>/LoadStaffList</url-pattern>
@@ -23,10 +27,6 @@
     <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>controller.AddToCartServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DisplayCartListServlet</servlet-name>
-        <servlet-class>controller.DisplayCartListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
@@ -61,8 +61,8 @@
         <url-pattern>/AddToCartServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DisplayCartListServlet</servlet-name>
-        <url-pattern>/DisplayCartListServlet</url-pattern>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <url-pattern>/UpdateCartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

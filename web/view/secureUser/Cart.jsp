@@ -1,11 +1,11 @@
-<% if (request.isUserInRole("adminRole")) { 
-        response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
-    } 
-else if (session.getAttribute("userName") == null) {
-response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");}
- }%>
+<% if (request.isUserInRole("adminRole")) {
+            response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
+        } else if (session.getAttribute("userName") == null) {
+            response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
+        }
+    }%>
 
-<div class=" h-fit bg-gray-200 w-full rounded-md py-10 col-span-2 p-2">
+<div class=" h-fit bg-gray-200 w-full rounded-md py-10 p-2">
     <div class="m-8 p-8 bg-white shadow-md rounded-md dark:bg-gray-800">
         <!--section title-->
         <div class="px-3">
@@ -23,19 +23,20 @@ response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");}
                 <p class="text-xs leading-3 text-gray-800 dark:text-white md:pt-0 pt-4">Product ID</p>
                 <div class="flex items-center justify-between w-full pt-1">
                     <p class="text-base font-black leading-none text-gray-800 dark:text-white">Product Name</p>
-                    <select aria-label="Select quantity" class=" mx-2 py-1 px-1 border rounded-md border-gray-200 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                    </select>
+
+                    <div>
+                        <form class="w-32">
+                            <div class="flex items-center border-b border-gray-600 py-2">
+                                <input class="bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="number">
+                                <button class="flex-shrink-0 bg-gray-600 hover:bg-teal-500 hover:border-teal-500 text-sm text-white py-1 px-2 rounded" type="button">
+                                    Change
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
+
                 <p class="text-xs leading-3 text-gray-600 dark:text-white pt-2">Description</p>
                 <div class="flex items-center justify-between pt-5">
                     <div class="flex itemms-center">

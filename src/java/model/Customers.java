@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author End User
+ * @author cbiev
  */
 @Entity
 @Table(name = "CUSTOMERS")
@@ -80,7 +80,7 @@ public class Customers implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<Carts> cartsList;
+    private List<CartLists> cartListsList;
 
     public Customers() {
     }
@@ -156,12 +156,12 @@ public class Customers implements Serializable {
     }
 
     @XmlTransient
-    public List<Carts> getCartsList() {
-        return cartsList;
+    public List<CartLists> getCartListsList() {
+        return cartListsList;
     }
 
-    public void setCartsList(List<Carts> cartsList) {
-        this.cartsList = cartsList;
+    public void setCartListsList(List<CartLists> cartListsList) {
+        this.cartListsList = cartListsList;
     }
 
     @Override
