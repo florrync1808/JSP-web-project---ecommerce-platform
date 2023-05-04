@@ -2,11 +2,13 @@
 <%@page import="model.Staffs"%>
 
 <%
-  List<Staffs> sList = (List)session.getAttribute("staffL");
+    List<Staffs> sList = (List) session.getAttribute("staffL");
 %>
 
 <div class="p-8 min-h-screen bg-gray-100">
     <div class="inline-block min-w-full py-2 align-middle">
+        <!-- TODO : Add Staff button -->
+        
         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-md">
             <table class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-gray-50">
@@ -26,24 +28,27 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
-                        <% for (Staffs staff : sList){ %>
+                    <% int rowCount = 0; %>
+                    <% for (Staffs staff : sList) {%>
+                    <% rowCount++; %>
                     <tr>
                         <!-- loop through staff-info database, now show one row only -->
-                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6">1</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getStaffId() %></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Jone Smith</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">1990-12-01</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">0109448932</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm">jonesmith@email.com</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">active</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm">staffpw1</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm">2017-07-13 20:13:11.000</td>
+                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= rowCount%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getStaffId()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getName() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= staff.getBirthdate() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getContactNo() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getEmail() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">active/inactive</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getPassword() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getCreatedAt() %></td>
+                        <!-- Edit Delete buttons -->
                         <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                             <div class="inline-block text-left" x-data="{ menu: false }">
                                 <button x-on:click="menu = ! menu" type="button" class="flex items-center text-gray-400 hover:text-gray-600 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
                                     <span class="sr-only"></span>
                                     <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                                     </svg>
                                 </button>
                                 <div x-show="menu" x-on:click.away="menu = false" class="origin-top-right absolute right-32 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
@@ -61,8 +66,7 @@
                             </div>
                         </td>
                     </tr>
-                    
-                    <% } %>
+                    <% }%>
                 </tbody>
             </table>
         </div>
