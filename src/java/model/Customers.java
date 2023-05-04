@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author End User
+ * @author cbiev
  */
 @Entity
 @Table(name = "CUSTOMERS")
@@ -231,6 +231,7 @@ public class Customers implements Serializable {
     }
 
     @XmlTransient
+
     public List<CardProfiles> getCardProfilesList() {
         return cardProfilesList;
     }

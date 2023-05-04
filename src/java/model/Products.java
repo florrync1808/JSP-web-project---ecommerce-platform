@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author End User
+ * @author cbiev
  */
 @Entity
 @Table(name = "PRODUCTS")
@@ -115,7 +115,7 @@ public class Products implements Serializable {
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
-    
+
     public String getProductPriceinString() {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(this.getProductPrice());
@@ -186,5 +186,5 @@ public class Products implements Serializable {
     public String toString() {
         return "model.Products[ productId=" + productId + " ]";
     }
-    
+
 }
