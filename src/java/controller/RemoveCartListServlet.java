@@ -1,43 +1,49 @@
 package controller;
 
 import java.io.IOException;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.transaction.UserTransaction;
+import model.CartListService;
 
-import model.DBConnection;
 
-public class AddToCartServlet extends HttpServlet {
+public class RemoveCartListServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
+    @Resource
+    UserTransaction utx;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         try {
             HttpSession session = request.getSession();
-            session.getAttribute("ProductList");
             String customerId = (String) session.getAttribute("customerId");
-            String productId = (String) request.getParameter("productId");
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            
+            System.out.println(productId);
 
             if (customerId == null) {
                 response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
             }
-            // Check if the cart has existing product selected
-            boolean check = DBConnection.searchForExistingProduct(productId, customerId);
 
-            if (check) {
-                DBConnection.insertUpdateFromSqlQuery("UPDATE CART_LISTS SET ITEM_QTY=ITEM_QTY+1 WHERE PRODUCT_ID='" + productId + 
-                        "' AND CUSTOMER_ID='" + customerId + "'");
-            } else {  // if no insert a new one 
-                DBConnection.insertUpdateFromSqlQuery("INSERT INTO CART_LISTS (CUSTOMER_ID, PRODUCT_ID, ITEM_QTY) VALUES ('" + customerId + "','" + productId + "',1)");
-            }
-            response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
+            CartListService cartService = new CartListService(em);
+            utx.begin();
+            cartService.deleteItem(productId);
+            utx.commit();
+            
+            response.sendRedirect("/pepegacoJAVAEE6/DisplayCartServlet");
+
         } catch (Exception ex) {
-            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RemoveCartListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

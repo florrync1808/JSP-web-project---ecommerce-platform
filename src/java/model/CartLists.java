@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,10 +17,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author cbiev
- */
 @Entity
 @Table(name = "CART_LISTS")
 @XmlRootElement
@@ -30,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CartLists.findAll", query = "SELECT c FROM CartLists c"),
     @NamedQuery(name = "CartLists.findById", query = "SELECT c FROM CartLists c WHERE c.id = :id"),
     @NamedQuery(name = "CartLists.findByItemQty", query = "SELECT c FROM CartLists c WHERE c.itemQty = :itemQty")})
+@Cacheable(false)
 public class CartLists implements Serializable {
 
     private static final long serialVersionUID = 1L;

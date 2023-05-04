@@ -1,35 +1,46 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+import model.CartListService;
+import model.CartLists;
 import model.DBConnection;
 
 public class UpdateCartServlet extends HttpServlet {
 
+    @PersistenceContext
+    EntityManager em;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//Getting all the data from the user/cutomer
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        //Getting all the data from the user/cutomer
+        String quantity = (String) request.getParameter("quantity");
         String productId = request.getParameter("productId");
         HttpSession session = request.getSession();
+        String customerId = (String) session.getAttribute("customerId");
         try {
-            //Querying to database
-            //Update Query for updating product quantity
-            int updateQuantity = DBConnection.insertUpdateFromSqlQuery("update CART_LISTS set quantity='" + quantity + "' where customer_id='" + session.getAttribute("customerId") + "' and product_id='" + productId + "' ");
-            //If cart of online shopping systemis sucessfully updated
-            if (updateQuantity > 0) {
-                //Sending response back to the user/customer.
-                response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Cart.jsp");
-                //If cart is not updated
-            } else {
-                //Sending response back to the user/customer.
-                response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Cart.jsp");
+            //if no login, redirect
+            if (customerId == null) {
+                response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
             }
+
+            DBConnection.insertUpdateFromSqlQuery("UPDATE CART_LISTS SET ITEM_QTY=" + quantity + " WHERE PRODUCT_ID='" + productId
+                    + "' AND CUSTOMER_ID='" + customerId + "'");
+
+            //If cart of online shopping systemis sucessfully updated redirect back to cart
+            CartListService productService = new CartListService(em);
+            List<CartLists> cartList = productService.findAll();
+            session.removeAttribute("CartLists");
+            session.setAttribute("CartLists", cartList);
+            
+            response.sendRedirect("/pepegacoJAVAEE6/DisplayCartServlet");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 

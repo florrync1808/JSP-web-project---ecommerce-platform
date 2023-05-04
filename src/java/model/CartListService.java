@@ -10,6 +10,9 @@ public class CartListService {
     EntityManager mgr;
     @Resource
     Query query;
+    
+    public CartListService(){}
+    
 
     public CartListService(EntityManager mgr) {
         this.mgr = mgr;
@@ -20,12 +23,12 @@ public class CartListService {
         return true;
     }
 
-    public CartLists findItemByCode(String code) {
+    public CartLists findItemByCode(int code) {
         CartLists item = mgr.find(CartLists.class, code);
         return item;
     }
 
-    public boolean deleteItem(String code) {
+    public boolean deleteItem(int code) {
         CartLists item = findItemByCode(code);
         if (item != null) {
             mgr.remove(item);
@@ -39,13 +42,13 @@ public class CartListService {
         return itemList;
     }
 
-    public boolean updateItem(Customers item) {
-        CartLists tempItem = findItemByCode(item.getCustomerId());
-        if (tempItem != null) {
-//            tempItem.setDescription(item.getDescription());
+//    public boolean updateItem(Products item, CartLists cartItem, int quantity) {
+//        CartLists tempItem = findItemByCode(item.getProductId());
+//        if (tempItem != null) {
+//            tempItem.setItemQty(quantity+ cartItem.getItemQty());
 //            tempItem.setPrice(item.getPrice());
-            return true;
-        }
-        return false;
-    }
+//            return true;
+//        }
+//        return false;
+//    }
 }
