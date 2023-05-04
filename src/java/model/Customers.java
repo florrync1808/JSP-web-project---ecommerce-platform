@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.io.Serializable;
@@ -11,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +23,10 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author End User
+ */
 @Entity
 @Table(name = "CUSTOMERS")
 @XmlRootElement
@@ -73,13 +80,7 @@ public class Customers implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<CustomerAddresses> customerAddressesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<Orders> ordersList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private List<Carts> cartsList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private CardProfiles cardProfiles;
 
     public Customers() {
     }
@@ -155,38 +156,12 @@ public class Customers implements Serializable {
     }
 
     @XmlTransient
-    public List<CustomerAddresses> getCustomerAddressesList() {
-        return customerAddressesList;
-    }
-
-    public void setCustomerAddressesList(List<CustomerAddresses> customerAddressesList) {
-        this.customerAddressesList = customerAddressesList;
-    }
-
-    @XmlTransient
-    public List<Orders> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Orders> ordersList) {
-        this.ordersList = ordersList;
-    }
-
-    @XmlTransient
     public List<Carts> getCartsList() {
         return cartsList;
     }
 
     public void setCartsList(List<Carts> cartsList) {
         this.cartsList = cartsList;
-    }
-
-    public CardProfiles getCardProfiles() {
-        return cardProfiles;
-    }
-
-    public void setCardProfiles(CardProfiles cardProfiles) {
-        this.cardProfiles = cardProfiles;
     }
 
     @Override
@@ -213,5 +188,5 @@ public class Customers implements Serializable {
     public String toString() {
         return "model.Customers[ customerId=" + customerId + " ]";
     }
-
+    
 }

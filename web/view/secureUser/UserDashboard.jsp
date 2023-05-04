@@ -1,5 +1,5 @@
  <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") { 
-       response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");}
+       response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");}
     else { }%>
     <!--this page only viewable by user-->
 
@@ -7,7 +7,7 @@
     <div class="bg-white rounded shadow-lg p-4 px-4 w-full">
         <div class="grid gap-4 gap-y-2 text-sm">
             <div class="text-gray-600">
-                <p class="font-medium text-lg text-center">Welcome, <%=session.getAttribute("userName") %></p>
+                <p class="font-medium text-lg text-center">Welcome, <%= session.getAttribute("UserDBName") %> </p>
             </div>
 
             <div>
