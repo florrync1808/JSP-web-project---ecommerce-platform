@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
@@ -9,29 +11,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.logging.*;
-import model.ProductService;
-import model.Products;
+import javax.transaction.UserTransaction;
+import model.CartListService;
 
-public class DisplayProductsServlet extends HttpServlet {
+
+public class RemoveCartListServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
+    @Resource
+    UserTransaction utx;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ProductService productService = new ProductService(em);
-            List<Products> productList = productService.findAll();
             HttpSession session = request.getSession();
-            session.removeAttribute("ProductList");
-            session.setAttribute("ProductList", productList);
+            String customerId = (String) session.getAttribute("customerId");
+            int productId = Integer.parseInt(request.getParameter("productId"));
             
-            response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(DisplayProductsServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println(productId);
 
+            if (customerId == null) {
+                response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
+            }
+
+            CartListService cartService = new CartListService(em);
+            utx.begin();
+            cartService.deleteItem(productId);
+            utx.commit();
+            
+            response.sendRedirect("/pepegacoJAVAEE6/DisplayCartServlet");
+
+        } catch (Exception ex) {
+            Logger.getLogger(RemoveCartListServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
