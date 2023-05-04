@@ -1,14 +1,24 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Staffs"%>
 
-<%
-    List<Staffs> sList = (List) session.getAttribute("staffL");
-%>
+<% List<Staffs> sList = (List) session.getAttribute("staffL"); %>
 
 <div class="p-8 min-h-screen bg-gray-100">
     <div class="inline-block min-w-full py-2 align-middle">
-        <!-- TODO : Add Staff button -->
-        
+        <div class="px-12">
+            <div class="flex flex-row col-span-2">
+                <div class="grow">
+                    <p class="text-xl font-bold">Staffs List</p>
+                </div>
+                <div class="grow-0">
+                    <a href="AddProduct.html">
+                        <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="addProduct">Add New Staff</button>
+                    </a>
+                </div>
+            </div>
+            <hr class="my-4 border-gray-900"/>
+        </div>
+
         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-md">
             <table class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-gray-50">
@@ -30,18 +40,18 @@
                 <tbody class="divide-y divide-gray-200 bg-white">
                     <% int rowCount = 0; %>
                     <% for (Staffs staff : sList) {%>
-                    <% rowCount++; %>
+                    <% rowCount++;%>
                     <tr>
                         <!-- loop through staff-info database, now show one row only -->
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= rowCount%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getStaffId()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getName() %></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= staff.getBirthdate() %></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getContactNo() %></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getEmail() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getName()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= staff.getBirthdate()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getContactNo()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getEmail()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">active/inactive</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getPassword() %></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getCreatedAt() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getPassword()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getCreatedAt()%></td>
                         <!-- Edit Delete buttons -->
                         <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                             <div class="inline-block text-left" x-data="{ menu: false }">

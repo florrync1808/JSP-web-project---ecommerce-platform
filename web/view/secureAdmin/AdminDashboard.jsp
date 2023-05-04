@@ -6,7 +6,7 @@
             </div>
 
             <div>
-                <!-- TODO change the LINK! -->
+                <!-- TODO : change the LINK! -->
                 <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Account</a>
                 <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View All Products</a>
                 <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
