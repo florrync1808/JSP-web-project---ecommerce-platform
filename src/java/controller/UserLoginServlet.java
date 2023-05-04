@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.LoginBean;
 import model.LoginDao;
 
 @WebServlet(name = "UserLoginServlet", urlPatterns = {"/UserLoginServlet"})
@@ -18,25 +17,26 @@ public class UserLoginServlet extends HttpServlet {
         String userName = request.getParameter("username"); //name of input box in UserLogin.jsp. retrieving the values entered by the user and keeping in instance variables for further use.
         String password = request.getParameter("password");
 
-        LoginBean loginBean = new LoginBean(); //creating object for LoginBean class
-
-        loginBean.setUserName(userName); //setting the username and password through the loginBean object to get it in future.
-        loginBean.setPassword(password);
-
         LoginDao loginDao = new LoginDao(); //creating object for LoginDao. This class contains main logic of the application.
 
-        String userValidate = loginDao.authenticateUser(loginBean); //Calling authenticateUser function
+        String userValidate = loginDao.authenticateUser(userName, password); //Calling authenticateUser function
         HttpSession session = request.getSession(false);
 
         if (userValidate.equals("CUSTOMERSUCCESS")) //If function returns success string then user will be rooted to Home page
         {
             session.setAttribute("userName", userName); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
             session.setAttribute("userRole", "userRole");
+            session.setAttribute("UserDBName", loginDao.getUserHumanNameDB());
+            session.setAttribute("customerId", loginDao.getUserIdDB());
+            session.setAttribute("userEmail", loginDao.getUserEmailDB());
             response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
 //            request.getRequestDispatcher("/pepegacoJAVAEE6/index.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
         } else if (userValidate.equals("STAFFSUCCESS")) {
             session.setAttribute("userName", userName); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
             session.setAttribute("userRole", "staffRole");
+            session.setAttribute("UserDBName", loginDao.getUserHumanNameDB());
+            session.setAttribute("customerId", loginDao.getUserIdDB());
+            session.setAttribute("userEmail", loginDao.getUserEmailDB());
             response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp");
         } else {
             session.setAttribute("errMessage", userValidate); //If authenticateUser() function returnsother than SUCCESS string it will be sent to Login page again. Here the error message returned from function has been stored in a errMessage key.
