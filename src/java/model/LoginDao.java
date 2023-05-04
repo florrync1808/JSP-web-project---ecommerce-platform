@@ -4,13 +4,13 @@ import java.sql.*;
 
 public class LoginDao {
 
-    String userIdDB = "";
-    String userHumanNameDB = "";
-    String userEmailDB = "";
-    String passwordDB = "";
-    Connection con = null;
-    PreparedStatement statement = null;
-    ResultSet resultSet = null;
+    private String userIdDB = "";
+    private String userHumanNameDB = "";
+    private String userEmailDB = "";
+    private String passwordDB = "";
+    private Connection con = null;
+    private PreparedStatement statement = null;
+    private ResultSet resultSet = null;
 
     public String authenticateUser(String loginUsernameInput, String password) {
 
@@ -40,7 +40,7 @@ public class LoginDao {
     public String customerLogin(String loginUsernameInput, String password) {
 
         this.setCustomer(loginUsernameInput, password);
-        if (loginUsernameInput.equals(this.userEmailDB) && password.equals(this.passwordDB)) {
+        if (loginUsernameInput.equals(userEmailDB) && password.equals(passwordDB)) {
             return "SUCCESS"; ////If the user entered values are already present in the database, which means user has already registered so return a SUCCESS message.
         }
         return "Invalid";
@@ -49,18 +49,18 @@ public class LoginDao {
     public void setStaff(String loginUsernameInput, String password) {
         String query = "SELECT * from STAFFS where staff_id=? and password=?";
         try {
-            this.con = DBConnection.createConnection(); //Fetch database connection object
-            this.statement = con.prepareStatement(query); //Statement is used to write queries. 
-            this.statement.setString(1, loginUsernameInput);
-            this.statement.setString(2, password);
-            this.resultSet = statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
+            con = DBConnection.createConnection(); //Fetch database connection object
+            statement = con.prepareStatement(query); //Statement is used to write queries. 
+            statement.setString(1, loginUsernameInput);
+            statement.setString(2, password);
+            resultSet = statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
 
             while (this.resultSet.next()) // Until next row is present otherwise it return false
             {
-                this.userIdDB = resultSet.getString("staff_id"); //fetch the values present in database
-                this.userHumanNameDB = resultSet.getString("name"); //fetch the values present in database
-                this.userEmailDB = resultSet.getString("email"); //fetch the values present in database
-                this.passwordDB = resultSet.getString("password");
+                userIdDB = resultSet.getString("staff_id"); //fetch the values present in database
+                userHumanNameDB = resultSet.getString("name"); //fetch the values present in database
+                userEmailDB = resultSet.getString("email"); //fetch the values present in database
+                passwordDB = resultSet.getString("password");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,18 +71,18 @@ public class LoginDao {
         String query = "SELECT * from CUSTOMERS where email=? and password=?";
 
         try {
-            this.con = DBConnection.createConnection(); //Fetch database connection object
-            this.statement = con.prepareStatement(query); //Statement is used to write queries. 
-            this.statement.setString(1, loginUsernameInput);
-            this.statement.setString(2, password);
-            this.resultSet = this.statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
+            con = DBConnection.createConnection(); //Fetch database connection object
+            statement = con.prepareStatement(query); //Statement is used to write queries. 
+            statement.setString(1, loginUsernameInput);
+           statement.setString(2, password);
+            resultSet = statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
 
-            while (this.resultSet.next()) // Until next row is present otherwise it return false
+            while (resultSet.next()) // Until next row is present otherwise it return false
             {
-                this.userIdDB = this.resultSet.getString("customer_id"); //fetch the values present in database
-                this.userHumanNameDB = this.resultSet.getString("name"); //fetch the values present in database
-                this.userEmailDB = this.resultSet.getString("email"); //fetch the values present in database
-                this.passwordDB = this.resultSet.getString("password");
+               userIdDB = resultSet.getString("customer_id"); //fetch the values present in database
+                userHumanNameDB = resultSet.getString("name"); //fetch the values present in database
+                userEmailDB = resultSet.getString("email"); //fetch the values present in database
+                passwordDB = resultSet.getString("password");
             }
         } catch (SQLException e) {
             e.printStackTrace();
