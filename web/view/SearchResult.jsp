@@ -2,6 +2,7 @@
 
 <%
     Products product = (Products) session.getAttribute("product");
+    String inputError = (String) session.getAttribute("inputErrorMsg");
 %>
 
 <div class="p-8 min-h-screen ">
@@ -45,6 +46,10 @@
                         </div>
                     </div>
                 </div>
+                <% } else if (inputError != null) {%>
+                <p class="text-l font-bold"><%= inputError%></p>
+                <% session.setAttribute("inputErrorMsg", null); %>
+
                 <% } else { %>
                 <p class="text-l font-bold">Product not found! Try Again.</p>
                 <% }

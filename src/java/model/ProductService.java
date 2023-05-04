@@ -21,12 +21,18 @@ public class ProductService {
     }
 
     public Products findProductByID(String id) {
-        Products product = mgr.find(Products.class, id);
-        return product;
+        try {
+            Products product = mgr.find(Products.class, id);
+            return product;
+        } catch (NoResultException ex) {
+            // if no result, then return null
+            Products product = null;
+            return product;
+        }
     }
 
     public Products findProductByName(String name) {
-        
+
         try {
             //query that early difined in Products class
             Query q = mgr.createNamedQuery("Products.findByProductName");

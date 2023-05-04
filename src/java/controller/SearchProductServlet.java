@@ -27,6 +27,8 @@ public class SearchProductServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
+    
+    String msg = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,15 +39,17 @@ public class SearchProductServlet extends HttpServlet {
             //get productID or productName from the attribute
             String input = (String) session.getAttribute("input");
 
-            if (input.charAt(2) == '0') {
+            
+            if (input.length() == 1) {
+                msg = "Input must be at least 2 characters.";
+                session.setAttribute("inputErrorMsg", msg);
+            } else if (input.charAt(1) == '0') {
                 Products product = productService.findProductByID(input);
                 session.setAttribute("product", product);
-            }
-            else if (input.charAt(2) != '0')  {
+            } else if (input.length() >= 2) {
                 Products product = productService.findProductByName(input);
                 session.setAttribute("product", product);
-            }
-            else{
+            } else {
                 Products product = null;
                 session.setAttribute("product", product);
             }

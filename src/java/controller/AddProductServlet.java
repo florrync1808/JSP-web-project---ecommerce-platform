@@ -46,10 +46,13 @@ public class AddProductServlet extends HttpServlet {
                 id = String.format("A%07d", countp + 1);
             }
             
+            //get parameter and set to the variable
             String name = request.getParameter("pname");
             String desc = request.getParameter("pdesc");
             double price = Double.parseDouble(request.getParameter("pprice"));
-            String photo = request.getParameter("ppic");
+            String photo = "/pepegacoJAVAEE6/assets/images/products/" + request.getParameter("ppic");
+            
+            
 
             Products product = new Products(id, name, price, desc, photo);
             utx.begin();
