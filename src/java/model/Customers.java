@@ -6,18 +6,22 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -105,6 +109,8 @@ public class Customers implements Serializable {
     @Column(name = "CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private List<CardProfiles> cardProfilesList;
 
     public Customers() {
     }
@@ -222,6 +228,15 @@ public class Customers implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @XmlTransient
+    public List<CardProfiles> getCardProfilesList() {
+        return cardProfilesList;
+    }
+
+    public void setCardProfilesList(List<CardProfiles> cardProfilesList) {
+        this.cardProfilesList = cardProfilesList;
     }
 
     @Override
