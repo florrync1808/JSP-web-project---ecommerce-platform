@@ -11,8 +11,9 @@
                     <p class="text-xl font-bold">Staffs List</p>
                 </div>
                 <div class="grow-0">
-                    <a href="AddProduct.html">
-                        <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="addProduct">Add New Staff</button>
+                    <!-- TODO add staff page -->
+                    <a href="AddStaff.jsp">
+                        <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="addStaff">Add New Staff</button>
                     </a>
                 </div>
             </div>
