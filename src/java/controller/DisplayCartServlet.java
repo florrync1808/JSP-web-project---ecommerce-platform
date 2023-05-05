@@ -32,8 +32,8 @@ public class DisplayCartServlet extends HttpServlet {
                 response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
             }
             
-            CartListService productService = new CartListService(em);
-            List<CartLists> cartList = productService.findAll();
+            CartListService cartlistService = new CartListService(em);
+            List<CartLists> cartList = cartlistService.findAll();
 //              DBConnection.getRSfromQuery("SELECT * FROM CART_LISTS WHERE CUSTOMER_ID='"+customerId+"'");
             session.setAttribute("CartLists", cartList);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Cart.jsp");

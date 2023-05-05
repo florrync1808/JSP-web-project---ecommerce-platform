@@ -35,6 +35,8 @@ public class AddToCartServlet extends HttpServlet {
             } else {  // if no insert a new one 
                 DBConnection.insertUpdateFromSqlQuery("INSERT INTO CART_LISTS (CUSTOMER_ID, PRODUCT_ID, ITEM_QTY) VALUES ('" + customerId + "','" + productId + "',1)");
             }
+                session.setAttribute("addCartMessage", "Item Added To Cart!");
+            
             response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
         } catch (Exception ex) {
             Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
