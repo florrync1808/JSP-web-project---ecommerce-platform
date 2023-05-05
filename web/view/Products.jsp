@@ -6,7 +6,6 @@
 %>
 
 <div class="p-8 min-h-screen ">
-
     <!--prod section-->
     <div class=" h-fit bg-gray-200 w-full rounded-md py-10">
         <div class="px-12">
@@ -15,7 +14,6 @@
         </div>
         <!--card container-->
         <div class="grid grid-cols-3 gap-4 p-4">
-
             <!--product card --> 
             <% for (Products item : ProductList) {%>
             <div class="bg-white shadow-md rounded-md w-42 h-fit flex flex-col items-strech py-4 px-2 col-span-1 dark:bg-gray-900">
@@ -33,8 +31,8 @@
                         <div class="flex items-center justify-between pt-5">
                             <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"> RM <%= item.getProductPriceinString()%> </p>
                             <div class="flex itemms-center">
-                                <% if (request.isUserInRole("adminRole")) {} 
-                                else if (session.getAttribute("userName") == null ||session.getAttribute("userRole").equals("userRole")) { %>
+                                <% if (request.isUserInRole("adminRole")) {
+                                    } else if (session.getAttribute("userName") == null || session.getAttribute("userRole").equals("userRole")) {%>
                                 <a href="/pepegacoJAVAEE6/AddToCartServlet?productId=<%=item.getProductId()%>">
                                     <button class="bg-gray-700 mr-5 text-white px-1 py-0 rounded-sm shadow-md duration-300 hover:-translate-y-1 hover:shadow-lg" >&#10010</button>
                                 </a>
@@ -46,8 +44,6 @@
             </div>  
             <% }%>
         </div>
-
     </div>
-
 </div>
 
