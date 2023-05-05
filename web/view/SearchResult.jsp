@@ -56,8 +56,5 @@
                 %>
             </div>
         </div>
-
-        <!--cart section-->
-        <%@ include file = "components/Cart.jsp" %>
     </div>
 </div>
