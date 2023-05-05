@@ -38,6 +38,7 @@ public class SearchProductServlet extends HttpServlet {
 
             //get productID or productName from the attribute
             String input = (String) session.getAttribute("input");
+           
 
             
             if (input.length() == 1) {

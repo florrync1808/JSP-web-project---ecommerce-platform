@@ -53,9 +53,9 @@
                 <!-- if input <2 character, display input error msg 
                      after done display error msg, remove attribute -->
                 <p class="text-l font-bold"><%= inputError%></p>
-                <% session.removeAttribute("inputError"); %>
+                <% session.removeAttribute("inputErrorMsg");
 
-                <% } else { %>
+                } else { %>
                 <p class="text-l font-bold">Product not found! Try Again.</p>
                 <% }
                 %>
