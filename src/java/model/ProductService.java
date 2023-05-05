@@ -52,10 +52,6 @@ public class ProductService {
 
     }
 
-    public static void main(String[] args) {
-
-    }
-
     public boolean deleteProduct(String id) {
         Products product = findProductByID(id);
         if (product != null) {

@@ -46,9 +46,14 @@
                         </div>
                     </div>
                 </div>
-                <% } else if (inputError != null) {%>
+                <!-- remove attribute after done display result -->
+                <% session.removeAttribute("product");
+                } else if (inputError != null) {%>
+
+                <!-- if input <2 character, display input error msg 
+                     after done display error msg, remove attribute -->
                 <p class="text-l font-bold"><%= inputError%></p>
-                <% session.setAttribute("inputErrorMsg", null); %>
+                <% session.removeAttribute("inputError"); %>
 
                 <% } else { %>
                 <p class="text-l font-bold">Product not found! Try Again.</p>
