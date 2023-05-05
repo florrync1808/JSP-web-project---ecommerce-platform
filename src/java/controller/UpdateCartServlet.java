@@ -5,35 +5,45 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.logging.*;
-import model.ProductService;
-import model.Products;
+import javax.servlet.http.*;
+import model.CartListService;
+import model.CartLists;
+import model.DBConnection;
 
-public class DisplayProductsServlet extends HttpServlet {
+public class UpdateCartServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Getting all the data from the user/cutomer
+        String quantity = (String) request.getParameter("quantity");
+        String productId = request.getParameter("productId");
+        HttpSession session = request.getSession();
+        String customerId = (String) session.getAttribute("customerId");
         try {
-            ProductService productService = new ProductService(em);
-            List<Products> productList = productService.findAll();
-            HttpSession session = request.getSession();
-            session.removeAttribute("ProductList");
-            session.setAttribute("ProductList", productList);
-            response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(DisplayProductsServlet.class.getName()).log(Level.SEVERE, null, ex);
+            //if no login, redirect
+            if (customerId == null) {
+                response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
+            }
+
+            DBConnection.insertUpdateFromSqlQuery("UPDATE CART_LISTS SET ITEM_QTY=" + quantity + " WHERE PRODUCT_ID='" + productId
+                    + "' AND CUSTOMER_ID='" + customerId + "'");
+
+            //If cart of online shopping systemis sucessfully updated redirect back to cart
+            CartListService productService = new CartListService(em);
+            List<CartLists> cartList = productService.findAll();
+            session.removeAttribute("CartLists");
+            session.setAttribute("CartLists", cartList);
+            
+            response.sendRedirect("/pepegacoJAVAEE6/DisplayCartServlet");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

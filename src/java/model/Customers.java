@@ -1,3 +1,4 @@
+
 package model;
 
 import java.io.Serializable;
@@ -11,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +31,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Customers.findByContactNo", query = "SELECT c FROM Customers c WHERE c.contactNo = :contactNo"),
     @NamedQuery(name = "Customers.findByEmail", query = "SELECT c FROM Customers c WHERE c.email = :email"),
     @NamedQuery(name = "Customers.findByPassword", query = "SELECT c FROM Customers c WHERE c.password = :password"),
+    @NamedQuery(name = "Customers.findByLine1", query = "SELECT c FROM Customers c WHERE c.line1 = :line1"),
+    @NamedQuery(name = "Customers.findByLine2", query = "SELECT c FROM Customers c WHERE c.line2 = :line2"),
+    @NamedQuery(name = "Customers.findByState", query = "SELECT c FROM Customers c WHERE c.state = :state"),
+    @NamedQuery(name = "Customers.findByCity", query = "SELECT c FROM Customers c WHERE c.city = :city"),
+    @NamedQuery(name = "Customers.findByPostcode", query = "SELECT c FROM Customers c WHERE c.postcode = :postcode"),
     @NamedQuery(name = "Customers.findByCreatedAt", query = "SELECT c FROM Customers c WHERE c.createdAt = :createdAt")})
 public class Customers implements Serializable {
 
@@ -69,17 +74,38 @@ public class Customers implements Serializable {
     private String password;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 225)
+    @Column(name = "LINE1")
+    private String line1;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 225)
+    @Column(name = "LINE2")
+    private String line2;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 225)
+    @Column(name = "STATE")
+    private String state;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 225)
+    @Column(name = "CITY")
+    private String city;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 225)
+    @Column(name = "POSTCODE")
+    private String postcode;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<CustomerAddresses> customerAddressesList;
+    private List<CartLists> cartListsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private List<Orders> ordersList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<Carts> cartsList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private CardProfiles cardProfiles;
 
     public Customers() {
     }
@@ -88,13 +114,18 @@ public class Customers implements Serializable {
         this.customerId = customerId;
     }
 
-    public Customers(String customerId, String name, Date birthdate, String contactNo, String email, String password, Date createdAt) {
+    public Customers(String customerId, String name, Date birthdate, String contactNo, String email, String password, String line1, String line2, String state, String city, String postcode, Date createdAt) {
         this.customerId = customerId;
         this.name = name;
         this.birthdate = birthdate;
         this.contactNo = contactNo;
         this.email = email;
         this.password = password;
+        this.line1 = line1;
+        this.line2 = line2;
+        this.state = state;
+        this.city = city;
+        this.postcode = postcode;
         this.createdAt = createdAt;
     }
 
@@ -146,6 +177,46 @@ public class Customers implements Serializable {
         this.password = password;
     }
 
+    public String getLine1() {
+        return line1;
+    }
+
+    public void setLine1(String line1) {
+        this.line1 = line1;
+    }
+
+    public String getLine2() {
+        return line2;
+    }
+
+    public void setLine2(String line2) {
+        this.line2 = line2;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -155,12 +226,9 @@ public class Customers implements Serializable {
     }
 
     @XmlTransient
-    public List<CustomerAddresses> getCustomerAddressesList() {
-        return customerAddressesList;
-    }
 
-    public void setCustomerAddressesList(List<CustomerAddresses> customerAddressesList) {
-        this.customerAddressesList = customerAddressesList;
+    public void setCartListsList(List<CartLists> cartListsList) {
+        this.cartListsList = cartListsList;
     }
 
     @XmlTransient
@@ -170,23 +238,6 @@ public class Customers implements Serializable {
 
     public void setOrdersList(List<Orders> ordersList) {
         this.ordersList = ordersList;
-    }
-
-    @XmlTransient
-    public List<Carts> getCartsList() {
-        return cartsList;
-    }
-
-    public void setCartsList(List<Carts> cartsList) {
-        this.cartsList = cartsList;
-    }
-
-    public CardProfiles getCardProfiles() {
-        return cardProfiles;
-    }
-
-    public void setCardProfiles(CardProfiles cardProfiles) {
-        this.cardProfiles = cardProfiles;
     }
 
     @Override
@@ -213,5 +264,5 @@ public class Customers implements Serializable {
     public String toString() {
         return "model.Customers[ customerId=" + customerId + " ]";
     }
-
+    
 }
