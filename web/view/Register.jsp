@@ -11,7 +11,7 @@
             </div>
 
             <div class="lg:col-span-2">
-                <form id="form" action="/pepegacoJAVAEE6/RegisterCustomerServlet" method="post" x-data="{password: '',password_confirm: ''}" onsubmit ="event.preventDefault(); return validateForm()">
+                <form id="form" action="/pepegacoJAVAEE6/RegisterCustomerServlet" method="post" x-data="{password: '',password_confirm: ''}" onsubmit="return validateForm();" >
 
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                         <div class="md:col-span-5">
@@ -117,19 +117,19 @@
 
                         <div class="md:col-span-5 text-right mt-12">
                             <div class="inline-flex items-end" >
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Register</button>
+                                <button id="submit_register" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" onclick="" > Register </button>
+                                            </div>
+                                            </div>
+
+                                            <div class=" col-span-5 text-right">
+                                    <a href="/pepegacoJAVAEE6/view/UserLogin.jsp"
+                                       class="text-black font-normal border-b-2 border-gray-200 hover:border-teal-500">You're already member?
+                                        <span class="text-black font-semibold">
+                                            Login
+                                        </span>
+                                    </a>
                             </div>
                         </div>
-
-                        <div class=" col-span-5 text-right">
-                            <a href="/pepegacoJAVAEE6/view/UserLogin.jsp"
-                               class="text-black font-normal border-b-2 border-gray-200 hover:border-teal-500">You're already member?
-                                <span class="text-black font-semibold">
-                                    Login
-                                </span>
-                            </a>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -138,18 +138,26 @@
 </div>
 <% }%>
 
-<script>
-    function validateForm() {
-        const firstPassword = document.querySelector('password');
-        const secondPassword = document.querySelector('confirmPassword');
-        let correctInput = "";
+    <script>
+function validateForm() {
+    
 
-        if (firstPassword.value= == secondPassword.value) {
-            incorrectInput += 'The passwords match.';
-        }
-
-        if (incorrectInput !== "") {
-            return true;  
-        }
+            const firstPassword = document.getElementById('password');
+            const secondPassword = document.getElementById('confirmPassword');
+            console.log(firstPassword.value);
+            console.log(secondPassword.value);
+            
+            let incorrectInput = "";
+            if (firstPassword.value == secondPassword.value) {
+                incorrectInput += 'The passwords match.';
+                console.log(true);
+                return true;
+            } else {
+                console.log(false);
+                return false;
+            }
+            
+            return false;
     }
+
 </script>
