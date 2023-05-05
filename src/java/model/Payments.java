@@ -76,7 +76,8 @@ public class Payments implements Serializable {
     }
 
     public String getPaymentId() {
-        return paymentId;
+        id++;
+        return "PA" + String.format("%06d", id);
     }
 
     public void setPaymentId(String paymentId) {
@@ -100,7 +101,7 @@ public class Payments implements Serializable {
     }
 
     public Date getCreatedAt() {
-        return createdAt;
+        return new java.util.Date();
     }
 
     public void setCreatedAt(Date createdAt) {

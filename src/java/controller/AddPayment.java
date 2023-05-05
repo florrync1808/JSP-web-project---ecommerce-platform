@@ -5,7 +5,8 @@
 package controller;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,37 +39,51 @@ public class AddPayment extends HttpServlet {
             String custId = (String) session.getAttribute("customerId");
 
             System.out.println(custId);
+            Payments payment = new Payments();
+            String id = payment.getPaymentId();
             String total = request.getParameter("total");
             String paymentMethod = request.getParameter("paymentMethod");
-            Payments payment = new Payments(total, paymentMethod);
+//            Date date = ;
             System.out.println(payment);
             System.out.println(paymentMethod);
-            Customers customerC = paymentService.findCustomerByCode(custId);
+            String cardNumber = "";
+            Customers customer = paymentService.findCustomerByCode(custId);
 //            CardProfile.find
 
 //            StockDetails sd1 = entityManager.find(StockDetails.class, <id_of_existing_stockdetails>);
 //            c1.setStockDetails(sd1);
 //            entityManager.persist(c1);
-
             if (paymentMethod.equals("card")) {
                 String paymentCard = request.getParameter("paymentCard");
                 System.out.println(paymentCard);
 
                 if (paymentCard.equals("add")) {
                     String cardHolder = request.getParameter("cardHolder");
-                    String cardNumber = request.getParameter("cardNumber");
+                    cardNumber = request.getParameter("cardNumber");
                     String expiryDate = request.getParameter("expiryDate");
                     String expiryYear = request.getParameter("expiryYear");
                     String CCV = request.getParameter("CCV");
                     CardProfiles cardProfiles = new CardProfiles(cardNumber, CCV, expiryDate, expiryYear);
-                    payment.setCardNo(cardProfiles);
-                    cardProfiles.setCustomerId(customerC);
+                    
+                    System.out.println(cardProfiles);
+                    int intExpiryMth = Integer.parseInt(expiryDate);
+                    int intExpiryYear = Integer.parseInt(expiryYear);
+                    DBConnection.insertUpdateFromSqlQuery("INSERT INTO CARD_PROFILES(CARD_NO, CUSTOMER_ID, CCV_NO, EXPIRY_MONTH, EXPIRY_YEAR) VALUES ('" + cardNumber + "','" + custId + "','" + CCV + "'," + intExpiryMth + "," + intExpiryYear + ")");
+                System.out.println(paymentCard);
                 }
-            }
 
-            utx.begin();
-            boolean success = paymentService.addItem(payment);
-            utx.commit();
+            }
+            System.out.println("asdkjf");
+            SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                System.out.println( datetime.format(payment.getCreatedAt()));
+                System.out.println( "INSERT INTO PAYMENTS (PAYMENT_ID, CARD_NO, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + id + "','"+ cardNumber +"'," + doubleAmount + ",'" + paymentMethod + "','" +  datetime.format(payment.getCreatedAt()) + "')");
+                Double doubleAmount = Double.parseDouble(total);
+                
+            DBConnection.insertUpdateFromSqlQuery("INSERT INTO PAYMENTS (PAYMENT_ID, CARD_NO, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + id + "','"+ cardNumber +"'," + doubleAmount + ",'" + paymentMethod + "','" +  datetime.format(payment.getCreatedAt()) + "')");
+//            utx.begin();
+//            boolean success = paymentService.addItem(payment);
+//            utx.commit();
             response.sendRedirect("/pepegacoJAVAEE6/");
         } catch (Exception ex) {
 //            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
