@@ -8,11 +8,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,7 +18,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 
 @Entity
 @Table(name = "PAYMENTS")
@@ -54,9 +51,6 @@ public class Payments implements Serializable {
     @Column(name = "CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @JoinColumn(name = "CARD_NO", referencedColumnName = "CARD_NO")
-    @OneToOne(optional = false)
-    private CardProfiles cardNo;
     @OneToMany(mappedBy = "paymentId")
     private List<Orders> ordersList;
 
@@ -104,14 +98,6 @@ public class Payments implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public CardProfiles getCardNo() {
-        return cardNo;
-    }
-
-    public void setCardNo(CardProfiles cardNo) {
-        this.cardNo = cardNo;
     }
 
     @XmlTransient

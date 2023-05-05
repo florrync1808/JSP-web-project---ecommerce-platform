@@ -103,7 +103,9 @@ public class Customers implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<CardProfiles> cardProfilesList;
+    private List<CartLists> cartListsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private List<Orders> ordersList;
 
     public Customers() {
     }
@@ -229,8 +231,17 @@ public class Customers implements Serializable {
         return cardProfilesList;
     }
 
-    public void setCardProfilesList(List<CardProfiles> cardProfilesList) {
-        this.cardProfilesList = cardProfilesList;
+    public void setCartListsList(List<CartLists> cartListsList) {
+        this.cartListsList = cartListsList;
+    }
+
+    @XmlTransient
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 
     @Override
