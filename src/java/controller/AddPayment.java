@@ -5,7 +5,7 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
+import model.*;
 
 /**
  *
@@ -32,22 +33,43 @@ public class AddPayment extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             //obtain input form user/view
-            HttpSession paymentSession = request.getSession(true);
-            String custId = (String)paymentSession.getAttribute("custId");
-            String country = request.getParameter("fname");
-            String fullName = request.getParameter("lname");
-            String capital1 = request.getParameter("cap");
-            String image = request.getParameter("img");
+            HttpSession session = request.getSession(true);
+            PaymentService paymentService = new PaymentService(em);
+            String custId = (String) session.getAttribute("customerId");
 
-            //interact with the model/entity class
-//            Countryflags countryflags = new Countryflags(country, fullName, capital1, image);
-//            ItemService itemService = new ItemService(em);
-//            utx.begin();
-//            boolean success = itemService.addItem(countryflags);
+            System.out.println(custId);
+            String total = request.getParameter("total");
+            String paymentMethod = request.getParameter("paymentMethod");
+            Payments payment = new Payments(total, paymentMethod);
+            System.out.println(payment);
+            System.out.println(paymentMethod);
+            Customers customerC = paymentService.findCustomerByCode(custId);
+//            CardProfile.find
+
+//            StockDetails sd1 = entityManager.find(StockDetails.class, <id_of_existing_stockdetails>);
+//            c1.setStockDetails(sd1);
+//            entityManager.persist(c1);
+
+            if (paymentMethod.equals("card")) {
+                String paymentCard = request.getParameter("paymentCard");
+                System.out.println(paymentCard);
+
+                if (paymentCard.equals("add")) {
+                    String cardHolder = request.getParameter("cardHolder");
+                    String cardNumber = request.getParameter("cardNumber");
+                    String expiryDate = request.getParameter("expiryDate");
+                    String expiryYear = request.getParameter("expiryYear");
+                    String CCV = request.getParameter("CCV");
+                    CardProfiles cardProfiles = new CardProfiles(cardNumber, CCV, expiryDate, expiryYear);
+                    payment.setCardNo(cardProfiles);
+                    cardProfiles.setCustomerId(customerC);
+                }
+            }
+
+            utx.begin();
+            boolean success = paymentService.addItem(payment);
             utx.commit();
-            HttpSession session = request.getSession();
-//            session.setAttribute("success", success);
-            response.sendRedirect("viewItem.jsp");
+            response.sendRedirect("/pepegacoJAVAEE6/");
         } catch (Exception ex) {
 //            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
         }

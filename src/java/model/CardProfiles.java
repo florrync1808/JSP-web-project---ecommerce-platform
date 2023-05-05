@@ -6,6 +6,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -37,12 +38,10 @@ public class CardProfiles implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 16)
     @Column(name = "CARD_NO")
     private String cardNo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 3)
     @Column(name = "CCV_NO")
     private String ccvNo;
     @Basic(optional = false)
@@ -54,7 +53,7 @@ public class CardProfiles implements Serializable {
     @Column(name = "EXPIRY_YEAR")
     private int expiryYear;
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Customers customerId;
 
     public CardProfiles() {
@@ -64,11 +63,11 @@ public class CardProfiles implements Serializable {
         this.cardNo = cardNo;
     }
 
-    public CardProfiles(String cardNo, String ccvNo, int expiryMonth, int expiryYear) {
+    public CardProfiles(String cardNo, String ccvNo, String expiryMonth, String expiryYear) {
         this.cardNo = cardNo;
         this.ccvNo = ccvNo;
-        this.expiryMonth = expiryMonth;
-        this.expiryYear = expiryYear;
+        this.expiryMonth = Integer.parseInt(expiryMonth);
+        this.expiryYear = Integer.parseInt(expiryYear);
     }
 
     public String getCardNo() {

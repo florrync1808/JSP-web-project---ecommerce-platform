@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -40,11 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Payments implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
+
     @Column(name = "PAYMENT_ID")
+    @Id
     private String paymentId;
     @Basic(optional = false)
     @NotNull
@@ -61,23 +60,25 @@ public class Payments implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @JoinColumn(name = "CARD_NO", referencedColumnName = "CARD_NO")
-    @OneToOne(optional = false)
+    @OneToOne(optional = true, cascade = CascadeType.MERGE)
     private CardProfiles cardNo;
     @OneToMany(mappedBy = "paymentId")
     private List<Orders> ordersList;
-
+    
+    
     public Payments() {
     }
 
     public Payments(String paymentId) {
         this.paymentId = paymentId;
     }
-
-    public Payments(String paymentId, double paymentAmount, String paymentMethod, Date createdAt) {
-        this.paymentId = paymentId;
-        this.paymentAmount = paymentAmount;
+    private static int id = 20;
+    public Payments(String paymentAmount, String paymentMethod) {
+        id++;
+        this.paymentId = "PA" + String.format("%06d", id);
+        this.paymentAmount = Double.parseDouble(paymentAmount);
         this.paymentMethod = paymentMethod;
-        this.createdAt = createdAt;
+        this.createdAt = new java.util.Date();
     }
 
     public String getPaymentId() {

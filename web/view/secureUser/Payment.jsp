@@ -4,15 +4,21 @@
     Author     : End User
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.CardProfiles"%>
 <%@page import="model.Customers"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% Customers customer = (Customers) session.getAttribute("customer"); %>
+<% List<Customers> customerList = (List) session.getAttribute("customerList");%>
 
+<% String subtotal = session.getAttribute("subtotal").toString(); %>
+<% String shippingFee = session.getAttribute("shippingFee").toString(); %>
+<% String total = session.getAttribute("total").toString(); %>
 <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") {
         response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
     } else {
     }%>
-<form method="post" action="AddPayment">
+<form method="post" action="/pepegacoJAVAEE6/AddPayment">
 
     <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
         <div class="relative py-3 max-w-3xl sm:w-3/5 sm:mx-auto">
@@ -66,16 +72,16 @@
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
 
                             <div class="flex flex-col">
-                                <label class="leading-loose">Merchandise Subtotal</label>
-                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                <label class="leading-loose">Merchandise Subtotal (RM)</label>
+                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" value="<%=subtotal%>">
                             </div>
                             <div class="flex flex-col">
-                                <label class="leading-loose">Shipping Fee</label>
-                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                <label class="leading-loose">Shipping Fee (RM)</label>
+                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" value="<%=shippingFee%>">
                             </div>
                             <div class="flex flex-col">
-                                <label class="leading-loose">Total Payment</label>
-                                <input type="text" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                <label class="leading-loose">Total Payment (RM)</label>
+                                <input type="text" name="total" readonly class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" value="<%=total%>">
                             </div>
                         </div>
 
@@ -83,30 +89,24 @@
                 </div>
                 <div class="flex justify-center">
 
-
-                    <div class="max-w-md mx-auto"  x-data="{ payment: 'cash'}">
+                    <div class="max-w-md mx-auto"  x-data="{ payment : 'ca'}">
                         <label class="leading-loose pr-5">Payment Method: </label>
-
-
                         <input type="radio" name="paymentMethod" value="card" x-model="payment"/>  Card Payment  
                         <input type="radio" name="paymentMethod" value="cash" x-model="payment"/>  Cash On Delivery
-
                         <div class="flex-row" id="card" x-show="payment == $el.id">
-
                             <label class="leading-loose">Select Payment Account</label>
-                            <div class="mt-8 mb-10">
-                                <!--CardProfile=%> -->
-                                <span class="mt-16 px-4 py-2 rounded mt-5 border-2 border-gray-600">card 1</span>
-                                <span class="mt-16 px-4 py-2 rounded mt-5 border-2 border-gray-600">card 1</span>
-                                <span class="mt-16 px-4 py-2 rounded mt-5 border-2 border-gray-600">card 1</span>
-                                
-                            </div>
-                            <div class="" x-data="{ open: false }">
-                                <div>
-                                <span class="mt-12 px-4 py-2 rounded mt-5 border-2 border-gray-600" @click="open = ! open">+ Add Payment</span>
-                                </div>
-                                <div x-show="open" >
+                            <div class="mb-10" x-data="{ cardNo : '123'}">
+                                <% for (CardProfiles c : customer.getCardProfilesList()) {%>
+                                <div class="my-2 p-3 ring rounded ring-black bg-gray-100 text-blue-900">
+                                <input type="radio" name="paymentCard" value="<%= c.getCardNo()%>" x-model="cardNo" 
+                                       /><span class="pl-5"><%= c.getCardNo()%></span> <span class="pl-16"> Exp:<%= c.getExpiryMonth()%>/<%=c.getExpiryYear()%></span> <br>
+                                    </div>
+                                <%}%>
+                                <div class="my-2 p-3 ring rounded ring-black bg-gray-100 text-blue-900">
 
+                                    <input type="radio" name="paymentCard" value="add" x-model="cardNo"/> <span class="pl-5">+ Add Payment</span>
+                                </div>
+                                <div class="flex-row" id="add" x-show="cardNo == $el.id">
                                     <%@ include file = "CardPayment.jsp" %>       
                                 </div>
                             </div>

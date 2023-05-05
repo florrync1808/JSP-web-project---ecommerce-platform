@@ -38,9 +38,15 @@ public class MakePayment extends HttpServlet {
             //get CustomerDetails
             PaymentService paymentService = new PaymentService(em);
             Customers customer = paymentService.findCustomerDetails(custId);
-            CardProfiles card = paymentService.findCard(custId);
+            CardProfiles card = paymentService.findCardByCode(custId);
+            double subtotal = 420.25;
+            double shippingFee = paymentService.getShippingFee(subtotal);
+            double total = paymentService.getTotal(shippingFee, subtotal);
             session.setAttribute("card", card);
+            session.setAttribute("subtotal", subtotal);
             session.setAttribute("customer", customer);
+            session.setAttribute("shippingFee", shippingFee);
+            session.setAttribute("total", total);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Payment.jsp");
 
            
