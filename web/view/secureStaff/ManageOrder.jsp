@@ -2,7 +2,7 @@
        
     }else if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "staffRole") {
              
-       response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");}
+       response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");}
     else { }%>
 <!--this page can be viewed by admin & staff-->
     

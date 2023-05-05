@@ -1,12 +1,12 @@
  <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "staffRole") { 
-       response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");}
+       response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");}
     else { }%>
     <!--this page only viewable by staff-->
 <div class="min-h-screen p-8 bg-gray-100 flex items-center justify-center">
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
                 <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                     <div class="text-gray-600">
-                        <p class="font-medium text-lg">Hello, Staff's name</p>
+                        <p class="font-medium text-lg capitalize">Hello, <%= session.getAttribute("UserDBName") %>!</p>
                     </div>
                         <div class="lg:col-span-2">
                             <form>
