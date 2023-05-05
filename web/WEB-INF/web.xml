@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>AddPayment</servlet-name>
-        <servlet-class>controller.AddPayment</servlet-class>
+        <servlet-name>LoadStaffList</servlet-name>
+        <servlet-class>controller.LoadStaffList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <servlet-class>controller.UpdateCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayCartServlet</servlet-name>
+        <servlet-class>controller.DisplayCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveCartListServlet</servlet-name>
+        <servlet-class>controller.RemoveCartListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadStaffList</servlet-name>
+        <url-pattern>/LoadStaffList</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddProductServlet</servlet-name>
@@ -28,6 +48,14 @@
         <servlet-name>ProductListServlet</servlet-name>
         <servlet-class>controller.ProductListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>controller.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>UserLoginServlet</servlet-name>
         <servlet-class>controller.UserLoginServlet</servlet-class>
@@ -71,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>ViewReport</servlet-name>
         <url-pattern>/ViewReport</url-pattern>
+            </servlet-mapping>
+                <servlet-mapping>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <url-pattern>/UpdateCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayCartServlet</servlet-name>
+        <url-pattern>/DisplayCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveCartListServlet</servlet-name>
+        <url-pattern>/RemoveCartListServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
