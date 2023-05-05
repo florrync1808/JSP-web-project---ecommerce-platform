@@ -26,7 +26,7 @@ public class ProductListServlet extends HttpServlet {
             ProductService productService = new ProductService(em);
             List<Products> productList = productService.findAll();
             HttpSession session = request.getSession();
-            session.setAttribute("productList", productList);
+            session.setAttribute("ProductList", productList);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp");
         } catch (Exception ex) {
             Logger.getLogger(DisplayProductsServlet.class.getName()).log(Level.SEVERE, null, ex);

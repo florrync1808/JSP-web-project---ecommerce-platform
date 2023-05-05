@@ -12,7 +12,7 @@
 <%@page import="model.Products"%>
 
 <%
-    List<Products> ProductList = (List) session.getAttribute("productList");
+    List<Products> ProductList = (List) session.getAttribute("ProductList");
     SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     int countp = 0;
     int counta = 0;
@@ -41,7 +41,7 @@
     </div>
     <div class="inline-block min-w-full py-2 align-middle px-12">
         <div class="overflow-x-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-md">
-            <table class="divide-y divide-gray-300 min-w-full table-fixed overflow-x-scroll">
+            <table class="divide-y divide-gray-300 min-w-full table-fixed overflow-y-scroll">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Product ID</th>
@@ -57,13 +57,13 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
                     <!-- Display by ascending order -->
-                    <!-- Other -->
+                    <!-- Others Categories -->
                     <% for (Products product : ProductList) {
                             if (product.getProductId().charAt(0) == 'A') {
                     %>
                     <tr>
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= product.getProductId()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><img src="<%= product.getProductPhoto()%>" alt="" class="w-16 md:w-32 lg:w-48 object-center object-cover md:block hidden" /></td>
+                        <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><img src="<%= product.getProductPhoto()%>" alt="" class="w-10 md:w-32 lg:w-40 object-center object-cover md:block hidden" /></td>
                         <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm text-gray-500"><%= product.getProductName()%></td>
                         <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><%= product.getProductDesc()%></td>
                         <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><%= String.format("%.2f", product.getProductPrice())%></td>
@@ -99,13 +99,13 @@
                     <% }
                         }%>
 
-                    <!-- Plant -->
+                    <!-- Plant Categories -->
                     <% for (Products product : ProductList) {
                             if (product.getProductId().charAt(0) == 'P') {
                     %>
                     <tr>
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= product.getProductId()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><img src="<%= product.getProductPhoto()%>" alt="" class="w-16 md:w-32 lg:w-48 object-center object-cover md:block hidden" /></td>
+                        <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><img src="<%= product.getProductPhoto()%>" alt="" class="w-16 md:w-32 lg:w-40 object-center object-cover md:block hidden" /></td>
                         <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm text-gray-500"><%= product.getProductName()%></td>
                         <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><%= product.getProductDesc()%></td>
                         <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm"><%= String.format("%.2f", product.getProductPrice())%></td>
