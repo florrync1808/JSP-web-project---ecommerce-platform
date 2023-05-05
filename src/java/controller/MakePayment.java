@@ -6,6 +6,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -30,20 +31,18 @@ public class MakePayment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try  {
-            System.out.println("adfjl");
-            //receive session from the jsp 
             HttpSession session = request.getSession(true);
             String custId = (String)session.getAttribute("customerId");
             
-            //get CustomerDetails
             PaymentService paymentService = new PaymentService(em);
             Customers customer = paymentService.findCustomerDetails(custId);
-            CardProfiles card = paymentService.findCardByCode(custId);
-            double subtotal = 420.25;
-            double shippingFee = paymentService.getShippingFee(subtotal);
-            double total = paymentService.getTotal(shippingFee, subtotal);
-            session.setAttribute("card", card);
-            session.setAttribute("subtotal", subtotal);
+            String subtotalfromCart = request.getParameter("subtotalfromCart");
+            System.out.println(subtotalfromCart);
+            Double shippingFee = paymentService.getShippingFee(Double.parseDouble(subtotalfromCart));
+            String total = request.getParameter("totalfromCart");
+            List<CartLists> cartList = (List<CartLists>) session.getAttribute("CartLists");
+            session.setAttribute("cartList", cartList);
+            session.setAttribute("subtotal", subtotalfromCart);
             session.setAttribute("customer", customer);
             session.setAttribute("shippingFee", shippingFee);
             session.setAttribute("total", total);

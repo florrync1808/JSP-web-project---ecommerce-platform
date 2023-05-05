@@ -44,11 +44,7 @@ public class PaymentService {
         Products item = mgr.find(Products.class, code);
         return item;
     }
-    
-    public CardProfiles findCardByCode(String code) {
-        CardProfiles item = mgr.find(CardProfiles.class, code);
-        return item;
-    }
+
     
 
     public boolean deleteItem(String code) {
@@ -65,10 +61,6 @@ public class PaymentService {
         return itemList;
     }
 
-    public List<CardProfiles> findAllCardProfile() {
-        List cardList = mgr.createNamedQuery("CardProfiles.findAll").getResultList();
-        return cardList;
-    }
 
     public List<Customers> findAllCustomer() {
         List cardList = mgr.createNamedQuery("Customers.findAll").getResultList();
