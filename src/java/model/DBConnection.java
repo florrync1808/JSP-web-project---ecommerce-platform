@@ -79,5 +79,26 @@ public class DBConnection {
         }
         return false;
     }
+    
+       public static boolean searchForExistingCustomer(String email) {
+        try {
+            //Checking whether the connection is null or null
+            if (conn == null) {
+                conn = createConnection();
+            }
+            //Querying the query
+            String query = "SELECT * FROM CUSTOMERS WHERE EMAIL=? ";
+            statement = conn.prepareStatement(query); //Statement is used to write queries. 
+            statement.setString(1,email );
+            resultSet = statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
+            System.out.println(resultSet);
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
 
 }
