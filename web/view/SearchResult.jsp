@@ -10,7 +10,7 @@
 
         <!--search result section-->
 
-        <div class=" h-fit bg-gray-200 w-full rounded-md py-10 col-span-2 md:col-span-4">
+        <div class=" h-fit bg-gray-200 w-full rounded-md py-10 col-span-2 md:col-span-6">
             <!--Plant section-->  
             <!--section title-->
             <div class="px-5">
