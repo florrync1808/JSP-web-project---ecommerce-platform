@@ -227,10 +227,6 @@ public class Customers implements Serializable {
 
     @XmlTransient
 
-    public List<CardProfiles> getCardProfilesList() {
-        return cardProfilesList;
-    }
-
     public void setCartListsList(List<CartLists> cartListsList) {
         this.cartListsList = cartListsList;
     }
