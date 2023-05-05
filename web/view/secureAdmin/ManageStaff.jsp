@@ -41,7 +41,7 @@
                 <tbody class="divide-y divide-gray-200 bg-white">
                     <% int rowCount = 0; %>
                     <% for (Staffs staff : sList) {%>
-                    <% rowCount++;%>
+                    <%     rowCount++;%>
                     <tr>
                         <!-- loop through staff-info database, now show one row only -->
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= rowCount%></td>
