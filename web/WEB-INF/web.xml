@@ -28,11 +28,6 @@
         <servlet-name>ProductListServlet</servlet-name>
         <servlet-class>controller.ProductListServlet</servlet-class>
     </servlet>
-
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <servlet-class>controller.RegisterCustomerServlet</servlet-class>
