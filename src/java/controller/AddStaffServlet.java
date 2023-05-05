@@ -18,7 +18,9 @@ public class AddStaffServlet extends HttpServlet {
     UserTransaction utx;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {try {
+            throws ServletException, IOException {
+        /*
+        try {
             String code = request.getParameter("code");
             String description = request.getParameter("description");
             double price = Double.parseDouble(request.getParameter("price"));
@@ -34,6 +36,7 @@ public class AddStaffServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
         } 
+            */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
