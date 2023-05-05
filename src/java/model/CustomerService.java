@@ -39,6 +39,21 @@ public class CustomerService {
         return itemList;
     }
 
+    //get count of cust in DB
+    public int getDBcustomerCount(){
+        List<Customers> custList = this.findAll();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    //generate customerID
+    public String GenerateCustId(int count){
+        String newCustId;
+        newCustId = String.format("%s%06d", "CU",count);
+        return newCustId;
+    }
+    
 //    public boolean updateItem(Item item) {
 //        Countryflags tempItem = findItemByCode(item.getCode());
 //        if (tempItem != null) {
