@@ -68,7 +68,7 @@ public class CartLists implements Serializable {
         return itemQty;
     }
 
-    public void setItemQty(int itemQty) {
+    public void setItemQty(Integer itemQty) {
         this.itemQty = itemQty;
     }
 
