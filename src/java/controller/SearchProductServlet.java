@@ -38,8 +38,6 @@ public class SearchProductServlet extends HttpServlet {
 
             //get productID or productName from the attribute
             String input = (String) session.getAttribute("input");
-           
-
             
             if (input.length() == 1) {
                 msg = "Input must be at least 2 characters.";
