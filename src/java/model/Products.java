@@ -5,7 +5,6 @@
 package model;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -75,6 +74,8 @@ public class Products implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private List<OrderLists> orderListsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<CartLists> cartListsList;
 
     public Products() {
@@ -115,11 +116,6 @@ public class Products implements Serializable {
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
-    
-    public String getProductPriceinString() {
-        DecimalFormat df = new DecimalFormat("0.00");
-        return df.format(this.getProductPrice());
-    }
 
     public String getProductDesc() {
         return productDesc;
@@ -151,6 +147,15 @@ public class Products implements Serializable {
 
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    @XmlTransient
+    public List<OrderLists> getOrderListsList() {
+        return orderListsList;
+    }
+
+    public void setOrderListsList(List<OrderLists> orderListsList) {
+        this.orderListsList = orderListsList;
     }
 
     @XmlTransient

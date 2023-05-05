@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author cbiev
+ * @author End User
  */
 @Entity
 @Table(name = "ORDER_STATUSES")
