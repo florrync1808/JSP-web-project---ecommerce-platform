@@ -11,7 +11,7 @@
             </div>
 
             <div class="lg:col-span-2">
-                <form id="form" action="/pepegacoJAVAEE6/RegisterCustomerServlet" method="post" x-data="{password: '',password_confirm: ''}" onsubmit ="event.preventDefault(); return validateForm()">
+                <form id="form" action="/pepegacoJAVAEE6/RegisterCustomerServlet" method="post" x-data="{password: '',password_confirm: ''}" onsubmit ="event.preventDefault(); validateMyForm();">
 
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                         <div class="md:col-span-5">
@@ -67,7 +67,7 @@
 
                         <div class="md:col-span-2">
                             <label for="state">State</label>
-                            <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" required />
+                            <input type="text" name="state" id="state" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" required />
 
                         </div>
 
@@ -139,17 +139,18 @@
 <% }%>
 
 <script>
-    function validateForm() {
-        const firstPassword = document.querySelector('password');
-        const secondPassword = document.querySelector('confirmPassword');
+    function validateMyForm() {
+        const firstPassword = document.getElementById('password');
+        const secondPassword = document.getElementById('confirmPassword');
         let correctInput = "";
 
-        if (firstPassword.value= == secondPassword.value) {
-            incorrectInput += 'The passwords match.';
+        if (firstPassword.value === secondPassword.value) {
+            correctInput += 'The passwords match.';
         }
 
-        if (incorrectInput !== "") {
+        if (correctInput !== "") {
             return true;  
         }
+        return false;
     }
 </script>
