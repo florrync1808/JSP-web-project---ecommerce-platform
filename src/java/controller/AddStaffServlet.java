@@ -20,6 +20,7 @@ public class AddStaffServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            /*
         try {
             //StaffID auto generated
             String name = request.getParameter("sName");
@@ -30,7 +31,7 @@ public class AddStaffServlet extends HttpServlet {
             //default password staffpw1
             //created at, time NOW
             
-            Staffs item = new Staffs(code, description, price);
+            Staffs item = new Staffs(staffId, name, birthdate, contactNo, email, employmentStatus, password, createdAt) ;
             StaffsService itemService = new StaffsService(em);
             utx.begin();
             boolean success = itemService.addItem(item);
@@ -41,6 +42,7 @@ public class AddStaffServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
