@@ -3,6 +3,7 @@ package controller;
 import model.Staffs;
 import model.StaffsService;
 import java.io.*;
+import java.util.Date;
 import java.util.logging.*;
 import javax.annotation.Resource;
 import javax.persistence.*;
@@ -19,14 +20,18 @@ public class AddStaffServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*
         try {
-            String code = request.getParameter("code");
-            String description = request.getParameter("description");
-            double price = Double.parseDouble(request.getParameter("price"));
+            //StaffID auto generated
+            String name = request.getParameter("sName");
+            //Date birthDate = request.getParameter("sBirthDate");
+            String contactNo = request.getParameter("sContactNo");
+            //email
+            //activate emploment status
+            //default password staffpw1
+            //created at, time NOW
             
-            Item item = new Item(code, description, price);
-            ItemService itemService = new ItemService(em);
+            Staffs item = new Staffs(code, description, price);
+            StaffsService itemService = new StaffsService(em);
             utx.begin();
             boolean success = itemService.addItem(item);
             utx.commit();
@@ -34,9 +39,8 @@ public class AddStaffServlet extends HttpServlet {
             session.setAttribute("success", success);
             response.sendRedirect("secureStaff/AddConfirm.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-            */
+            Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
