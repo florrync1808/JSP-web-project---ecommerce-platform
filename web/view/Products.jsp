@@ -26,7 +26,7 @@
         <div class="px-12 grid grid-cols-3 gap-4 p-4">
             <!--product card --> 
             <% for (Products item : ProductList) {
-                    if (item.getProductId().charAt(0) == 'P') {
+                    if (item.getProductId() != "FREEGIFT") {
             %>
             <div class="bg-white shadow-md rounded-md w-42 h-fit flex flex-col items-strech py-4 px-2 col-span-1 dark:bg-gray-900">
                 <div class="md:flex items-strech py-4 lg:py-8">

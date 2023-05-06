@@ -59,7 +59,6 @@
                 <tbody class="divide-y divide-gray-200 bg-white">
                     <!-- Display All Product Details -->
                     <% for (Products product : ProductList) {
-                            if (product.getProductId() != "FREEGIFT") {
                     %>
                     <tr>
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= product.getProductId()%></td>
@@ -97,7 +96,6 @@
                         </td>
                     </tr>
                     <% }
-                        }
                     %>
                 </tbody>
             </table>
