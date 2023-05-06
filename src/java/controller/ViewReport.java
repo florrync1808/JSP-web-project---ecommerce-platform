@@ -1,46 +1,56 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package controller;
 
 import java.io.IOException;
-import java.util.logging.*;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.*;
 
-import model.DBConnection;
+/**
+ *
+ * @author End User
+ */
+public class ViewReport extends HttpServlet {
 
-public class AddToCartServlet extends HttpServlet {
-
-    @PersistenceContext
-    EntityManager em;
-
+        @PersistenceContext
+        EntityManager em;
+    
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
+        PrintWriter writer = response.getWriter();
         try {
+            ReportService reportService = new ReportService(em);
+            List<OrderLists> orderList = reportService.findOrderListAll();
+            List<Products> productList = reportService.findAll();
+            TreeMap<String, Integer> prodQty = reportService.calculateQtyofProduct();
             HttpSession session = request.getSession();
-            session.getAttribute("ProductList");
-            String customerId = (String) session.getAttribute("customerId");
-            String productId = (String) request.getParameter("productId");
-
-            if (customerId == null) {
-                response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
-            }
-            // Check if the cart has existing product selected
-            boolean check = DBConnection.searchForExistingProduct(productId, customerId);
-
-            if (check) {
-                DBConnection.insertUpdateFromSqlQuery("UPDATE CART_LISTS SET ITEM_QTY=ITEM_QTY+1 WHERE PRODUCT_ID='" + productId + 
-                        "' AND CUSTOMER_ID='" + customerId + "'");
-            } else {  // if no insert a new one 
-                DBConnection.insertUpdateFromSqlQuery("INSERT INTO CART_LISTS (CUSTOMER_ID, PRODUCT_ID, ITEM_QTY) VALUES ('" + customerId + "','" + productId + "',1)");
-            }
-                session.setAttribute("addCartMessage", "Item Added To Cart!");
-            
-            response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
+            session.setAttribute("productList", productList);
+            session.setAttribute("orderList", orderList);
+            session.setAttribute("prodQty", prodQty);
+            response.sendRedirect("/pepegacoJAVAEE6/view/Report.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewReport.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

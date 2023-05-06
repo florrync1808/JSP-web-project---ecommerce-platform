@@ -1,84 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>LoadStaffList</servlet-name>
-        <servlet-class>controller.LoadStaffList</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateCartServlet</servlet-name>
-        <servlet-class>controller.UpdateCartServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DisplayCartServlet</servlet-name>
-        <servlet-class>controller.DisplayCartServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RemoveCartListServlet</servlet-name>
-        <servlet-class>controller.RemoveCartListServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoadStaffList</servlet-name>
-        <url-pattern>/LoadStaffList</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
+        <servlet-name>AddPayment</servlet-name>
+        <servlet-class>controller.AddPayment</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddProductServlet</servlet-name>
         <servlet-class>controller.AddProductServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProductListServlet</servlet-name>
-        <servlet-class>controller.ProductListServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>controller.AddToCartServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
-    </servlet-mapping>
     <servlet>
-        <servlet-name>UserLoginServlet</servlet-name>
-        <servlet-class>controller.UserLoginServlet</servlet-class>
+        <servlet-name>DisplayCartServlet</servlet-name>
+        <servlet-class>controller.DisplayCartServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>UserLoginServlet</servlet-name>
-        <url-pattern>/UserLoginServlet</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>DisplayProductsServlet</servlet-name>
         <servlet-class>controller.DisplayProductsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadStaffList</servlet-name>
+        <servlet-class>controller.LoadStaffList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MakePayment</servlet-name>
+        <servlet-class>controller.MakePayment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductListServlet</servlet-name>
+        <servlet-class>controller.ProductListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterCustomerServlet</servlet-name>
+        <servlet-class>controller.RegisterCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveCartListServlet</servlet-name>
+        <servlet-class>controller.RemoveCartListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>controller.SearchProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <servlet-class>controller.UpdateCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <servlet-class>controller.UserLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewReport</servlet-name>
+        <servlet-class>controller.ViewReport</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>DisplayProductsServlet</servlet-name>
-        <url-pattern>/DisplayProductsServlet</url-pattern>
+        <servlet-name>AddPayment</servlet-name>
+        <url-pattern>/AddPayment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/AddProductServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ProductListServlet</servlet-name>
-        <url-pattern>/ProductListServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
         <url-pattern>/AddToCartServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateCartServlet</servlet-name>
-        <url-pattern>/UpdateCartServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DisplayCartServlet</servlet-name>
         <url-pattern>/DisplayCartServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DisplayProductsServlet</servlet-name>
+        <url-pattern>/DisplayProductsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadStaffList</servlet-name>
+        <url-pattern>/LoadStaffList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MakePayment</servlet-name>
+        <url-pattern>/MakePayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductListServlet</servlet-name>
+        <url-pattern>/ProductListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterCustomerServlet</servlet-name>
+        <url-pattern>/RegisterCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RemoveCartListServlet</servlet-name>
         <url-pattern>/RemoveCartListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/SearchProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <url-pattern>/UpdateCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <url-pattern>/UserLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReport</servlet-name>
+        <url-pattern>/ViewReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

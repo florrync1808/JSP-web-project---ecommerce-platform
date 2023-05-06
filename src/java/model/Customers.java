@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import java.io.Serializable;
@@ -23,10 +20,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author cbiev
- */
 @Entity
 @Table(name = "CUSTOMERS")
 @XmlRootElement
@@ -110,7 +103,9 @@ public class Customers implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<CardProfiles> cardProfilesList;
+    private List<CartLists> cartListsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private List<Orders> ordersList;
 
     public Customers() {
     }
@@ -232,12 +227,17 @@ public class Customers implements Serializable {
 
     @XmlTransient
 
-    public List<CardProfiles> getCardProfilesList() {
-        return cardProfilesList;
+    public void setCartListsList(List<CartLists> cartListsList) {
+        this.cartListsList = cartListsList;
     }
 
-    public void setCardProfilesList(List<CardProfiles> cardProfilesList) {
-        this.cardProfilesList = cardProfilesList;
+    @XmlTransient
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 
     @Override

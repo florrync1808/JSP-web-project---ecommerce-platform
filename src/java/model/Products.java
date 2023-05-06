@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import java.io.Serializable;
+//import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
@@ -24,17 +22,13 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author cbiev
- */
 @Entity
 @Table(name = "PRODUCTS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Products.findAll", query = "SELECT p FROM Products p"),
     @NamedQuery(name = "Products.findByProductId", query = "SELECT p FROM Products p WHERE p.productId = :productId"),
-    @NamedQuery(name = "Products.findByProductName", query = "SELECT p FROM Products p WHERE p.productName = :productName"),
+    @NamedQuery(name = "Products.findByProductName", query = "SELECT p FROM Products p WHERE p.productName = :productName "),
     @NamedQuery(name = "Products.findByProductPrice", query = "SELECT p FROM Products p WHERE p.productPrice = :productPrice"),
     @NamedQuery(name = "Products.findByProductDesc", query = "SELECT p FROM Products p WHERE p.productDesc = :productDesc"),
     @NamedQuery(name = "Products.findByProductPhoto", query = "SELECT p FROM Products p WHERE p.productPhoto = :productPhoto"),
@@ -75,8 +69,12 @@ public class Products implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private List<OrderLists> orderListsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<CartLists> cartListsList;
 
+//    Timestamp ts = new Timestamp(System.currentTimeMillis());
+//    Date date = ts;
     public Products() {
     }
 
@@ -84,12 +82,13 @@ public class Products implements Serializable {
         this.productId = productId;
     }
 
-    public Products(String productId, String productName, double productPrice, String productDesc, String productPhoto) {
+    public Products(String productId, String productName, double productPrice, String productDesc, String productPhoto, Date createdAt) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productDesc = productDesc;
         this.productPhoto = productPhoto;
+        this.createdAt = createdAt;
     }
 
     public String getProductId() {
@@ -119,6 +118,11 @@ public class Products implements Serializable {
     public String getProductPriceinString() {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(this.getProductPrice());
+    }
+    
+    public double getProductPriceinDouble() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return Double.parseDouble(df.format(this.getProductPrice()));
     }
 
     public String getProductDesc() {
@@ -151,6 +155,15 @@ public class Products implements Serializable {
 
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    @XmlTransient
+    public List<OrderLists> getOrderListsList() {
+        return orderListsList;
+    }
+
+    public void setOrderListsList(List<OrderLists> orderListsList) {
+        this.orderListsList = orderListsList;
     }
 
     @XmlTransient

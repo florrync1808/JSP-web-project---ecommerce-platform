@@ -11,6 +11,8 @@
                 Your passionate <br />
                 one-stop plant store
             </h1>
+            
+
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">
                 <a href="/pepegacoJAVAEE6/DisplayProductsServlet" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
@@ -26,11 +28,11 @@
             </div>
 
             <template x-for="(image, index) in images">
-                <figure class="h-72" x-show="currentIndex == index + 1" x-transition:enter="transition transform duration-300"
+                <figure class="h-96" x-show="currentIndex == index + 1" x-transition:enter="transition transform duration-300"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition transform duration-300" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0">
-                    <img :src="image" alt="Image" class="absolute inset-0 z-10 h-full w-full object-cover opacity-70" />
+                    <img :src="image" alt="Image" class="absolute inset-0 z-10 h-full w-full object-cover" />
                 </figure>
             </template>
 
@@ -77,6 +79,7 @@
         Alpine.data('slider', () => ({
                 currentIndex: 1,
                 images: [
+                    '/pepegacoJAVAEE6/assets/images/company/promo3.png',
                     '/pepegacoJAVAEE6/assets/images/company/promo2.png',
                     '/pepegacoJAVAEE6/assets/images/company/promo1.png',
                 ],
