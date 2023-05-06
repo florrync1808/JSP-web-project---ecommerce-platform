@@ -28,13 +28,14 @@
                     </div>
                     <div class="block p-2">
                         <label class="text-gray-700">E-mail Address</label>
-                        <input name="sEmail" type="email" required step="0.01" 
+                        <input name="sEmail" type="email" required
                                class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
                                placeholder="example@email.com"/>
                     </div>
                     <div class="block p-2">
                         <p class="text-gray-700">Default password</p>
-                        <input class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" disabled value="staffpw1">
+                        <input name="sPassword"
+                            class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" disabled value="staffpw1">
                     </div>
                     <div class="p-2 pl-0 flex flex-row">
                         <div class="p-2">

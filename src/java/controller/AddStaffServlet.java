@@ -3,7 +3,9 @@ package controller;
 import model.Staffs;
 import model.StaffsService;
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.*;
 import javax.annotation.Resource;
 import javax.persistence.*;
@@ -12,37 +14,61 @@ import javax.servlet.http.*;
 import javax.transaction.UserTransaction;
 
 public class AddStaffServlet extends HttpServlet {
-    
+
     @PersistenceContext
     EntityManager em;
     @Resource
     UserTransaction utx;
 
+    String confirmMsg = "";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            /*
         try {
+
+            StaffsService staffsService = new StaffsService(em);
+            List<Staffs> staffsList = staffsService.findAll();
+
             //StaffID auto generated
+            int numStaffs = staffsList.size();
+            String staffId = String.format("ST%06d", numStaffs + 1);
+            //Staff name
             String name = request.getParameter("sName");
-            //Date birthDate = request.getParameter("sBirthDate");
+            Date birthDate = request.getParameter("sBirthDate");
+            
+            //contact number
             String contactNo = request.getParameter("sContactNo");
             //email
+            String email = request.getParameter("sEmail");
             //activate emploment status
+            String employmentStatus = "active";
             //default password staffpw1
-            //created at, time NOW
+            String password = request.getParameter("sPassword");
             
-            Staffs item = new Staffs(staffId, name, birthdate, contactNo, email, employmentStatus, password, createdAt) ;
-            StaffsService itemService = new StaffsService(em);
+            //created at, time NOW; convert the timestamp to datetime
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            Date createdAt = ts;
+
+            Staffs staff = new Staffs(staffId, name, birthdate, contactNo, email, employmentStatus, password, createdAt);
+
             utx.begin();
-            boolean success = itemService.addItem(item);
+            boolean success = staffsService.addStaff(staff);
             utx.commit();
+
+            if (success) {
+                confirmMsg = "Staff added succesfully!";
+            } else {
+                confirmMsg = "Add staff failed!";
+            }
+
+            staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
-            session.setAttribute("success", success);
-            response.sendRedirect("secureStaff/AddConfirm.jsp");
+            session.setAttribute("sList", staffsList);
+            session.setAttribute("AddStaffConfirmationMsg", confirmMsg);
+            response.sendRedirect("/pepegacoJAVAEE6/LoadStaffList");
         } catch (Exception ex) {
             Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
