@@ -38,7 +38,7 @@
                             </div>
                             <p class="text-xs leading-3 text-gray-600 dark:text-white pt-2"><%= product.getProductDesc()%></p>
                             <div class="flex items-center justify-between pt-5">
-                                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"> RM <%= product.getProductPriceinString()%> </p>
+                                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"> RM <%= String.format("%.2f", product.getProductPrice())%> </p>
                                 <div class="flex itemms-center">
                                 <% if (request.isUserInRole("adminRole")) {
                                     } else if (session.getAttribute("userName") == null || session.getAttribute("userRole").equals("userRole")) {%>
