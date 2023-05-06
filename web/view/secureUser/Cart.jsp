@@ -15,6 +15,7 @@
 %>
 
 <div class=" h-fit bg-gray-200 w-full rounded-md py-10 p-2">
+<form method="POST" action="/pepegacoJAVAEE6/MakePayment">
     <div class="m-8 p-8 bg-white shadow-md rounded-md dark:bg-gray-800">
         <!--section title-->
         <div class="px-3">
@@ -55,12 +56,6 @@
                             <a href="/pepegacoJAVAEE6/RemoveCartListServlet?productId=<%= item.getId()%>"  class="text-xs leading-3 underline text-red-500 pl-2 cursor-pointer">Remove</a>
                         </div>
              
-<!--                    <form method="POST" action="/pepegacoJAVAEE6/RemoveCartListServlet">
-                        <div class="flex itemms-center">
-                            <input type="hidden" name="productId" value="<%= item.getId()%>"/>
-                            <button type="submit" class="text-xs leading-3 underline text-red-500 pl-2 cursor-pointer">Remove</button>
-                        </div>
-                    </form>-->
                 </div>
             </div>
 
@@ -76,9 +71,10 @@
                     </div>
                 </form>
             </div>
-
+                        
 
             <!--subtotal price-->
+            
             <div class="col-span-1"> 
 
                 <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"><% out.print(String.format("RM %.2f",item.getProductId().getProductPrice() * item.getItemQty())); %> </p>
@@ -111,10 +107,16 @@
                         <p class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-white"><% if(sum >= 200.00){ out.print( String.format("RM %.2f",sum*1.06));
                             }else{  out.print( String.format("RM %.2f",sum*1.06+shipping)); } %></p>
                     </div>
+                    <div>
+                            
+                            <input type="hidden" name="subtotalfromCart" value="<%= sum %>"/>
+                            <input type="hidden" name="totalfromCart" value="<%= sum*1.06+shipping %>"/>
+                        </div>
                     <button onclick="checkoutHandler1(true)" class="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700">Checkout</button>
                 </div>
             </div>
         </div>
     </div>
+</form>
 </div>
 
