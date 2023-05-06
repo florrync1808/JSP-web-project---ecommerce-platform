@@ -29,37 +29,27 @@ public class AddProductServlet extends HttpServlet {
             List<Products> productList = productService.findAll();
 
             //count row
-            int countp = 0;
-            int counta = 0;
+            int count = 0;
+            
             for (Products product : productList) {
-                if (product.getProductId().charAt(0) == 'P') {
-                    countp++;
-                } else if (product.getProductId().charAt(0) == 'A') {
-                    counta++;
-                }
+                count++;
             }
 
-            //assign productId based on categories
-            String id = null;
-            if ("plant".equals(request.getParameter("ptype"))) {
-                id = String.format("P%07d", countp + 1);
-            }
-            if ("other".equals(request.getParameter("ptype"))) {
-                id = String.format("A%07d", counta + 1);
-            }
+            //assign productId 
+            String id = String.format("P%07d", count);
 
             //get parameter and set to the variable
             String name = request.getParameter("pname");
             String desc = request.getParameter("pdesc");
             double price = Double.parseDouble(request.getParameter("pprice"));
             String photo = "/pepegacoJAVAEE6/assets/images/products/" + request.getParameter("ppic");
-            
-            // convert the timestamp to datetime
-            Timestamp ts=new Timestamp(System.currentTimeMillis());   
-            Date createdAt = ts;
 
-            Products product = new Products(id, name, price, desc, photo, createdAt);
+            // convert the timestamp to datetime
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            Date createdAt = ts;
             
+            Products product = new Products(id, name, price, desc, photo, createdAt);
+
             utx.begin();
             boolean success = productService.addProduct(product);
             utx.commit();
@@ -73,7 +63,7 @@ public class AddProductServlet extends HttpServlet {
             productList = productService.findAll();
             HttpSession session = request.getSession();
             session.setAttribute("ProductList", productList);
-            session.setAttribute("AddItemconfirmationMsg", confirmMsg);
+            session.setAttribute("AddProductconfirmationMsg", confirmMsg);
             response.sendRedirect("/pepegacoJAVAEE6/ProductListServlet");
         } catch (Exception ex) {
             Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);

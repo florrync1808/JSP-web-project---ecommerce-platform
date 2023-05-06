@@ -14,14 +14,6 @@
             <div class="grid grid-cols-1 gap-6">
                 <form action="/pepegacoJAVAEE6/AddProductServlet">
                     <label class="block p-2">
-                        <span class="text-gray-700 font-semibold">Product Categories</span>
-                        <select name="ptype" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option value="" selected disabled hidden>Select product categories</option>
-                            <option value="plant">Plant</option>
-                            <option value="other">Other (Accessories, Tools, etc)</option>
-                        </select>
-                    </label>
-                    <label class="block p-2">
                         <span class="text-gray-700 font-semibold">Name</span>
                         <input name="pname" type="text" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="eg. Albuca Concordiana"/>
                     </label>
