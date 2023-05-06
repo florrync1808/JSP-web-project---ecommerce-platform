@@ -56,7 +56,6 @@ public class DBConnection {
         }
             return rs;
     }
-    
 
     public static boolean searchForExistingProduct(String productId, String custId) {
         try {
@@ -80,7 +79,7 @@ public class DBConnection {
         return false;
     }
     
-       public static boolean searchForExistingCustomer(String email) {
+    public static boolean searchForExistingCustomer(String email) {
         try {
             //Checking whether the connection is null or null
             if (conn == null) {
