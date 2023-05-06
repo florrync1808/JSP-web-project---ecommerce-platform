@@ -72,6 +72,9 @@
                         <% } else { %>
                         <td class="whitespace-nowrap px-3 py-4 pl-4 text-sm">-</td>
                         <% } %>
+                        
+                        <!-- only admin can see and click the button to edit and delete product -->
+                        <% if (request.isUserInRole("adminRole")) { %>
                         <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                             <div class="inline-block text-left" x-data="{ menu: false }">
                                 <button x-on:click="menu = ! menu" type="button" class="flex items-center text-gray-400 hover:text-gray-600 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
@@ -82,18 +85,19 @@
                                 </button>
                                 <div x-show="menu" x-on:click.away="menu = false" class="origin-top-right absolute right-32 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                     <div class="" role="none">
-                                        <a href="#" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+                                        <a href="/pepegacoJAVAEE6/EditProductServlet?productId=<%=product.getProductId()%>" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
                                             Edit
                                         </a>
                                     </div>
                                     <div class="" role="none">
-                                        <a href="#" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+                                        <a href="/pepegacoJAVAEE6/DeleteProductServlet?productId=<%=product.getProductId()%>" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
                                             Delete
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </td>
+                        <% } %>
                     </tr>
                     <% }
                     %>
