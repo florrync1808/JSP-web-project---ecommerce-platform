@@ -67,6 +67,11 @@ public class PaymentService {
         return cardList;
     }
     
+    public List<Orders> findAllOrder() {
+        List cardList = mgr.createNamedQuery("Orders.findAll").getResultList();
+        return cardList;
+    }
+    
     public Customers findCustomerByCode(String custid){
         Customers c = mgr.find(Customers.class, custid);
         return c;
@@ -120,5 +125,33 @@ public class PaymentService {
         newPaymentId = String.format("%s%06d", "PA",count);
         return newPaymentId;
     }
+    
+    public int getDBOrderCount(){
+        List<Orders> custList = this.findAllOrder();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public String GenerateOrderId(int count){
+        String newOrderId;
+        newOrderId = String.format("%s%06d", "OR",count);
+        return newOrderId;
+    }
+    
+    public int getDBOrderListCount(){
+        List<Orders> custList = this.findAllOrder();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public String GenerateOrderListId(int count){
+        String newOrderId;
+        newOrderId = String.format("%s%06d", "OL",count);
+        return newOrderId;
+    }
+    
+    
 
 }

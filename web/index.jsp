@@ -11,6 +11,7 @@
                 Your passionate <br />
                 one-stop plant store
             </h1>
+            <a href="DownloadPdf">Click Here</a>
             
 
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>

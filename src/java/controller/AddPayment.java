@@ -7,6 +7,7 @@ package controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,18 +39,30 @@ public class AddPayment extends HttpServlet {
             PaymentService paymentService = new PaymentService(em);
             Payments payment = new Payments();
             String custId = (String) session.getAttribute("customerId");
-            String id = "";
             String total = session.getAttribute("total").toString();
+            String staffId = request.getParameter("staffId");
             String paymentMethod = request.getParameter("paymentMethod");
+            List<CartLists> cartList = (List)session.getAttribute("cartList");
             Customers customer = paymentService.findCustomerByCode(custId);
+            String payId = "";
+            String address = customer.getLine1() + ", " + customer.getLine2() + ", " + customer.getCity() + ", " + customer.getPostcode() + " " + customer.getState();
             SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Double doubleAmount = Double.parseDouble(total);
             
             int x = paymentService.getDBPaymentCount();
-            id = paymentService.GeneratePaymentId(x);
+            payId = paymentService.GeneratePaymentId(x);
+            int y = paymentService.getDBOrderCount();
+            String orderId = paymentService.GenerateOrderId(y);
+            int z = paymentService.getDBOrderListCount();
+            String orderListId = paymentService.GenerateOrderListId(z);
             
             
-            DBConnection.insertUpdateFromSqlQuery("INSERT INTO PAYMENTS (PAYMENT_ID, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + id + "'," + doubleAmount + ",'" + paymentMethod + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            DBConnection.insertUpdateFromSqlQuery("INSERT INTO PAYMENTS (PAYMENT_ID, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + payId + "'," + doubleAmount + ",'" + paymentMethod + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDERS VALUES ('"+ orderId + "','" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            for(CartLists cart: cartList){
+                DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_LISTS VALUES ('" + orderListId + "','" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            }
+            
             response.sendRedirect("/pepegacoJAVAEE6/");
         } catch (Exception ex) {
 //            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
