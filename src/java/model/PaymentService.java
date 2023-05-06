@@ -56,8 +56,8 @@ public class PaymentService {
         return false;
     }
 
-    public List<Products> findAll() {
-        List itemList = mgr.createNamedQuery("Products.findAll").getResultList();
+    public List<Payments> findAll() {
+        List itemList = mgr.createNamedQuery("Payments.findAll").getResultList();
         return itemList;
     }
 
@@ -106,6 +106,19 @@ public class PaymentService {
 
     public double getTotal(double shippingFee, double subtotal) {
         return shippingFee + subtotal;
+    }
+    
+    public int getDBPaymentCount(){
+        List<Payments> custList = this.findAll();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public String GeneratePaymentId(int count){
+        String newPaymentId;
+        newPaymentId = String.format("%s%06d", "PA",count);
+        return newPaymentId;
     }
 
 }

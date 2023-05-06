@@ -36,30 +36,20 @@ public class AddPayment extends HttpServlet {
             //obtain input form user/view
             HttpSession session = request.getSession(true);
             PaymentService paymentService = new PaymentService(em);
-            String custId = (String) session.getAttribute("customerId");
-
-            System.out.println(custId);
             Payments payment = new Payments();
-            String id = "asd";
-//            String id = payment.getPaymentId();
+            String custId = (String) session.getAttribute("customerId");
+            String id = "";
             String total = session.getAttribute("total").toString();
             String paymentMethod = request.getParameter("paymentMethod");
-            System.out.println(payment);
-            System.out.println(paymentMethod);
             Customers customer = paymentService.findCustomerByCode(custId);
-
-            System.out.println("asdkjf");
-            System.out.println(total);
             SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
             Double doubleAmount = Double.parseDouble(total);
-            System.out.println(doubleAmount);
-            System.out.println(datetime.format(payment.getCreatedAt()));
+            
+            int x = paymentService.getDBPaymentCount();
+            id = paymentService.GeneratePaymentId(x);
+            
+            
             DBConnection.insertUpdateFromSqlQuery("INSERT INTO PAYMENTS (PAYMENT_ID, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + id + "'," + doubleAmount + ",'" + paymentMethod + "','" + datetime.format(payment.getCreatedAt()) + "')");
-            System.out.println("asd");
-//            utx.begin();
-//            boolean success = paymentService.addItem(payment);
-//            utx.commit();
             response.sendRedirect("/pepegacoJAVAEE6/");
         } catch (Exception ex) {
 //            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
