@@ -119,6 +119,11 @@ public class Products implements Serializable {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(this.getProductPrice());
     }
+    
+    public double getProductPriceinDouble() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return Double.parseDouble(df.format(this.getProductPrice()));
+    }
 
     public String getProductDesc() {
         return productDesc;
