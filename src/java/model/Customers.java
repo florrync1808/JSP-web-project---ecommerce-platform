@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.io.Serializable;
@@ -20,6 +23,10 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author End User
+ */
 @Entity
 @Table(name = "CUSTOMERS")
 @XmlRootElement
@@ -226,6 +233,9 @@ public class Customers implements Serializable {
     }
 
     @XmlTransient
+    public List<CartLists> getCartListsList() {
+        return cartListsList;
+    }
 
     public void setCartListsList(List<CartLists> cartListsList) {
         this.cartListsList = cartListsList;

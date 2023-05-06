@@ -1,11 +1,13 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,6 +22,10 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author End User
+ */
 @Entity
 @Table(name = "PAYMENTS")
 @XmlRootElement
@@ -32,9 +38,11 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Payments implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Column(name = "PAYMENT_ID")
     @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
+    @Column(name = "PAYMENT_ID")
     private String paymentId;
     @Basic(optional = false)
     @NotNull
@@ -52,26 +60,23 @@ public class Payments implements Serializable {
     private Date createdAt;
     @OneToMany(mappedBy = "paymentId")
     private List<Orders> ordersList;
-    
-    
+
     public Payments() {
     }
 
     public Payments(String paymentId) {
         this.paymentId = paymentId;
     }
-    private static int id = 20;
-    public Payments(String paymentAmount, String paymentMethod) {
-        id++;
-        this.paymentId = "PA" + String.format("%06d", id);
-        this.paymentAmount = Double.parseDouble(paymentAmount);
+
+    public Payments(String paymentId, double paymentAmount, String paymentMethod, Date createdAt) {
+        this.paymentId = paymentId;
+        this.paymentAmount = paymentAmount;
         this.paymentMethod = paymentMethod;
-        this.createdAt = new java.util.Date();
+        this.createdAt = createdAt;
     }
 
     public String getPaymentId() {
-        id++;
-        return "PA" + String.format("%06d", id);
+        return paymentId;
     }
 
     public void setPaymentId(String paymentId) {
@@ -95,7 +100,7 @@ public class Payments implements Serializable {
     }
 
     public Date getCreatedAt() {
-        return new java.util.Date();
+        return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
