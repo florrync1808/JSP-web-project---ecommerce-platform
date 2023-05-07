@@ -60,7 +60,7 @@
                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= staff.getBirthdate()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getContactNo()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getEmail()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">active/inactive</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= staff.getEmploymentStatus() %></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getPassword()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getCreatedAt()%></td>
                         <!-- Edit Delete buttons -->

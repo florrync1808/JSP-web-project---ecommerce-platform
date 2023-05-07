@@ -5,15 +5,12 @@ import model.StaffsService;
 import model.DBConnection;
 import java.io.*;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
-import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-import javax.transaction.UserTransaction;
 
 public class AddStaffServlet extends HttpServlet {
 
@@ -48,8 +45,8 @@ public class AddStaffServlet extends HttpServlet {
             //created at, time NOW; convert the timestamp to datetime
             Timestamp ts = new Timestamp(System.currentTimeMillis());
             Date createdAt = ts;
-            
-            String insertQuery = "INSERT INTO NBUSER.STAFFS (STAFF_ID, NAME, BIRTHDATE, CONTACT_NO, EMAIL, EMPLOYMENT_STATUS, PASSWORD, CREATED_AT) VALUES ('" 
+
+            String insertQuery = "INSERT INTO STAFFS (STAFF_ID, NAME, BIRTHDATE, CONTACT_NO, EMAIL, EMPLOYMENT_STATUS, PASSWORD, CREATED_AT) VALUES ('"
                     + staffId + "','"
                     + name + "','"
                     + birthDateStr + "','"
@@ -59,31 +56,12 @@ public class AddStaffServlet extends HttpServlet {
                     + password + "','"
                     + createdAt + "')";
             DBConnection.insertUpdateFromSqlQuery(insertQuery);
-            PrintWriter out = response.getWriter();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1><br>");
-            out.println("<p>" + staffId + "</p><br>");
-            out.println("<p>" + name + "</p><br>");
-            out.println("<p>" + birthDateStr + "</p><br>");
-            out.println("<p>" + contactNo + "</p><br>");
-            out.println("<p>" + email + "</p><br>");
-            out.println("<p>" + employmentStatus + "</p><br>");
-            out.println("<p>" + password + "</p><br>");
-            out.println("<p>" + createdAt + "</p><br>");
-            out.println("<p>" + insertQuery + "</p><br>");
-            out.println("</body>");
-            out.println("</html>");
-            
+
             staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
             session.setAttribute("staffL", staffsList);
             session.setAttribute("AddStaffConfirmationMsg", "Staff added succesfully!");
-            //response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {
             Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
