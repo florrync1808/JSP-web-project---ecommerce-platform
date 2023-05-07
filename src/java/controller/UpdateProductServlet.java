@@ -1,9 +1,8 @@
 package controller;
 
-import model.Products;
-import model.ProductService;
+import model.*;
 import java.io.*;
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
@@ -13,7 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.transaction.UserTransaction;
 
-public class AddProductServlet extends HttpServlet {
+public class UpdateProductServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
@@ -28,53 +27,57 @@ public class AddProductServlet extends HttpServlet {
             ProductService productService = new ProductService(em);
             List<Products> productList = productService.findAll();
 
-            //count row
-            int count = 0;
-            
-            for (Products product : productList) {
-                count++;
-            }
-
-            //assign productId 
-            String id = String.format("P%07d", count);
-
-            //get parameter and set to the variable
+            // get all the input from the edit page
+            String id = request.getParameter("pid");
             String name = request.getParameter("pname");
             String desc = request.getParameter("pdesc");
             double price = Double.parseDouble(request.getParameter("pprice"));
-            String photo = "/pepegacoJAVAEE6/assets/images/products/" + request.getParameter("ppic");
+            
+            //check whether the admin have upload new picture
+            String pic = null;
+            if ("".equals(request.getParameter("ppic"))) {
+                for (Products product : productList) {
+                    if (id.equals(product.getProductId())) {
+                        pic = product.getProductPhoto();
+                    }
+                }
+            } else {
+                pic = "/pepegacoJAVAEE6/assets/images/products/" + request.getParameter("ppic");
+            }
+            
+            //parse string to date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date datetime = dateFormat.parse(request.getParameter("pcreate"));
 
-            // convert the timestamp to datetime
-            Timestamp ts = new Timestamp(System.currentTimeMillis());
-            Date createdAt = ts;
-            
             // put all the input data into the constructor
-            Products product = new Products(id, name, price, desc, photo, createdAt);
-            
-            // execute the function to add the product
+            Products product = new Products(id, name, price, desc, pic, datetime);
+
+            // execute the function to update the product
             utx.begin();
-            boolean success = productService.addProduct(product);
+            boolean success = productService.updateProduct(product);
             utx.commit();
 
             if (success == true) {
-                confirmMsg = "Added Product " + id + "Succesfully!";
+                confirmMsg = "Updated Product " + id + " Successfully!";
+
             } else {
-                confirmMsg = "Add Product Failed!";
+                confirmMsg = "Update Product Failed!";
             }
-            
+
             // reload the product list
             productList = productService.findAll();
-            
+
             HttpSession session = request.getSession();
-            
+
             // set the updated product list to the attribute
             session.setAttribute("ProductList", productList);
-            
-            // set the add comfirm msg to the attribute
-            session.setAttribute("AddConfirmMsg", confirmMsg);
+
+            // set the edit comfirm msg to the attribute
+            session.setAttribute("EditConfirmMsg", confirmMsg);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp");
+
         } catch (Exception ex) {
-            Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

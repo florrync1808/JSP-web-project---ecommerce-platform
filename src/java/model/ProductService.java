@@ -1,6 +1,14 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.Resource;
 import javax.persistence.*;
 
@@ -69,11 +77,13 @@ public class ProductService {
     public boolean updateProduct(Products product) {
         Products tempItem = findProductByID(product.getProductId());
         if (tempItem != null) {
-            tempItem.setProductDesc(product.getProductDesc());
+            tempItem.setProductName(product.getProductName());
             tempItem.setProductPrice(product.getProductPrice());
+            tempItem.setProductDesc(product.getProductDesc());
+            tempItem.setProductPhoto(product.getProductPhoto());
+            tempItem.setCreatedAt(product.getCreatedAt());
             return true;
         }
         return false;
     }
-
 }

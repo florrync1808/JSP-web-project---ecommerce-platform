@@ -1,81 +1,64 @@
+
 package controller;
 
-import model.Products;
-import model.ProductService;
-import java.io.*;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.io.IOException;
 import java.util.List;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
+import model.*;
 
-public class AddProductServlet extends HttpServlet {
-
+public class DeleteProductServlet extends HttpServlet {
+    
     @PersistenceContext
     EntityManager em;
     @Resource
     UserTransaction utx;
-
+    
     String confirmMsg = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             ProductService productService = new ProductService(em);
-            List<Products> productList = productService.findAll();
-
-            //count row
-            int count = 0;
+            HttpSession session = request.getSession();
             
-            for (Products product : productList) {
-                count++;
-            }
-
-            //assign productId 
-            String id = String.format("P%07d", count);
-
-            //get parameter and set to the variable
-            String name = request.getParameter("pname");
-            String desc = request.getParameter("pdesc");
-            double price = Double.parseDouble(request.getParameter("pprice"));
-            String photo = "/pepegacoJAVAEE6/assets/images/products/" + request.getParameter("ppic");
-
-            // convert the timestamp to datetime
-            Timestamp ts = new Timestamp(System.currentTimeMillis());
-            Date createdAt = ts;
-            
-            // put all the input data into the constructor
-            Products product = new Products(id, name, price, desc, photo, createdAt);
-            
-            // execute the function to add the product
+            String id = request.getParameter("pid");
+               
             utx.begin();
-            boolean success = productService.addProduct(product);
+            boolean success = productService.deleteProduct(id);
             utx.commit();
-
+            
             if (success == true) {
-                confirmMsg = "Added Product " + id + "Succesfully!";
+                confirmMsg = "Deleted Product " + id + " Successfully!";
+
             } else {
-                confirmMsg = "Add Product Failed!";
+                confirmMsg = "Delete Product Failed!";
             }
             
             // reload the product list
-            productList = productService.findAll();
-            
-            HttpSession session = request.getSession();
-            
+            List<Products>productList = productService.findAll();
+
             // set the updated product list to the attribute
             session.setAttribute("ProductList", productList);
-            
-            // set the add comfirm msg to the attribute
-            session.setAttribute("AddConfirmMsg", confirmMsg);
+
+            // set the delete comfirm msg to the attribute
+            session.setAttribute("DeleteConfirmMsg", confirmMsg);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/ProductsList.jsp");
+
+            session.setAttribute("success", success);
+            response.sendRedirect("secureAdmin/DeleteConfirm.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Logger.getLogger(DeleteProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -116,4 +99,5 @@ public class AddProductServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

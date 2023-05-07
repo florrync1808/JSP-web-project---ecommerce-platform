@@ -19,7 +19,7 @@
 
         <!-- Plants Categories -->
         <div class="px-12">
-            <p class="text-xl font-bold">Plants</p>
+            <p class="text-xl font-bold">Products</p>
             <hr class="my-4 border-gray-900"/>
         </div>
         <!--card container-->

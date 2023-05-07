@@ -60,6 +60,14 @@
         <servlet-name>ViewReport</servlet-name>
         <servlet-class>controller.ViewReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>controller.UpdateProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>controller.DeleteProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>ViewReport</servlet-name>
         <url-pattern>/ViewReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
