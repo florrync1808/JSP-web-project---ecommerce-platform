@@ -52,16 +52,25 @@ public class AddPayment extends HttpServlet {
             int x = paymentService.getDBPaymentCount();
             payId = paymentService.GeneratePaymentId(x);
             int y = paymentService.getDBOrderCount();
+            System.out.println("eheh");
             String orderId = paymentService.GenerateOrderId(y);
             int z = paymentService.getDBOrderListCount();
             String orderListId = paymentService.GenerateOrderListId(z);
-            
+//            int max = paymentService.getDBStaffListCount();
+            int max = 3;
+            System.out.println(max);
+            int min = 1; 
+            int staffIndex = (int)Math.floor(Math.random() * (max - min + 1) + min);
+            int a = paymentService.getDBOrderStatusCount();
+            String orderStatusId = paymentService.GenerateOrderStatusId(a);
             
             DBConnection.insertUpdateFromSqlQuery("INSERT INTO PAYMENTS (PAYMENT_ID, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + payId + "'," + doubleAmount + ",'" + paymentMethod + "','" + datetime.format(payment.getCreatedAt()) + "')");
-            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDERS VALUES ('"+ orderId + "','" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
-            for(CartLists cart: cartList){
-                DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_LISTS VALUES ('" + orderListId + "','" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDERS VALUES ('"+ orderId + "'," + staffIndex +  ",'" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_STATUSES VALUES ('"+ orderStatusId + "','packaging','" + orderId + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            for(CartLists item:cartList){
+                DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_LISTS VALUES ('"+ orderListId + "','" + item.getProductId() +  "','" + orderId + "'," + item.getItemQty() + ")");
             }
+//            
             
             response.sendRedirect("/pepegacoJAVAEE6/");
         } catch (Exception ex) {

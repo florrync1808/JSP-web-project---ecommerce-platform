@@ -100,5 +100,23 @@ public class DBConnection {
         }
         return false;
     }
+       
+       public static ResultSet searchForSOrderHistory(String staffId) {
+        try {
+            //Checking whether the connection is null or null
+            if (conn == null) {
+                conn = createConnection();
+            }
+            //Querying the query
+            String query = "SELECT ORDERS.ORDER_ID, ORDERS.CREATED_AT, PRODUCTS.PRODUCT_PHOTO, PRODUCTS.PRODUCT_ID, PRODUCTS.PRODUCT_NAME, PRODUCTS.PRODUCT_PRICE, ORDER_LISTS.ORDER_QTY, PAYMENTS.PAYMENT_AMOUNT FROM PRODUCTS JOIN ORDER_LISTS ON PRODUCTS.PRODUCT_ID = ORDER_LISTS.PRODUCT_ID JOIN ORDERS ON ORDERS.ORDER_ID = ORDER_LISTS.ORDER_ID JOIN PAYMENTS ON PAYMENTS.PAYMENT_ID = ORDERS.PAYMENT_ID WHERE ORDERS.STAFF_ID =? ";
+            statement = conn.prepareStatement(query); //Statement is used to write queries. 
+            statement.setString(1,staffId );
+            resultSet = statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultSet;
+    }
 
 }

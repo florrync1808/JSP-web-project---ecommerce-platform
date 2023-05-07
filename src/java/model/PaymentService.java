@@ -61,9 +61,18 @@ public class PaymentService {
         return itemList;
     }
 
+    public List<OrderStatuses> findAllOrderStatuses() {
+        List itemList = mgr.createNamedQuery("OrderStatuses.findAll").getResultList();
+        return itemList;
+    }
 
     public List<Customers> findAllCustomer() {
         List cardList = mgr.createNamedQuery("Customers.findAll").getResultList();
+        return cardList;
+    }
+    
+    public List<Staffs> findAllStaff() {
+        List cardList = mgr.createNamedQuery("Staffs.findAll").getResultList();
         return cardList;
     }
     
@@ -151,6 +160,28 @@ public class PaymentService {
         newOrderId = String.format("%s%06d", "OL",count);
         return newOrderId;
     }
+    
+    public int getDBStaffListCount(){
+        List<Staffs> custList = this.findAllStaff();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public int getDBOrderStatusCount(){
+        List<OrderStatuses> custList = this.findAllOrderStatuses();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public String GenerateOrderStatusId(int count){
+        String newOrderId;
+        newOrderId = String.format("%s%06d", "OS",count);
+        return newOrderId;
+    }
+    
+    
     
     
 
