@@ -112,6 +112,17 @@ public class Staffs implements Serializable {
         this.password = password;
         this.createdAt = createdAt;
     }
+        
+    public Staffs(String staffId, String name, Date birthdate, String contactNo, String email, String employmentStatus, String password, Date createdAt) {
+        this.staffId = staffId;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.contactNo = contactNo;
+        this.email = email;
+        this.employmentStatus = employmentStatus;
+        this.password = password;
+        this.createdAt = createdAt;
+    }
 
     public Integer getStaffIndex() {
         return staffIndex;

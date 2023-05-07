@@ -2,8 +2,10 @@ package controller;
 
 import model.Staffs;
 import model.StaffsService;
+import model.DBConnection;
 import java.io.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
@@ -17,8 +19,6 @@ public class AddStaffServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-    @Resource
-    UserTransaction utx;
 
     String confirmMsg = "";
 
@@ -34,8 +34,8 @@ public class AddStaffServlet extends HttpServlet {
             String staffId = String.format("ST%06d", numStaffs + 1);
             //Staff name
             String name = request.getParameter("sName");
-            Date birthDate = request.getParameter("sBirthDate");
-            
+            //staff birth date
+            String birthDateStr = request.getParameter("sBirthDate");
             //contact number
             String contactNo = request.getParameter("sContactNo");
             //email
@@ -43,29 +43,47 @@ public class AddStaffServlet extends HttpServlet {
             //activate emploment status
             String employmentStatus = "active";
             //default password staffpw1
-            String password = request.getParameter("sPassword");
-            
+            String password = "staffpw01";
+
             //created at, time NOW; convert the timestamp to datetime
             Timestamp ts = new Timestamp(System.currentTimeMillis());
             Date createdAt = ts;
-
-            Staffs staff = new Staffs(staffId, name, birthdate, contactNo, email, employmentStatus, password, createdAt);
-
-            utx.begin();
-            boolean success = staffsService.addStaff(staff);
-            utx.commit();
-
-            if (success) {
-                confirmMsg = "Staff added succesfully!";
-            } else {
-                confirmMsg = "Add staff failed!";
-            }
-
+            
+            String insertQuery = "INSERT INTO NBUSER.STAFFS (STAFF_ID, NAME, BIRTHDATE, CONTACT_NO, EMAIL, EMPLOYMENT_STATUS, PASSWORD, CREATED_AT) VALUES ('" 
+                    + staffId + "','"
+                    + name + "','"
+                    + birthDateStr + "','"
+                    + contactNo + "','"
+                    + email + "','"
+                    + employmentStatus + "','"
+                    + password + "','"
+                    + createdAt + "')";
+            DBConnection.insertUpdateFromSqlQuery(insertQuery);
+            PrintWriter out = response.getWriter();
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1><br>");
+            out.println("<p>" + staffId + "</p><br>");
+            out.println("<p>" + name + "</p><br>");
+            out.println("<p>" + birthDateStr + "</p><br>");
+            out.println("<p>" + contactNo + "</p><br>");
+            out.println("<p>" + email + "</p><br>");
+            out.println("<p>" + employmentStatus + "</p><br>");
+            out.println("<p>" + password + "</p><br>");
+            out.println("<p>" + createdAt + "</p><br>");
+            out.println("<p>" + insertQuery + "</p><br>");
+            out.println("</body>");
+            out.println("</html>");
+            
             staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
-            session.setAttribute("sList", staffsList);
-            session.setAttribute("AddStaffConfirmationMsg", confirmMsg);
-            response.sendRedirect("/pepegacoJAVAEE6/LoadStaffList");
+            session.setAttribute("staffL", staffsList);
+            session.setAttribute("AddStaffConfirmationMsg", "Staff added succesfully!");
+            //response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {
             Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -24,7 +24,7 @@
                         <label class="text-gray-700">Contact No</label>
                         <input name="sContactNo" type="tel" pattern="[0-9]{10}|[0-9]{11}" required 
                                class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
-                               placeholder="Phone number without &#34;-&#34;">
+                               placeholder="Phone number without &#34;-&#34;"/>
                     </div>
                     <div class="block p-2">
                         <label class="text-gray-700">E-mail Address</label>
@@ -33,9 +33,10 @@
                                placeholder="example@email.com"/>
                     </div>
                     <div class="block p-2">
-                        <p class="text-gray-700">Default password</p>
-                        <input name="sPassword"
-                            class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" disabled value="staffpw1">
+                        <label class="text-gray-700">Default password</label>
+                        <input name="sPassword" type="text" 
+                               class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+                               disabled value="staffpw1"/>
                     </div>
                     <div class="p-2 pl-0 flex flex-row">
                         <div class="p-2">

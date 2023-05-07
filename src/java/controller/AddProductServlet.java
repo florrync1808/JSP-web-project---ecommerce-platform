@@ -58,7 +58,7 @@ public class AddProductServlet extends HttpServlet {
             Timestamp ts=new Timestamp(System.currentTimeMillis());   
             Date createdAt = ts;
 
-            Products product = new Products(id, name, price, desc, photo, createdAt);
+            Products product = new Products(id, name, price, desc, photo);
             
             utx.begin();
             boolean success = productService.addProduct(product);

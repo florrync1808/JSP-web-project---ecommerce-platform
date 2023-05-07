@@ -8,6 +8,10 @@
         <servlet-name>AddProductServlet</servlet-name>
         <servlet-class>controller.AddProductServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadStaffList</servlet-name>
+        <url-pattern>/LoadStaffList</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>controller.AddToCartServlet</servlet-class>
@@ -36,6 +40,10 @@
         <servlet-name>ProductListServlet</servlet-name>
         <servlet-class>controller.ProductListServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadStaffList</servlet-name>
+        <url-pattern>/LoadStaffList</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <servlet-class>controller.RegisterCustomerServlet</servlet-class>
@@ -59,6 +67,10 @@
     <servlet>
         <servlet-name>ViewReport</servlet-name>
         <servlet-class>controller.ViewReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddStaffServlet</servlet-name>
+        <servlet-class>controller.AddStaffServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
@@ -119,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>ViewReport</servlet-name>
         <url-pattern>/ViewReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddStaffServlet</servlet-name>
+        <url-pattern>/AddStaffServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
