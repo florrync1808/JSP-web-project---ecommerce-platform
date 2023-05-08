@@ -40,7 +40,7 @@ public class AddStaffServlet extends HttpServlet {
             //activate emploment status
             String employmentStatus = "active";
             //default password staffpw1
-            String password = "staffpw01";
+            String password = "staffpw1";
 
             //created at, time NOW; convert the timestamp to datetime
             Timestamp ts = new Timestamp(System.currentTimeMillis());
