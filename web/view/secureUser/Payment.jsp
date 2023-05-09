@@ -112,7 +112,7 @@
                 <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center col-span-2">
                     <p class="text-xs leading-3 text-gray-800 dark:text-white md:pt-0 pt-4">FREEGIFT</p>
                     <div class="flex items-center justify-between w-full pt-1">
-                        <p class="text-base font-black leading-none text-gray-800 dark:text-white">Free gift</p>
+                        <p class="text-base font-black leading-none text-gray-800 dark:text-white">Mystery Free Gift</p>
                     </div>
 
                     <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white">RM 0.00</p>

@@ -104,24 +104,40 @@
                     <p class="text-base leading-none text-gray-800 dark:text-white"><% out.print(String.format("RM %.2f", sum * 0.06)); %></p>
                 </div>
             </div>
-             <form method="POST" action="/pepegacoJAVAEE6/MakePayment" onsubmit="return validateForm();">
-                <div>
-                    <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
-                        <p class="text-2xl leading-normal text-gray-800 dark:text-white">Total</p>
-                        <p class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-white"><% if (sum >= 200.00) {
-                                out.print(String.format("RM %.2f", sum * 1.06));
-                            } else if (sum == 0) {
-                                out.print(String.format("RM %.2f", freeShipping));
-                            } else {
-                                out.print(String.format("RM %.2f", sum * 1.06 + shipping));
-                            }%></p>
-                    </div>
+            <div>
+                <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
+                    <p class="text-2xl leading-normal text-gray-800 dark:text-white">Total</p>
+                    <p class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-white"><% if (sum >= 200.00) {
+                            out.print(String.format("RM %.2f", sum * 1.06));
+                        } else if (sum == 0) {
+                            out.print(String.format("RM %.2f", freeShipping));
+                        } else {
+                            out.print(String.format("RM %.2f", sum * 1.06 + shipping));
+                        }%></p>
+                </div>
+                <form method="POST" action="/pepegacoJAVAEE6/MakePayment" onsubmit="return validateForm();">
                     <div>
                         <input type="hidden" name="subtotalfromCart" value="<%= sum%>" id="totalPurchaseSum"/>
+                        <input type="hidden" name="totalfromCart" 
+                               <% if (sum >= 200.00) { %> 
+                                value="<%= sum*1.06 %>"
+                               <% } else if (sum == 0){ %> 
+                                value="<%= sum*0 %>"
+                                <% } else { %>
+                                value="<%= sum*1.06 +shipping %>" 
+                            <% } %> />
+                        <input type="hidden" name="shippingFeeFromCart" 
+                               <% if (sum >= 200.00) { %> 
+                                value="<%= freeShipping %>"
+                               <% } else if (sum == 0){ %> 
+                                value="<%= sum*0 %>"
+                                <% } else { %>
+                                value="<%= shipping %>" 
+                            <% } %> />
                     </div>
                     <button class="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700">Checkout</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     <!--MAIN FORM ENDS HERE-->
@@ -131,16 +147,15 @@
 
     function validateForm()
     {
-        console.log("sumPurchase.value");
-//        let sumPurchase = document.getElementById('sumPurchase');
-//        if (sumPurchase.value ===0) {
-//            return false;
-//            alert("No item(s) in carts");
-//        } else {
-//            return true;
-//        }
-//
-//        return false;
+        let sumPurchase = document.getElementById('totalPurchaseSum');
+        if (sumPurchase.value === 0) {
+            alert("No item(s) in carts");
+            return false;
+        } else {
+            return true;
+        }
+
+        return false;
 
     }
 
