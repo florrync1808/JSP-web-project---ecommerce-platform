@@ -2,7 +2,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,17 +23,18 @@ public class MakePayment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try  {
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("customerId");
-            
             PaymentService paymentService = new PaymentService(em);
             Customers customer = paymentService.findCustomerDetails(custId);
+            
+            System.out.println(customer);
+            
             String subtotalfromCart = request.getParameter("subtotalfromCart");
             Double shippingFee = paymentService.getShippingFee(Double.parseDouble(subtotalfromCart));
             String total = request.getParameter("totalfromCart");
             List<CartLists> cartList = (List<CartLists>) session.getAttribute("CartLists");
             Products freegift = paymentService.findProductDetails("FREEGIFT");
-            System.out.println(freegift);
             
             session.setAttribute("freegift", freegift);
             session.setAttribute("cartList", cartList);

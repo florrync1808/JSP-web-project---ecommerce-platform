@@ -88,7 +88,7 @@
 
                                 <a href="/pepegacoJAVAEE6/view/UserLogin.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">User/Staff Login</a>         
                                 <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Login</a>
-                                <a href="/pepegacoJAVAEE6/view/secureAdmin/Register.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Customer Sign Up</a>    
+                                <a href="/pepegacoJAVAEE6/view/Register.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Customer Sign Up</a>    
 
                                 <% }%>
                             </div>
