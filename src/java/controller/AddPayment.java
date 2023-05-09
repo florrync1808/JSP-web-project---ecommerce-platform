@@ -34,14 +34,9 @@ public class AddPayment extends HttpServlet {
             //obtain input form user/view
             HttpSession session = request.getSession(true);
             PaymentService paymentService = new PaymentService(em);
-//            Payments payment = new Payments();
             String custId = (String) session.getAttribute("customerId");
             String total = session.getAttribute("total").toString();
-
-//            String staffId = request.getParameter("staffId");    // output is null
-            
-            String staffId = "ST000001"; //assume
-
+            String staffId = request.getParameter("staffId");    // output is null
             String paymentMethod = request.getParameter("paymentMethod");
             List<CartLists> cartList = (List) session.getAttribute("cartList");
             Customers customer = paymentService.findCustomerByCode(custId);
@@ -58,17 +53,15 @@ public class AddPayment extends HttpServlet {
             String orderListId = paymentService.GenerateOrderListId(z);
             int a = paymentService.getDBOrderStatusCount();
             String orderStatusId = paymentService.GenerateOrderStatusId(a);
-
-            int staffIndex = 1; //assume
             
 //            System.out.println(cartList);
 //            System.out.println("1");
 //            System.out.println("2");
 //            int max = paymentService.getDBStaffListCount();
-//            int max = 3;
-//            int min = 1;
+            int max = 3;
+            int min = 1;
 ////            System.out.println("3");
-//            int staffIndex = (int) Math.floor(Math.random() * (max - min + 1) + min);
+            int staffIndex = (int) Math.floor(Math.random() * (max - min + 1) + min);
 
 //            System.out.println("4");
 //            System.out.println("5");
