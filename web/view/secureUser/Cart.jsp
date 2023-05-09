@@ -15,7 +15,7 @@
 %>
 
 <div class=" h-fit bg-gray-200 w-full rounded-md py-10 p-2">
-<form method="POST" action="/pepegacoJAVAEE6/MakePayment">
+<form method="POST" action="/pepegacoJAVAEE6/MakePayment" id="paymentForm">
     <div class="m-8 p-8 bg-white shadow-md rounded-md dark:bg-gray-800">
         <!--section title-->
         <div class="px-3">
@@ -49,7 +49,8 @@
                     <p class="text-base font-black leading-none text-gray-800 dark:text-white"><%= item.getProductId().getProductName()%></p>
                 </div>
 
-                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white">RM <%= item.getProductId().getProductPrice() %></p>
+                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white">RM
+                    <%= item.getProductId().getProductPriceinString() %></p>
                 <div class="flex items-center justify-between pt-5">
                    
                         <div class="flex itemms-center">
@@ -60,7 +61,7 @@
             </div>
 
             <div class="col-span-1">
-                <form method="POST" action="/pepegacoJAVAEE6/UpdateCartServlet">
+                <form method="POST" action="/pepegacoJAVAEE6/UpdateCartServlet" id="changeQty">
                     <div class="w-36 flex items-center border-b border-gray-600 py-2">
                         <input class="bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                                type="number" min="1" name="quantity" value="<%= item.getItemQty()%>">
@@ -74,9 +75,7 @@
                         
 
             <!--subtotal price-->
-            
             <div class="col-span-1"> 
-
                 <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"><% out.print(String.format("RM %.2f",item.getProductId().getProductPrice() * item.getItemQty())); %> </p>
             </div>          
             <%  sum += item.getProductId().getProductPrice() * item.getItemQty(); %>

@@ -8,21 +8,37 @@
         <servlet-name>AddProductServlet</servlet-name>
         <servlet-class>controller.AddProductServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>LoadStaffList</servlet-name>
-        <url-pattern>/LoadStaffList</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddStaffServlet</servlet-name>
+        <servlet-class>controller.AddStaffServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>controller.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>controller.DeleteProductServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DisplayCartServlet</servlet-name>
         <servlet-class>controller.DisplayCartServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DisplayOrderManagedHistory</servlet-name>
+        <servlet-class>controller.DisplayOrderManagedHistory</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DisplayProductsServlet</servlet-name>
         <servlet-class>controller.DisplayProductsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayPurchaseHistory</servlet-name>
+        <servlet-class>controller.DisplayPurchaseHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
+        <servlet-class>controller.DisplayPurchaseHistoryDetails</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadStaffList</servlet-name>
@@ -37,13 +53,13 @@
         <servlet-class>controller.MakePayment</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>OrderListManageServlet</servlet-name>
+        <servlet-class>controller.OrderListManageServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ProductListServlet</servlet-name>
         <servlet-class>controller.ProductListServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>LoadStaffList</servlet-name>
-        <url-pattern>/LoadStaffList</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <servlet-class>controller.RegisterCustomerServlet</servlet-class>
@@ -61,44 +77,16 @@
         <servlet-class>controller.UpdateCartServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>controller.UpdateProductServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UserLoginServlet</servlet-name>
         <servlet-class>controller.UserLoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewReport</servlet-name>
         <servlet-class>controller.ViewReport</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DownloadPdf</servlet-name>
-        <servlet-class>controller.DownloadPdf</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DisplayOrderManagedHistory</servlet-name>
-        <servlet-class>controller.DisplayOrderManagedHistory</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>OrderListManageServlet</servlet-name>
-        <servlet-class>controller.OrderListManageServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DisplayPurchaseHistory</servlet-name>
-        <servlet-class>controller.DisplayPurchaseHistory</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
-        <servlet-class>controller.DisplayPurchaseHistoryDetails</servlet-class>
-    </servlet>
-      <servlet>
-        <servlet-name>UpdateProductServlet</servlet-name>
-        <servlet-class>controller.UpdateProductServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <servlet-class>controller.DeleteProductServlet</servlet-class>
-       </servlet>
- <servlet>
-        <servlet-name>AddStaffServlet</servlet-name>
-        <servlet-class>controller.AddStaffServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
@@ -109,16 +97,36 @@
         <url-pattern>/AddProductServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AddStaffServlet</servlet-name>
+        <url-pattern>/AddStaffServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
         <url-pattern>/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DisplayCartServlet</servlet-name>
         <url-pattern>/DisplayCartServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DisplayOrderManagedHistory</servlet-name>
+        <url-pattern>/DisplayOrderManagedHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DisplayProductsServlet</servlet-name>
         <url-pattern>/DisplayProductsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayPurchaseHistory</servlet-name>
+        <url-pattern>/DisplayPurchaseHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
+        <url-pattern>/DisplayPurchaseHistoryDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadStaffList</servlet-name>
@@ -131,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>MakePayment</servlet-name>
         <url-pattern>/MakePayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListManageServlet</servlet-name>
+        <url-pattern>/OrderListManageServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductListServlet</servlet-name>
@@ -153,44 +165,16 @@
         <url-pattern>/UpdateCartServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UserLoginServlet</servlet-name>
         <url-pattern>/UserLoginServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewReport</servlet-name>
         <url-pattern>/ViewReport</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DownloadPdf</servlet-name>
-        <url-pattern>/DownloadPdf</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DisplayOrderManagedHistory</servlet-name>
-        <url-pattern>/DisplayOrderManagedHistory</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>OrderListManageServlet</servlet-name>
-        <url-pattern>/OrderListManageServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DisplayPurchaseHistory</servlet-name>
-        <url-pattern>/DisplayPurchaseHistory</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
-        <url-pattern>/DisplayPurchaseHistoryDetails</url-pattern>
-          </servlet-mapping>
-      <servlet-mapping>
-        <servlet-name>UpdateProductServlet</servlet-name>
-        <url-pattern>/UpdateProductServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <url-pattern>/DeleteProductServlet</url-patter>
-      </servlet-mapping>
-      <servlet-mapping>
-        <servlet-name>AddStaffServlet</servlet-name>
-        <url-pattern>/AddStaffServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
