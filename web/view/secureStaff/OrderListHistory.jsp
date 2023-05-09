@@ -20,7 +20,6 @@
     } else {
     }%>
 
-
 <div class=" h-fit bg-gray-200 w-full rounded-md py-10 p-2">
     <div class="m-8 p-8 bg-white shadow-md rounded-md dark:bg-gray-800">
         <div class="px-3">
@@ -31,6 +30,14 @@
 
         <div class="flex items-center justify-between pt-10">
             <p class="pl-10 text-base leading-none text-gray-800 dark:text-white font-medium">Order : <%=orderId%></p>
+            <p class="pl-10 text-base leading-none text-gray-800 dark:text-white font-medium capitalize">Order Status : <%
+                for (int i = 0; i < poList.size(); i++) {
+                    if (orderId.equals(poList.get(i).getOrderId())) {
+                        String orderStatus = poList.get(i).getDescription();
+                        out.println(orderStatus);
+                        break;
+                    }
+                }%></p>
             <p class=" pr-10 text-base leading-none text-gray-800 dark:text-white font-medium">Date: <%= createdAt%> </p>
         </div>
 
@@ -44,7 +51,8 @@
             <div class="col-span-1"> 
                 <p class="text-base font-black leading-none text-gray-800 dark:text-white  underline">Subtotal Price </p>
             </div> 
-                <%for (ProductOfOrderList po : poList) {%>
+                        <% double subtotal = 0.00, shipping = 25.00, free = 0.00; %>
+            <%for (ProductOfOrderList po : poList) {%>
             <div class="col-span-1  w-full">
                 <img src="<%=po.getProductPhoto()%>" alt="" class="md:w-4/12 w-full ml-10 object-center object-cover md:block hidden" />
             </div>
@@ -70,14 +78,36 @@
 
                 <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=Double.parseDouble(po.getOrderQty()) * Double.parseDouble(po.getProductPrice())%> </p>
             </div>
-            <% }
-                    %>    
-            <div class="w-9/12 m-auto ">
+            <% subtotal += Double.parseDouble(po.getProductPrice()) * Double.parseDouble(po.getOrderQty()); }
+            %>    
+
+
+            <div class="w-9/12 m-auto col-span-3 ">
                 <div class="flex items-center justify-between pt-5">
-                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Total Payment (RM)</p>
-                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%=amount%></p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Subtotal</p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%=String.format("RM %.2f", subtotal)%></p>
+                </div>
+                <div class="flex items-center justify-between pt-5">
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Shipping Fee (RM)</p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><% if (subtotal >= 200.00) {
+                            out.print(String.format("RM %.2f", free));
+                        } else if (subtotal == 0) {
+                            out.print(String.format("RM %.2f", free));
+                        } else {
+                            out.print(String.format("RM %.2f", shipping));
+                        } %></p>
+                </div>
+                <div class="flex items-center justify-between pt-5">
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium">GST 6%</p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><% out.print(String.format("RM %.2f", subtotal * 0.06));%> </p>
+                </div>
+                <div class="flex items-center justify-between pt-5">
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Total Payment </p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%="RM" + amount%></p>
                 </div>
             </div>
+
+
 
         </div>
 

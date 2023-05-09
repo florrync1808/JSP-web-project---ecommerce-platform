@@ -16,15 +16,20 @@
         </div>  
         <!-- here -->
         <div class="flex flex-col place-items-center">
+            <div class="flex flex-row font-bold text-lg border-b border-gray-400">
+                <p class="px-28"> Order ID</p>
+                <p class="px-28"> Order Date / Time</p>
+                <p class="px-28"> Order Status</p>
+            </div>
             <% String initOrderId = "";
                 for (int i = 0; i < orderHistory.size(); i++) {
                     if (!initOrderId.equals(orderHistory.get(i).getOrderId())) {
                         initOrderId = orderHistory.get(i).getOrderId();
             %>
             <div class="flex flex-row ">
-                <a class="px-28" href="/pepegacoJAVAEE6/DisplayPurchaseHistoryDetails?orderId=<%=orderHistory.get(i).getOrderId()%>"><%= orderHistory.get(i).getOrderId()%> </a>
-                <p class="px-28"><%=orderHistory.get(i).getDescription()%></p>
-
+                <a class="px-28 py-2" href="/pepegacoJAVAEE6/DisplayPurchaseHistoryDetails?orderId=<%=orderHistory.get(i).getOrderId()%>"><%= orderHistory.get(i).getOrderId()%> </a>
+                <p class="px-28 py-2"><%=orderHistory.get(i).getCreatedAt()%> </p>
+                <p class="px-28  py-2"><%=orderHistory.get(i).getDescription()%> </p>
                 <br>
             </div>
             <% }
@@ -32,10 +37,6 @@
 
         </div>        
         <br>
-
-
         <hr class="border-1 border-gray-800 mt-10 px-5"> 
-
-
     </div>
 </div> 
