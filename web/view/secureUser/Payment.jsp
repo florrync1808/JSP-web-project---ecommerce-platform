@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Payment
-    Created on : Apr 30, 2023, 12:20:56 AM
-    Author     : End User
---%>
+
 
 <%@page import="model.Products"%>
 <%@page import="model.CartLists"%>
