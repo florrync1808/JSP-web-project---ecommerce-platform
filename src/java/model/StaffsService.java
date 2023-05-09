@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.util.Set;
 import javax.annotation.Resource;
 import javax.persistence.*;
 
@@ -21,13 +20,31 @@ public class StaffsService {
         return true;
     }
 
-    public Staffs findStaffById(String staffId) {
-        Staffs staff = mgr.find(Staffs.class, staffId);
+    public Staffs findStaffByStaffIndex(String sIndex) {
+        Staffs staff = mgr.find(Staffs.class, sIndex);
         return staff;
     }
 
-    public boolean deleteStaff(String staffId) {
-        Staffs staff = findStaffById(staffId);
+    public Staffs findStaffByStaffId(String staffId) {
+        try {
+            //query that early difined in Products class
+            Query q = mgr.createNamedQuery("Staffs.findByStaffId");
+
+            //set the name into the query
+            q.setParameter("staffId", staffId);
+
+            //retrieve result
+            Staffs staff = (Staffs) q.getSingleResult();
+            return staff;
+        } catch (NoResultException ex) {
+            // if no result, then return null
+            Staffs staff = null;
+            return staff;
+        }
+    }
+
+    public boolean deleteItem(String staffId) {
+        Staffs staff = findStaffByStaffId(staffId);
         if (staff != null) {
             mgr.remove(staff);
             return true;
@@ -36,19 +53,19 @@ public class StaffsService {
     }
 
     public List<Staffs> findAll() {
-        List staffList = mgr.createNamedQuery("Staffs.findAll").getResultList();
-        return staffList;
+        List staffsList = mgr.createNamedQuery("Staffs.findAll").getResultList();
+        return staffsList;
     }
 
     public boolean updateItem(Staffs staff) {
-        Staffs tempStaff = findStaffById(staff.getStaffId());
-        if (tempStaff != null) {
-            tempStaff.setName(staff.getName());
-            tempStaff.setBirthdate(staff.getBirthdate());
-            tempStaff.setContactNo(staff.getContactNo());
-            tempStaff.setEmail(staff.getEmail());
-            tempStaff.setEmploymentStatus(staff.getEmploymentStatus());
-            tempStaff.setPassword(staff.getPassword());
+        Staffs tempItem = findStaffByStaffId(staff.getStaffId());
+        if (tempItem != null) {
+            tempItem.setName(staff.getName());
+            tempItem.setBirthdate(staff.getBirthdate());
+            tempItem.setContactNo(staff.getContactNo());
+            tempItem.setEmploymentStatus(staff.getEmploymentStatus());
+            tempItem.setPassword(staff.getPassword());
+            tempItem.setCreatedAt(staff.getCreatedAt());
             return true;
         }
         return false;
