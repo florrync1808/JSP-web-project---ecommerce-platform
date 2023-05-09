@@ -22,7 +22,7 @@
             <div class="grid grid-cols-2 gap-4 p-4">
 
                 <!--if not found then display not found message-->
-                <% if (product != null) {%>
+                <% if (product != null && product.getDeletedAt() == null) {%>
 
                 <!--product card --> 
                 <div class="bg-white shadow-md rounded-md w-42 h-fit flex flex-col items-strech py-4 px-2 col-span-1">
@@ -40,13 +40,13 @@
                             <div class="flex items-center justify-between pt-5">
                                 <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white"> RM <%= String.format("%.2f", product.getProductPrice())%> </p>
                                 <div class="flex itemms-center">
-                                <% if (request.isUserInRole("adminRole")) {
+                                    <% if (request.isUserInRole("adminRole")) {
                                     } else if (session.getAttribute("userName") == null || session.getAttribute("userRole").equals("userRole")) {%>
-                                <a href="/pepegacoJAVAEE6/AddToCartServlet?productId=<%=product.getProductId()%>">
-                                    <button class="bg-gray-700 mr-5 text-white px-1 py-0 rounded-sm shadow-md duration-300 hover:-translate-y-1 hover:shadow-lg" >&#10010</button>
-                                </a>
-                                <% } %>
-                            </div>
+                                    <a href="/pepegacoJAVAEE6/AddToCartServlet?productId=<%=product.getProductId()%>">
+                                        <button class="bg-gray-700 mr-5 text-white px-1 py-0 rounded-sm shadow-md duration-300 hover:-translate-y-1 hover:shadow-lg" >&#10010</button>
+                                    </a>
+                                    <% } %>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -165,16 +165,16 @@
         <url-pattern>/UpdateCartServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateProductServlet</servlet-name>
-        <url-pattern>/UpdateProductServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>UserLoginServlet</servlet-name>
         <url-pattern>/UserLoginServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewReport</servlet-name>
         <url-pattern>/ViewReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

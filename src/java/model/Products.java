@@ -87,6 +87,16 @@ public class Products implements Serializable {
         this.productPhoto = productPhoto;
         this.createdAt = createdAt;
     }
+    
+    public Products(String productId, String productName, double productPrice, String productDesc, String productPhoto, Date createdAt, Date deletedAt) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productDesc = productDesc;
+        this.productPhoto = productPhoto;
+        this.createdAt = createdAt;
+        this.deletedAt = deletedAt;
+    }
 
     public String getProductId() {
         return productId;

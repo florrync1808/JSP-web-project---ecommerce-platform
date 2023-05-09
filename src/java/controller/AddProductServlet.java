@@ -44,7 +44,7 @@ public class AddProductServlet extends HttpServlet {
             double price = Double.parseDouble(request.getParameter("pprice"));
             String photo = "/pepegacoJAVAEE6/assets/images/products/" + request.getParameter("ppic");
 
-            // convert the timestamp to datetime
+            // get current datetime and convert it from timestamp to datetime
             Timestamp ts = new Timestamp(System.currentTimeMillis());
             Date createdAt = ts;
             
@@ -56,7 +56,7 @@ public class AddProductServlet extends HttpServlet {
             boolean success = productService.addProduct(product);
             utx.commit();
 
-            if (success == true) {
+            if (success) {
                 confirmMsg = "Added Product " + id + "Succesfully!";
             } else {
                 confirmMsg = "Add Product Failed!";

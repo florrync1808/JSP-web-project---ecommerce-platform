@@ -1,5 +1,4 @@
 
-
 <!--outermost wrapper container-->
 <div class="p-8">
     <div class="container mx-auto bg-slate-400 h-min rounded-md flex items-center px-12">
@@ -11,8 +10,8 @@
                 Your passionate <br />
                 one-stop plant store
             </h1>
-            
-            
+
+
 
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">

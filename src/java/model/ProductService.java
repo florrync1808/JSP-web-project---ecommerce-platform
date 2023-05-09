@@ -60,10 +60,15 @@ public class ProductService {
 
     }
 
-    public boolean deleteProduct(String id) {
-        Products product = findProductByID(id);
-        if (product != null) {
-            mgr.remove(product);
+    public boolean deleteProduct(Products product) {
+        Products tempItem = findProductByID(product.getProductId());
+        if (tempItem != null) {
+            tempItem.setProductName(product.getProductName());
+            tempItem.setProductPrice(product.getProductPrice());
+            tempItem.setProductDesc(product.getProductDesc());
+            tempItem.setProductPhoto(product.getProductPhoto());
+            tempItem.setCreatedAt(product.getCreatedAt());
+            tempItem.setDeletedAt(product.getDeletedAt());
             return true;
         }
         return false;
