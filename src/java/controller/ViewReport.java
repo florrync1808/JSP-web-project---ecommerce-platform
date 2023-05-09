@@ -39,7 +39,7 @@ public class ViewReport extends HttpServlet {
             session.setAttribute("productList", productList);
             session.setAttribute("orderList", orderList);
             session.setAttribute("prodQty", prodQty);
-            response.sendRedirect("/pepegacoJAVAEE6/view/Report.jsp");
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/Report.jsp");
         } catch (Exception ex) {
             Logger.getLogger(ViewReport.class.getName()).log(Level.SEVERE, null, ex);
 
