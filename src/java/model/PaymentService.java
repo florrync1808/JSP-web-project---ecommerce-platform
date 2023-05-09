@@ -2,20 +2,15 @@
 package model;
 
 import java.util.List;
-import java.util.logging.Level;
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.validation.ConstraintViolationException;
-import org.apache.commons.logging.Log;
 
 public class PaymentService {
 
     @PersistenceContext
     EntityManager mgr;
-    @Resource
-    Query query;
+
 
     public PaymentService(EntityManager mgr) {
         this.mgr = mgr;
@@ -114,7 +109,7 @@ public class PaymentService {
     }
 
     public double getShippingFee(double subtotal) {
-        if (subtotal > 200) {
+        if (subtotal > 200 || subtotal ==0.00) {
             return 0.00;
         } else {
             return 25.00;

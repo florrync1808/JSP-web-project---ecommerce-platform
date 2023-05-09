@@ -174,8 +174,7 @@
         <script>
             function validateForm() {
                 const firstPassword = document.getElementById('password');
-                const secondPassword = document.getElementById('confirmPassword');          
-                console.log(firstPassword.value.length);
+                const secondPassword = document.getElementById('confirmPassword');   
                 if (firstPassword.value === secondPassword.value && firstPassword.value.length >= 8) {
                     return true;
                 } else {

@@ -22,6 +22,8 @@ public class UpdateCartServlet extends HttpServlet {
         String productId = request.getParameter("productId");
         HttpSession session = request.getSession();
         String customerId = (String) session.getAttribute("customerId");
+
+
         try {
             //if no login, redirect
             if (customerId == null) {
