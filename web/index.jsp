@@ -12,6 +12,7 @@
                 one-stop plant store
             </h1>
             
+            
 
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">

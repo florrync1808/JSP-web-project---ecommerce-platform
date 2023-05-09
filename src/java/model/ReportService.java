@@ -50,7 +50,6 @@ public class ReportService {
     public TreeMap<String, Integer> calculateQtyofProduct() {
 
         TreeMap<String, Integer> productSalesCount = new TreeMap();
-//      ("P0000007", [total sales count, total sales amount])
         List<Products> products = this.findAll();
         List<OrderLists> prod = this.findOrderListAll();
 
@@ -58,7 +57,6 @@ public class ReportService {
         System.out.println(product.getProductId());
             productSalesCount.put(product.getProductId(), 0);
         }
-//        System.out.println("asd");
 
 
         for (OrderLists p : prod) {
@@ -72,14 +70,11 @@ public class ReportService {
         }
         
         
-//        productSalesCount.forEach((productId, countAmount) -> {
-//            
-//        });
-//        System.out.println(this.findOrderListAll());
-//        int sum = 0;
-
-        System.out.println(productSalesCount);
         return productSalesCount;
     }
 
-}
+    
+ 
+            
+            
+            }

@@ -6,11 +6,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,38 +22,40 @@ import model.*;
  *
  * @author End User
  */
-public class MakePayment extends HttpServlet {
+public class DisplayOrderManagedHistory extends HttpServlet {
 
-    @PersistenceContext
-        EntityManager em;
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try  {
+        response.setContentType("text/html;charset=UTF-8");
+        try {
             HttpSession session = request.getSession(true);
-            String custId = (String)session.getAttribute("customerId");
+            String staffId = session.getAttribute("staffId").toString();
+            String query = "SELECT ORDERS.ORDER_ID, ORDERS.CREATED_AT, PRODUCTS.PRODUCT_PHOTO, PRODUCTS.PRODUCT_ID, PRODUCTS.PRODUCT_NAME, PRODUCTS.PRODUCT_PRICE, ORDER_LISTS.ORDER_QTY, PAYMENTS.PAYMENT_AMOUNT, ORDER_STATUSES.DESCRIPTION FROM PRODUCTS JOIN ORDER_LISTS ON PRODUCTS.PRODUCT_ID = ORDER_LISTS.PRODUCT_ID JOIN ORDERS ON ORDERS.ORDER_ID = ORDER_LISTS.ORDER_ID JOIN PAYMENTS ON PAYMENTS.PAYMENT_ID = ORDERS.PAYMENT_ID JOIN ORDER_STATUSES ON ORDER_STATUSES.ORDER_ID = ORDERS.ORDER_ID WHERE ORDERS.STAFF_ID = '" + staffId + "'";
+            ResultSet orderListHistory = DBConnection.getRSfromQuery(query);
+            List<ProductOfOrderList> records = new ArrayList<ProductOfOrderList>();
             
-            PaymentService paymentService = new PaymentService(em);
-            Customers customer = paymentService.findCustomerDetails(custId);
-            String subtotalfromCart = request.getParameter("subtotalfromCart");
-            Double shippingFee = paymentService.getShippingFee(Double.parseDouble(subtotalfromCart));
-            String total = request.getParameter("totalfromCart");
-            List<CartLists> cartList = (List<CartLists>) session.getAttribute("CartLists");
-            Products freegift = paymentService.findProductDetails("FREEGIFT");
-            System.out.println(freegift);
-            
-            session.setAttribute("freegift", freegift);
-            session.setAttribute("cartList", cartList);
-            session.setAttribute("subtotal", subtotalfromCart);
-            session.setAttribute("customer", customer);
-            session.setAttribute("shippingFee", shippingFee);
-            session.setAttribute("total", total);
-            response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Payment.jsp");
+            while (orderListHistory.next()) {
+                ProductOfOrderList poList = new ProductOfOrderList(
+                        orderListHistory.getString("order_id"),
+                        orderListHistory.getString("created_at"),
+                        orderListHistory.getString("product_photo"), 
+                        orderListHistory.getString("product_id"), 
+                        orderListHistory.getString("product_name"), 
+                        orderListHistory.getString("product_price"), 
+                        orderListHistory.getString("order_qty"),
+                        orderListHistory.getString("payment_amount"),
+                        orderListHistory.getString("description")
 
-           
-        }catch (Exception ex) {
-            Logger.getLogger(MakePayment.class.getName()).log(Level.SEVERE, null, ex);
+                );
+                records.add(poList);
+            }
+            System.out.println(records);
+            session.setAttribute("orderListHistory", records);
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/OrderManagedHistory.jsp");
+
+        } catch (Exception ex) {
+            Logger.getLogger(DisplayOrderManagedHistory.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 

@@ -69,7 +69,26 @@
         <servlet-class>controller.ViewReport</servlet-class>
     </servlet>
     <servlet>
-
+        <servlet-name>DownloadPdf</servlet-name>
+        <servlet-class>controller.DownloadPdf</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayOrderManagedHistory</servlet-name>
+        <servlet-class>controller.DisplayOrderManagedHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderListManageServlet</servlet-name>
+        <servlet-class>controller.OrderListManageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayPurchaseHistory</servlet-name>
+        <servlet-class>controller.DisplayPurchaseHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
+        <servlet-class>controller.DisplayPurchaseHistoryDetails</servlet-class>
+    </servlet>
+      <servlet>
         <servlet-name>UpdateProductServlet</servlet-name>
         <servlet-class>controller.UpdateProductServlet</servlet-class>
     </servlet>
@@ -142,6 +161,26 @@
         <url-pattern>/ViewReport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DownloadPdf</servlet-name>
+        <url-pattern>/DownloadPdf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayOrderManagedHistory</servlet-name>
+        <url-pattern>/DisplayOrderManagedHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListManageServlet</servlet-name>
+        <url-pattern>/OrderListManageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayPurchaseHistory</servlet-name>
+        <url-pattern>/DisplayPurchaseHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
+        <url-pattern>/DisplayPurchaseHistoryDetails</url-pattern>
+          </servlet-mapping>
+      <servlet-mapping>
         <servlet-name>UpdateProductServlet</servlet-name>
         <url-pattern>/UpdateProductServlet</url-pattern>
     </servlet-mapping>

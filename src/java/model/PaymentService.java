@@ -61,9 +61,28 @@ public class PaymentService {
         return itemList;
     }
 
+    public List<OrderStatuses> findAllOrderStatuses() {
+        List itemList = mgr.createNamedQuery("OrderStatuses.findAll").getResultList();
+        return itemList;
+    }
 
     public List<Customers> findAllCustomer() {
         List cardList = mgr.createNamedQuery("Customers.findAll").getResultList();
+        return cardList;
+    }
+    
+    public List<Staffs> findAllStaff() {
+        List cardList = mgr.createNamedQuery("Staffs.findAll").getResultList();
+        return cardList;
+    }
+    
+    public List<Orders> findAllOrder() {
+        List cardList = mgr.createNamedQuery("Orders.findAll").getResultList();
+        return cardList;
+    }
+    
+    public List<OrderLists> findAllOrderList() {
+        List cardList = mgr.createNamedQuery("OrderLists.findAll").getResultList();
         return cardList;
     }
     
@@ -85,6 +104,11 @@ public class PaymentService {
     public Customers findCustomerDetails(String code) {
         Customers c = mgr.find(Customers.class, code);
         return c;
+    }
+    
+    public Products findProductDetails(String id){
+        Products p = mgr.find(Products.class, id);
+        return p;
     }
 
     public double getSubtotal(List<Products> productList) {
@@ -120,5 +144,55 @@ public class PaymentService {
         newPaymentId = String.format("%s%06d", "PA",count);
         return newPaymentId;
     }
+    
+    public int getDBOrderCount(){
+        List<Orders> custList = this.findAllOrder();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public String GenerateOrderId(int count){
+        String newOrderId;
+        newOrderId = String.format("%s%06d", "OR",count);
+        return newOrderId;
+    }
+    
+    public int getDBOrderListCount(){
+        List<OrderLists> custList = this.findAllOrderList();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public String GenerateOrderListId(int count){
+        String newOrderId;
+        newOrderId = String.format("%s%06d", "OL",count);
+        return newOrderId;
+    }
+    
+    public int getDBStaffListCount(){
+        List<Staffs> custList = this.findAllStaff();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public int getDBOrderStatusCount(){
+        List<OrderStatuses> custList = this.findAllOrderStatuses();
+        
+        int count = custList.size()+1;
+        return count; 
+    }
+    
+    public String GenerateOrderStatusId(int count){
+        String newOrderId;
+        newOrderId = String.format("%s%06d", "OS",count);
+        return newOrderId;
+    }
+    
+    
+    
+    
 
 }

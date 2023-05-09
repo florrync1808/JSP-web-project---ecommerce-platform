@@ -68,7 +68,7 @@
                                             
                                             <tr class="border-b dark:border-neutral-500">
                                                
-                                                <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500"><%=prod.getProductId()%></td>
+                                                <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500" ><%=prod.getProductId()%></td>
                                                 <td
                                                     class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
                                                     <%=prod.getProductName()%>
