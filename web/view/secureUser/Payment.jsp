@@ -111,7 +111,7 @@
                 <% }%>
                 <% if(Double.parseDouble(total)> 180){%>
                 <div class="col-span-1  w-full">
-                    <img src="" alt="" class="md:w-4/12 w-full object-center object-cover md:block hidden"/>
+                    <img src="/pepegacoJAVAEE6/assets/images/company/promo3.png" alt="" class="md:w-4/12 w-full object-center object-cover md:block hidden"/>
                 </div>
                 <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center col-span-2">
                     <p class="text-xs leading-3 text-gray-800 dark:text-white md:pt-0 pt-4">FREEGIFT</p>
