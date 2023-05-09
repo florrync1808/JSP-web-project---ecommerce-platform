@@ -1,14 +1,8 @@
 package model;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import javax.annotation.Resource;
 import javax.persistence.*;
 
@@ -78,7 +72,21 @@ public class ProductService {
         List itemList = mgr.createNamedQuery("Products.findAll").getResultList();
         return itemList;
     }
-
+    
+    public List<Products> findMatchingForSearch(String userInput) {
+        List<Products> allProd = mgr.createNamedQuery("Products.findAll").getResultList();
+        List<Products> matchingProd = new ArrayList<Products>();
+        for (Products prod: allProd) {
+            
+            if (prod.getProductId().equalsIgnoreCase("FREEGIFT")){}
+            else if (prod.getProductName().contains(userInput) || prod.getProductId().contains(userInput) ){
+            matchingProd.add(prod);
+            }
+        }
+        return matchingProd;
+    }
+    
+    
     public boolean updateProduct(Products product) {
         Products tempItem = findProductByID(product.getProductId());
         if (tempItem != null) {
