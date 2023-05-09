@@ -49,7 +49,7 @@
                     <p class="text-base font-black leading-none text-gray-800 dark:text-white"><%= item.getProductId().getProductName()%></p>
                 </div>
 
-                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white">RM <%= item.getProductId().getProductPriceinString()%></p>
+                <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white">RM <%= item.getProductId().getProductPrice() %></p>
                 <div class="flex items-center justify-between pt-5">
                    
                         <div class="flex itemms-center">

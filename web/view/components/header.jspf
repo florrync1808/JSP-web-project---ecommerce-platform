@@ -32,7 +32,7 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                         </div>
-                        <form action="/pepegacoJAVAEE6/view/Search.jsp" method="post">
+                        <form action="/pepegacoJAVAEE6/SearchProductServlet">
                             <input type="text" name="input" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-35 md:w-full pl-10 p-2" placeholder="Search product by name or ID..." />
                             <input type="submit" hidden/>
                         </form>
@@ -62,7 +62,7 @@
                                 <% if (request.getUserPrincipal() != null || session.getAttribute("userName") != null) { %>
                                 <% if (request.isUserInRole("adminRole")) { %>
                                 <a href="/pepegacoJAVAEE6/view/secureAdmin/AdminDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Admin Dashboard</a>    
-                                <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View Products List</a>
+                                <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Products List</a>
                                 <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
                                 <a href="/pepegacoJAVAEE6/LoadStaffList" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Manage Staff</a>
                                 <a href="/pepegacoJAVAEE6/view/secureAdmin/GenerateReport.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 " tabindex="-1">Generate Report</a>
@@ -72,7 +72,7 @@
                                 <a href="/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Staff Dashboard</a> 
                                 <a href="/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Account</a>
                                 <a href="/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
-                                <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">View Products List</a>
+                                <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Products List</a>
                                 <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Logout</a>
 
                                 <% } else if (session.getAttribute("userRole").equals("userRole")) { %>
