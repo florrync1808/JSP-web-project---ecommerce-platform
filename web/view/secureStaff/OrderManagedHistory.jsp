@@ -27,22 +27,21 @@
         </div>  
         <!-- here -->
         <div class="flex flex-col place-items-center">
-        <% String initOrderId = "";
-            for(int i=0; i < orderListHistory.size() ; i++) {
-    if(!initOrderId.equals(orderListHistory.get(i).getOrderId())){ 
-    initOrderId = orderListHistory.get(i).getOrderId();
-    %>
-            
-            <div class="flex flex-row ">
-
-        <a class="px-28" href="/pepegacoJAVAEE6/OrderListManageServlet?orderId=<%=orderListHistory.get(i).getOrderId()%>"><%= orderListHistory.get(i).getOrderId() %> </a>
-        <p class="px-28"><%=orderListHistory.get(i).getDescription()%></p>
-          <br>
-            <% } }%>
-            </div>
+                <div class="grid grid-cols-2">
+            <% String initOrderId = "";
+                for (int i = 0; i < orderListHistory.size(); i++) {
+                    if (!initOrderId.equals(orderListHistory.get(i).getOrderId())) {
+                        initOrderId = orderListHistory.get(i).getOrderId();
+            %>
+                    <div class="col-span-1">
+                        <a class="px-28" href="/pepegacoJAVAEE6/OrderListManageServlet?orderId=<%=orderListHistory.get(i).getOrderId()%>"><%= orderListHistory.get(i).getOrderId()%> </a>
+                    </div>
+                    <div class="col-span-1">
+                        <p class="px-28"><%=orderListHistory.get(i).getDescription()%></p>
+                    </div>
+                    <% }
+                        }%>
+                </div>
         </div>
-        <hr class="border-1 border-gray-800 mt-10 px-5"> 
-
-
-    </div>
+    </div> 
 </div> 

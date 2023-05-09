@@ -1,4 +1,9 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.ProductOfOrderList"%>
+<%@page import="java.util.List"%>
+<% List<ProductOfOrderList> orderHistory = (ArrayList)session.getAttribute("purchaseHistory"); %>
+
 <!--outermost wrapper container-->
 <div class="p-8">
     <div class="container mx-auto bg-slate-400 h-min rounded-md flex items-center px-12">
@@ -10,9 +15,7 @@
                 Your passionate <br />
                 one-stop plant store
             </h1>
-
-
-
+            
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">
                 <a href="/pepegacoJAVAEE6/DisplayProductsServlet" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
@@ -59,6 +62,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-8 md:mt-10">
 
             <!--for loop here max loop 3-->
+            
             <div class="bg-gray-50 dark:bg-gray-800 p-8">
                 <div class="">
                     <h2 class="text-lg text-gray-600 dark:text-white">Product Name</h2>
