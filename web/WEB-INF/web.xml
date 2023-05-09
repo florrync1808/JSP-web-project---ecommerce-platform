@@ -68,6 +68,18 @@
         <servlet-name>DisplayOrderManagedHistory</servlet-name>
         <servlet-class>controller.DisplayOrderManagedHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderListManageServlet</servlet-name>
+        <servlet-class>controller.OrderListManageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayPurchaseHistory</servlet-name>
+        <servlet-class>controller.DisplayPurchaseHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
+        <servlet-class>controller.DisplayPurchaseHistoryDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
@@ -135,6 +147,18 @@
     <servlet-mapping>
         <servlet-name>DisplayOrderManagedHistory</servlet-name>
         <url-pattern>/DisplayOrderManagedHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListManageServlet</servlet-name>
+        <url-pattern>/OrderListManageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayPurchaseHistory</servlet-name>
+        <url-pattern>/DisplayPurchaseHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayPurchaseHistoryDetails</servlet-name>
+        <url-pattern>/DisplayPurchaseHistoryDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

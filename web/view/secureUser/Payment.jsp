@@ -4,6 +4,7 @@
     Author     : End User
 --%>
 
+<%@page import="model.Products"%>
 <%@page import="model.CartLists"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Customers"%>
@@ -11,6 +12,7 @@
 <% Customers customer = (Customers) session.getAttribute("customer"); %>
 <% List<Customers> customerList = (List) session.getAttribute("customerList");%>
 <% List<CartLists> cartList = (List) session.getAttribute("cartList");%>
+<% Products freegift = (Products) session.getAttribute("freeGift");%>
 
 <% String subtotal = session.getAttribute("subtotal").toString(); %>
 <% String shippingFee = session.getAttribute("shippingFee").toString(); %>
@@ -107,41 +109,68 @@
                 </div>          
 
                 <% }%>
+                <% if(Double.parseDouble(total)> 180){%>
+                <div class="col-span-1  w-full">
+                    <img src="" alt="" class="md:w-4/12 w-full object-center object-cover md:block hidden"/>
+                </div>
+                <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center col-span-2">
+                    <p class="text-xs leading-3 text-gray-800 dark:text-white md:pt-0 pt-4">FREEGIFT</p>
+                    <div class="flex items-center justify-between w-full pt-1">
+                        <p class="text-base font-black leading-none text-gray-800 dark:text-white">Free gift</p>
+                    </div>
+
+                    <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white">RM 0.00</p>
+
+                </div>
+                <div class="col-span-1">
+                    <div class="w-36 flex items-center ">
+                        <input readonly class="text-center font-black bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                               type="number" min="1" name="quantity" value="1">
+                    </div>
+                </div>
+                <div class="col-span-1"> 
+
+                    <p class="mr-2 text-base font-black leading-none text-gray-800 dark:text-white">RM 0.00 </p>
+                </div> 
+                
+                <% }%>
+
+                <!--freegift end-->
             </div>
             <hr class="border-1 border-gray-800 mt-10"> 
                 <div class="w-9/12 m-auto ">
                     <div class="flex items-center justify-between pt-10">
                         <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Merchandise Subtotal (RM)</p>
-                        <p class="text-base leading-none text-gray-800 dark:text-white"><%=subtotal%></p>
+                        <p class="text-base leading-none text-gray-800 dark:text-white"><%=String.format("%.2f", Double.parseDouble(subtotal))%></p>
                     </div>
                     <div class="flex items-center justify-between pt-5">
                         <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Shipping Fee (RM)</p>
-                        <p class="text-base leading-none text-gray-800 dark:text-white"><%=shippingFee%></p>
+                        <p class="text-base leading-none text-gray-800 dark:text-white"><%=String.format("%.2f", Double.parseDouble(shippingFee))%></p>
                     </div>
                     <div class="flex items-center justify-between pt-5">
                         <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Total Payment (RM)</p>
-                        <p class="text-base leading-none text-gray-800 dark:text-white"><%=total%></p>
+                        <p class="text-base leading-none text-gray-800 dark:text-white"><%=String.format("%.2f", Double.parseDouble(total))%></p>
                     </div>
                     <div class="flex flex-col justify-between pt-5 pb-20" x-data="{ payment : 'ca'}">
                         <div class="flex flex-row">
-                        <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Payment Method:</p>
-                        
-                            
-                        <input type="radio" name="paymentMethod" value="card" x-model="payment" class="ml-48"/><span class="ml-3">  Card Payment </span> 
-                        <input type="radio" name="paymentMethod" value="cash" x-model="payment" class="ml-10"/><span class="ml-3">  Cash On Delivery</span>
-                        
+                            <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Payment Method:</p>
+
+
+                            <input type="radio" name="paymentMethod" value="card" x-model="payment" class="ml-48" required/><span class="ml-3">  Card Payment </span> 
+                            <input type="radio" name="paymentMethod" value="cash" x-model="payment" class="ml-10"/><span class="ml-3">  Cash On Delivery</span>
+
                         </div>
                         <div id="card" x-show="payment == $el.id">
-                                                    <!--<p class="text-base leading-none text-gray-800 dark:text-white font-medium"></p>-->
+                            <!--<p class="text-base leading-none text-gray-800 dark:text-white font-medium"></p>-->
 
                             <!--<label class="leading-loose">Select Payment Account</label>-->
-                                <div class="flex-row" >
-                                    <%@ include file = "CardPayment.jsp" %>       
-                                </div>
+                            <div class="flex-row" >
+                                <%@ include file = "CardPayment.jsp" %>       
+                            </div>
                         </div>
                     </div>
-                                <input type="submit" value="Pay Now" class="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700"/>
-                               
+                    <input type="submit" value="Pay Now" class="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700"/>
+
                 </div>
         </div>
     </form>

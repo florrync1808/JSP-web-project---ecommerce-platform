@@ -42,36 +42,58 @@ public class AddPayment extends HttpServlet {
             String total = session.getAttribute("total").toString();
             String staffId = request.getParameter("staffId");
             String paymentMethod = request.getParameter("paymentMethod");
-            List<CartLists> cartList = (List)session.getAttribute("cartList");
+            List<CartLists> cartList = (List) session.getAttribute("cartList");
             Customers customer = paymentService.findCustomerByCode(custId);
             String payId = "";
             String address = customer.getLine1() + ", " + customer.getLine2() + ", " + customer.getCity() + ", " + customer.getPostcode() + " " + customer.getState();
             SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Double doubleAmount = Double.parseDouble(total);
-            
+            Products freegift = paymentService.findProductDetails("FREEGIFT");
+ 
+
             int x = paymentService.getDBPaymentCount();
             payId = paymentService.GeneratePaymentId(x);
             int y = paymentService.getDBOrderCount();
-            System.out.println("eheh");
+            System.out.println(cartList);
+            System.out.println("1");
             String orderId = paymentService.GenerateOrderId(y);
             int z = paymentService.getDBOrderListCount();
+            System.out.println("2");
             String orderListId = paymentService.GenerateOrderListId(z);
+
 //            int max = paymentService.getDBStaffListCount();
             int max = 3;
-            System.out.println(max);
-            int min = 1; 
-            int staffIndex = (int)Math.floor(Math.random() * (max - min + 1) + min);
+            int min = 1;
+            System.out.println("3");
+            int staffIndex = (int) Math.floor(Math.random() * (max - min + 1) + min);
+            System.out.println("4");
             int a = paymentService.getDBOrderStatusCount();
             String orderStatusId = paymentService.GenerateOrderStatusId(a);
-            
+            System.out.println("5");
+            System.out.println(z);
+            System.out.println(orderListId);
             DBConnection.insertUpdateFromSqlQuery("INSERT INTO PAYMENTS (PAYMENT_ID, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + payId + "'," + doubleAmount + ",'" + paymentMethod + "','" + datetime.format(payment.getCreatedAt()) + "')");
-            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDERS VALUES ('"+ orderId + "'," + staffIndex +  ",'" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
-            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_STATUSES VALUES ('"+ orderStatusId + "','packaging','" + orderId + "','" + datetime.format(payment.getCreatedAt()) + "')");
-            for(CartLists item:cartList){
-                DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_LISTS VALUES ('"+ orderListId + "','" + item.getProductId() +  "','" + orderId + "'," + item.getItemQty() + ")");
+            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDERS VALUES ('" + orderId + "'," + staffIndex + ",'" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_STATUSES VALUES ('" + orderStatusId + "','packaging','" + orderId + "','" + datetime.format(payment.getCreatedAt()) + "')");
+            for (CartLists item : cartList) {
+                Products id = item.getProductId();
+                String text = id.toString();
+
+                if (text.length() > 8) {
+                    text = text.substring(26, 34);
+                }
+                DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_LISTS VALUES ('" + orderListId + "','" + text + "','" + orderId + "'," + item.getItemQty() + ")");
+                z++;
+                orderListId = paymentService.GenerateOrderListId(z);
+                
+            }
+            
+            if(doubleAmount >= 180){
+                
+                DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_LISTS VALUES ('" + orderListId + "','FREEGIFT','" + orderId + "', 1"  + ")");
             }
 //            
-            
+            DBConnection.insertUpdateFromSqlQuery("DELETE FROM CART_LISTS WHERE CUSTOMER_ID = '" + custId + "'");
             response.sendRedirect("/pepegacoJAVAEE6/");
         } catch (Exception ex) {
 //            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);

@@ -81,6 +81,11 @@ public class PaymentService {
         return cardList;
     }
     
+    public List<OrderLists> findAllOrderList() {
+        List cardList = mgr.createNamedQuery("OrderLists.findAll").getResultList();
+        return cardList;
+    }
+    
     public Customers findCustomerByCode(String custid){
         Customers c = mgr.find(Customers.class, custid);
         return c;
@@ -99,6 +104,11 @@ public class PaymentService {
     public Customers findCustomerDetails(String code) {
         Customers c = mgr.find(Customers.class, code);
         return c;
+    }
+    
+    public Products findProductDetails(String id){
+        Products p = mgr.find(Products.class, id);
+        return p;
     }
 
     public double getSubtotal(List<Products> productList) {
@@ -149,7 +159,7 @@ public class PaymentService {
     }
     
     public int getDBOrderListCount(){
-        List<Orders> custList = this.findAllOrder();
+        List<OrderLists> custList = this.findAllOrderList();
         
         int count = custList.size()+1;
         return count; 

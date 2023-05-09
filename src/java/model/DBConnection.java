@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,8 +50,11 @@ public class DBConnection {
     public static ResultSet getRSfromQuery(String SqlQueryString){
             ResultSet rs = null;
         try {
-            statement = conn.prepareStatement(SqlQueryString);
-            rs = statement.executeQuery();
+            if (conn == null) {
+                conn = createConnection();
+            }
+            Statement stmt = conn.createStatement();
+            rs = stmt.executeQuery(SqlQueryString);
         } catch (SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

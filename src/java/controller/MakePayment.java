@@ -37,10 +37,13 @@ public class MakePayment extends HttpServlet {
             PaymentService paymentService = new PaymentService(em);
             Customers customer = paymentService.findCustomerDetails(custId);
             String subtotalfromCart = request.getParameter("subtotalfromCart");
-            System.out.println(subtotalfromCart);
             Double shippingFee = paymentService.getShippingFee(Double.parseDouble(subtotalfromCart));
             String total = request.getParameter("totalfromCart");
             List<CartLists> cartList = (List<CartLists>) session.getAttribute("CartLists");
+            Products freegift = paymentService.findProductDetails("FREEGIFT");
+            System.out.println(freegift);
+            
+            session.setAttribute("freegift", freegift);
             session.setAttribute("cartList", cartList);
             session.setAttribute("subtotal", subtotalfromCart);
             session.setAttribute("customer", customer);

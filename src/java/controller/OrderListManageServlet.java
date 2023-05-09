@@ -22,39 +22,52 @@ import model.*;
  *
  * @author End User
  */
-public class DisplayOrderManagedHistory extends HttpServlet {
+public class OrderListManageServlet extends HttpServlet {
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
+        try  {
             HttpSession session = request.getSession(true);
+            String orderId = request.getParameter("orderId");
             String staffId = session.getAttribute("staffId").toString();
-            String query = "SELECT ORDERS.ORDER_ID, ORDERS.CREATED_AT, PRODUCTS.PRODUCT_PHOTO, PRODUCTS.PRODUCT_ID, PRODUCTS.PRODUCT_NAME, PRODUCTS.PRODUCT_PRICE, ORDER_LISTS.ORDER_QTY, PAYMENTS.PAYMENT_AMOUNT, ORDER_STATUSES.DESCRIPTION FROM PRODUCTS JOIN ORDER_LISTS ON PRODUCTS.PRODUCT_ID = ORDER_LISTS.PRODUCT_ID JOIN ORDERS ON ORDERS.ORDER_ID = ORDER_LISTS.ORDER_ID JOIN PAYMENTS ON PAYMENTS.PAYMENT_ID = ORDERS.PAYMENT_ID JOIN ORDER_STATUSES ON ORDER_STATUSES.ORDER_ID = ORDERS.ORDER_ID WHERE ORDERS.STAFF_ID = '" + staffId + "'";
-            ResultSet orderListHistory = DBConnection.getRSfromQuery(query);
-            List<ProductOfOrderList> records = new ArrayList<ProductOfOrderList>();
-            
-            while (orderListHistory.next()) {
-                ProductOfOrderList poList = new ProductOfOrderList(
-                        orderListHistory.getString("order_id"),
-                        orderListHistory.getString("created_at"),
-                        orderListHistory.getString("product_photo"), 
-                        orderListHistory.getString("product_id"), 
-                        orderListHistory.getString("product_name"), 
-                        orderListHistory.getString("product_price"), 
-                        orderListHistory.getString("order_qty"),
-                        orderListHistory.getString("payment_amount"),
-                        orderListHistory.getString("description")
-
+            String createdAt = "";
+            String amt ="";
+            String query = "SELECT ORDERS.ORDER_ID, ORDERS.CREATED_AT, PRODUCTS.PRODUCT_PHOTO, PRODUCTS.PRODUCT_ID, PRODUCTS.PRODUCT_NAME, PRODUCTS.PRODUCT_PRICE, ORDER_LISTS.ORDER_QTY, PAYMENTS.PAYMENT_AMOUNT, ORDER_STATUSES.DESCRIPTION FROM PRODUCTS JOIN ORDER_LISTS ON PRODUCTS.PRODUCT_ID = ORDER_LISTS.PRODUCT_ID JOIN ORDERS ON ORDERS.ORDER_ID = ORDER_LISTS.ORDER_ID JOIN PAYMENTS ON PAYMENTS.PAYMENT_ID = ORDERS.PAYMENT_ID JOIN ORDER_STATUSES ON ORDER_STATUSES.ORDER_ID = ORDERS.ORDER_ID WHERE ORDERS.STAFF_ID = '" + staffId + "' AND ORDERS.ORDER_ID = '" + orderId + "'";
+            System.out.println(staffId);
+            ResultSet list = DBConnection.getRSfromQuery(query);
+            List <ProductOfOrderList> poList = new ArrayList<ProductOfOrderList>();
+            while(list.next()){
+                createdAt = list.getString("created_at");
+                amt = list.getString("payment_amount");
+                ProductOfOrderList po = new ProductOfOrderList(
+                        list.getString("order_id"),
+                        list.getString("created_at"),
+                        list.getString("product_photo"), 
+                        list.getString("product_id"), 
+                        list.getString("product_name"), 
+                        list.getString("product_price"), 
+                        list.getString("order_qty"),
+                        list.getString("payment_amount"),
+                        list.getString("description")
                 );
-                records.add(poList);
+                poList.add(po); 
             }
-            System.out.println(records);
-            session.setAttribute("orderListHistory", records);
-            response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/OrderManagedHistory.jsp");
+            
+           
+            //select order id, paymentamount, createdAt from
+            session.setAttribute("orderId123", orderId);
+            session.setAttribute("poList", poList);
+            session.setAttribute("createdAt", createdAt);
+            session.setAttribute("amt", amt);
+            
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/OrderListHistory.jsp");
+            
 
-        } catch (Exception ex) {
-            Logger.getLogger(DisplayOrderManagedHistory.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }catch (Exception ex) {
+            Logger.getLogger(OrderListManageServlet.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }

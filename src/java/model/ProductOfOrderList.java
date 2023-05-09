@@ -17,13 +17,12 @@ public class ProductOfOrderList {
     private String productPrice;
     private String orderQty;
     private String paymentAmt;
+    private String description;
 
     public ProductOfOrderList() {
     }
-    
-    
 
-    public ProductOfOrderList(String orderId, String createdAt, String productPhoto, String productId, String productName, String productPrice, String orderQty, String paymentAmt) {
+    public ProductOfOrderList(String orderId, String createdAt, String productPhoto, String productId, String productName, String productPrice, String orderQty, String paymentAmt, String description) {
         this.orderId = orderId;
         this.createdAt = createdAt;
         this.productPhoto = productPhoto;
@@ -32,7 +31,18 @@ public class ProductOfOrderList {
         this.productPrice = productPrice;
         this.orderQty = orderQty;
         this.paymentAmt = paymentAmt;
+        this.description = description;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 
     public String getOrderId() {
         return orderId;
