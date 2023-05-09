@@ -2,6 +2,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -29,21 +30,12 @@ public class SearchProductServlet extends HttpServlet {
             HttpSession session = request.getSession();
 
             //get productID or productName from the attribute
-            String input = request.getParameter("input");
-            
-            if (input.length() == 1) {
-                msg = "Input must be at least 2 characters.";
-                session.setAttribute("inputErrorMsg", msg);
-            } else if (input.charAt(1) == '0') {
-                Products product = productService.findProductByID(input);
-                session.setAttribute("product", product);
-            } else if (input.length() >= 2) {
-                Products product = productService.findProductByName(input);
-                session.setAttribute("product", product);
-            } else {
-                Products product = null;
-                session.setAttribute("product", product);
+            String input = request.getParameter("searchinput");
+            List<Products> product = productService.findMatchingForSearch(input);
+            for (Products prod : product){
+            System.out.println(prod.getProductName());
             }
+            session.setAttribute("productsearch", product);
 
             response.sendRedirect("/pepegacoJAVAEE6/view/SearchResult.jsp");
         } catch (Exception ex) {

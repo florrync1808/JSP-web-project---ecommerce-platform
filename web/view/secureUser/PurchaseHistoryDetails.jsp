@@ -6,17 +6,20 @@
 
 <%@page import="model.ProductOfOrderList"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% List<ProductOfOrderList> orderHistory = (ArrayList) session.getAttribute("purchaseHistory"); %>
 <% List<ProductOfOrderList> purchaseHistoryDetails = (List) session.getAttribute("purchaseHistoryDetails");%>
 <%String customerOrderId = session.getAttribute("customerOrderId").toString(); %>
 <% String DateTime = session.getAttribute("DateTime").toString();%>
 <% String amount = session.getAttribute("amount").toString();%>
+
 <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") {
         response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
     } else {
-    }%>
+    }
+%>
+
 
 <div class=" h-fit bg-gray-200 w-full rounded-md py-10 p-2">
     <div class="m-8 p-8 bg-white shadow-md rounded-md dark:bg-gray-800">
@@ -28,7 +31,14 @@
 
         <div class="flex items-center justify-between pt-10">
             <p class="pl-10 text-base leading-none text-gray-800 dark:text-white font-medium">Order : <%= customerOrderId%></p>
-
+            <p class="pl-10 text-base leading-none text-gray-800 dark:text-white font-medium capitalize">Order Status : <%
+                for (int i = 0; i < orderHistory.size(); i++) {
+                    if (customerOrderId.equals(orderHistory.get(i).getOrderId())) {
+                        String orderStatus = orderHistory.get(i).getDescription();
+                        out.println(orderStatus);
+                        break;
+                    }
+                }     %></p>
             <p class=" pr-10 text-base leading-none text-gray-800 dark:text-white font-medium">Date: <%= DateTime%> </p>
         </div>
 
@@ -42,8 +52,8 @@
             <div class="col-span-1"> 
                 <p class="text-base font-black leading-none text-gray-800 dark:text-white  underline">Subtotal Price </p>
             </div> 
-            <% double subtotal=0.00, shipping = 25.00,free=0.00; %>
-            
+            <% double subtotal = 0.00, shipping = 25.00, free = 0.00; %>
+
             <%for (ProductOfOrderList po : purchaseHistoryDetails) {%>
             <div class="col-span-1  w-full">
                 <img src="<%=po.getProductPhoto()%>" alt="" class="md:w-4/12 w-full ml-10 object-center object-cover md:block hidden" />
@@ -71,12 +81,13 @@
                 <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=Double.parseDouble(po.getOrderQty()) * Double.parseDouble(po.getProductPrice())%> </p>
             </div>
 
-                <% subtotal += Double.parseDouble(po.getProductPrice()) * Double.parseDouble(po.getOrderQty()); }
+            <% subtotal += Double.parseDouble(po.getProductPrice()) * Double.parseDouble(po.getOrderQty());
+                }
             %>    
             <div class="w-9/12 m-auto col-span-3 ">
                 <div class="flex items-center justify-between pt-5">
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Subtotal</p>
-                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%=String.format("RM %.2f",subtotal)%></p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%=String.format("RM %.2f", subtotal)%></p>
                 </div>
                 <div class="flex items-center justify-between pt-5">
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Shipping Fee (RM)</p>
@@ -90,25 +101,14 @@
                 </div>
                 <div class="flex items-center justify-between pt-5">
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium">GST 6%</p>
-                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><% out.print(String.format("RM %.2f", subtotal*0.06));%> </p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><% out.print(String.format("RM %.2f", subtotal * 0.06));%> </p>
                 </div>
                 <div class="flex items-center justify-between pt-5">
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Total Payment </p>
-                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%="RM"+ amount%></p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%="RM" + amount%></p>
                 </div>
             </div>
-
         </div>
-
-
-
-
-
-
     </div>
-
-
     <hr class="border-1 border-gray-800 mt-10 px-5"> 
-
-
 </div>
