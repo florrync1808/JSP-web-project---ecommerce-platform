@@ -19,7 +19,7 @@ public class DBConnection {
         conn = null;
         String host = "jdbc:derby://localhost:1527/pepegaco"; //DB URL
         String username = "nbuser"; //DB username
-        String password = "nbuser"; //DB password   
+        String password = "nbuser"; //DB password
         try {
 
             Class.forName("org.apache.derby.jdbc.ClientDriver"); //load driver
@@ -46,9 +46,9 @@ public class DBConnection {
             ex.printStackTrace();
         }
     }
-    
-    public static ResultSet getRSfromQuery(String SqlQueryString){
-            ResultSet rs = null;
+
+    public static ResultSet getRSfromQuery(String SqlQueryString) {
+        ResultSet rs = null;
         try {
             if (conn == null) {
                 conn = createConnection();
@@ -58,9 +58,8 @@ public class DBConnection {
         } catch (SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return rs;
+        return rs;
     }
-    
 
     public static boolean searchForExistingProduct(String productId, String custId) {
         try {
@@ -71,7 +70,7 @@ public class DBConnection {
             //Querying the query
             String query = "SELECT * FROM CART_LISTS WHERE CUSTOMER_ID=? AND PRODUCT_ID=? ";
             statement = conn.prepareStatement(query); //Statement is used to write queries. 
-            statement.setString(1,custId );
+            statement.setString(1, custId);
             statement.setString(2, productId);
             resultSet = statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
             System.out.println(resultSet);
@@ -83,8 +82,8 @@ public class DBConnection {
         }
         return false;
     }
-    
-       public static boolean searchForExistingCustomer(String email) {
+
+    public static boolean searchForExistingCustomer(String email) {
         try {
             //Checking whether the connection is null or null
             if (conn == null) {
@@ -93,7 +92,7 @@ public class DBConnection {
             //Querying the query
             String query = "SELECT * FROM CUSTOMERS WHERE EMAIL=? ";
             statement = conn.prepareStatement(query); //Statement is used to write queries. 
-            statement.setString(1,email );
+            statement.setString(1, email);
             resultSet = statement.executeQuery(); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
             System.out.println(resultSet);
             if (resultSet.next()) {

@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.io.Serializable;
@@ -7,6 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -19,11 +24,16 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author End User
+ */
 @Entity
 @Table(name = "STAFFS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Staffs.findAll", query = "SELECT s FROM Staffs s"),
+    @NamedQuery(name = "Staffs.findByStaffIndex", query = "SELECT s FROM Staffs s WHERE s.staffIndex = :staffIndex"),
     @NamedQuery(name = "Staffs.findByStaffId", query = "SELECT s FROM Staffs s WHERE s.staffId = :staffId"),
     @NamedQuery(name = "Staffs.findByName", query = "SELECT s FROM Staffs s WHERE s.name = :name"),
     @NamedQuery(name = "Staffs.findByBirthdate", query = "SELECT s FROM Staffs s WHERE s.birthdate = :birthdate"),
@@ -36,6 +46,10 @@ public class Staffs implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "STAFF_INDEX")
+    private Integer staffIndex;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 8)
@@ -77,16 +91,28 @@ public class Staffs implements Serializable {
     @Column(name = "CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @OneToMany(mappedBy = "staffId")
+    @OneToMany(mappedBy = "staffIndex")
     private List<Orders> ordersList;
 
     public Staffs() {
     }
 
-    public Staffs(String staffId) {
-        this.staffId = staffId;
+    public Staffs(Integer staffIndex) {
+        this.staffIndex = staffIndex;
     }
 
+    public Staffs(Integer staffIndex, String staffId, String name, Date birthdate, String contactNo, String email, String employmentStatus, String password, Date createdAt) {
+        this.staffIndex = staffIndex;
+        this.staffId = staffId;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.contactNo = contactNo;
+        this.email = email;
+        this.employmentStatus = employmentStatus;
+        this.password = password;
+        this.createdAt = createdAt;
+    }
+        
     public Staffs(String staffId, String name, Date birthdate, String contactNo, String email, String employmentStatus, String password, Date createdAt) {
         this.staffId = staffId;
         this.name = name;
@@ -96,6 +122,14 @@ public class Staffs implements Serializable {
         this.employmentStatus = employmentStatus;
         this.password = password;
         this.createdAt = createdAt;
+    }
+
+    public Integer getStaffIndex() {
+        return staffIndex;
+    }
+
+    public void setStaffIndex(Integer staffIndex) {
+        this.staffIndex = staffIndex;
     }
 
     public String getStaffId() {
@@ -174,7 +208,7 @@ public class Staffs implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (staffId != null ? staffId.hashCode() : 0);
+        hash += (staffIndex != null ? staffIndex.hashCode() : 0);
         return hash;
     }
 
@@ -185,7 +219,7 @@ public class Staffs implements Serializable {
             return false;
         }
         Staffs other = (Staffs) object;
-        if ((this.staffId == null && other.staffId != null) || (this.staffId != null && !this.staffId.equals(other.staffId))) {
+        if ((this.staffIndex == null && other.staffIndex != null) || (this.staffIndex != null && !this.staffIndex.equals(other.staffIndex))) {
             return false;
         }
         return true;
@@ -193,7 +227,7 @@ public class Staffs implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Staffs[ staffId=" + staffId + " ]";
+        return "model.Staffs[ staffIndex=" + staffIndex + " ]";
     }
     
 }

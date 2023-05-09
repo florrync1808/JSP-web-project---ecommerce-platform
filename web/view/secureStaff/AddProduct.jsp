@@ -14,20 +14,12 @@
             <div class="grid grid-cols-1 gap-6">
                 <form action="/pepegacoJAVAEE6/AddProductServlet">
                     <label class="block p-2">
-                        <span class="text-gray-700 font-semibold">Product Categories</span>
-                        <select name="ptype" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option value="" selected disabled hidden>Select product categories</option>
-                            <option value="plant">Plant</option>
-                            <option value="other">Other (Accessories, Tools, etc)</option>
-                        </select>
-                    </label>
-                    <label class="block p-2">
                         <span class="text-gray-700 font-semibold">Name</span>
                         <input name="pname" type="text" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="eg. Albuca Concordiana"/>
                     </label>
                     <label class="block p-2">
                         <span class="text-gray-700 font-semibold">Description</span>
-                        <textarea name="pdesc" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"rows="3" placeholder="Briefly describe the product..."></textarea>
+                        <textarea name="pdesc" required class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" rows="3" placeholder="Briefly describe the product..."></textarea>
                     </label>
                     <label class="block p-2">
                         <span class="text-gray-700 font-semibold">Price (RM)</span>
@@ -37,8 +29,9 @@
                     </label>
                     <label class="block p-2">
                         <span class="text-gray-700 font-semibold">Product Image</span>
-                        <input name="ppic" type="file" class="file:cursor-pointer p-2 pl-0 block w-full text-sm text-slate-500
-                               file:mr-4 file:py-2 file:px-4
+                        <img id="imagePreview" src="" alt="Selected image" class="w-40 p-2">
+                        <input name="ppic" type="file" accept="image/*" id="imageInput" class="file:cursor-pointer p-2 pl-0 block text-sm text-slate-500
+                               file:mr-4 file:py-1 file:px-2
                                file:rounded-full
                                file:text-sm file:font-semibold
                                file:bg-white file:border file:border-blue-950 file:text-blue-950
@@ -60,5 +53,16 @@
         </div>
     </div>
 </div>
+
+<!-- for preview the selected image -->
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('imagePreview');
+    imageInput.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+        const imageUrl = URL.createObjectURL(selectedFile);
+        imagePreview.src = imageUrl;
+    });
+</script>
 
 

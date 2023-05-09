@@ -1,29 +1,69 @@
 package controller;
 
-import model.*;
+import model.Staffs;
+import model.StaffsService;
+import model.DBConnection;
 import java.io.*;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
 import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-public class LoadStaffList extends HttpServlet {
+public class AddStaffServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
 
+    String confirmMsg = "";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+
             StaffsService staffsService = new StaffsService(em);
             List<Staffs> staffsList = staffsService.findAll();
 
+            //StaffID auto generated
+            int numStaffs = staffsList.size();
+            String staffId = String.format("ST%06d", numStaffs + 1);
+            //Staff name
+            String name = request.getParameter("sName");
+            //staff birth date
+            String birthDateStr = request.getParameter("sBirthDate");
+            //contact number
+            String contactNo = request.getParameter("sContactNo");
+            //email
+            String email = request.getParameter("sEmail");
+            //activate emploment status
+            String employmentStatus = "active";
+            //default password staffpw1
+            String password = "staffpw1";
+
+            //created at, time NOW; convert the timestamp to datetime
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            Date createdAt = ts;
+
+            String insertQuery = "INSERT INTO STAFFS (STAFF_ID, NAME, BIRTHDATE, CONTACT_NO, EMAIL, EMPLOYMENT_STATUS, PASSWORD, CREATED_AT) VALUES ('"
+                    + staffId + "','"
+                    + name + "','"
+                    + birthDateStr + "','"
+                    + contactNo + "','"
+                    + email + "','"
+                    + employmentStatus + "','"
+                    + password + "','"
+                    + createdAt + "')";
+            DBConnection.insertUpdateFromSqlQuery(insertQuery);
+
+            staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
             session.setAttribute("staffL", staffsList);
+            session.setAttribute("AddStaffConfirmationMsg", "Staff added succesfully!");
             response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(LoadStaffList.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

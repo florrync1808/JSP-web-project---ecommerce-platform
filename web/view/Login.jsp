@@ -29,10 +29,6 @@
                             id="exampleInputPassword2"
                             placeholder="Password" />
                     </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> master
                     <!--Sign in button-->
                     <button
                         type="submit"
