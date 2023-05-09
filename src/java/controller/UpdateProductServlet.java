@@ -57,7 +57,7 @@ public class UpdateProductServlet extends HttpServlet {
             boolean success = productService.updateProduct(product);
             utx.commit();
 
-            if (success == true) {
+            if (success) {
                 confirmMsg = "Updated Product " + id + " Successfully!";
 
             } else {

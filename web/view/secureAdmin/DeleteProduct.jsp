@@ -21,7 +21,7 @@
                 <hr class="my-4 border-gray-900"/>
             </div>
 
-            <!-- Display that specify product to be edit -->
+            <!-- Display that specify product to be delete -->
             <% for (Products product : ProductList) {
                     if (product.getProductId().equals(request.getParameter("productId"))) {
             %>
@@ -39,7 +39,7 @@
                     </label>
                     <label class="block p-2">
                         <span class="text-gray-700 font-semibold">Product Image</span>
-                        <img id="imagePreview" src="<%= product.getProductPhoto()%>" alt="Selected image" class="w-40 p-2">
+                        <img id="imagePreview" src="<%= product.getProductPhoto()%>" class="w-40 p-2">
                     </label>
                     <label class="block p-2">
                         <span class="text-gray-700 font-semibold">Description</span>
@@ -55,7 +55,7 @@
                         <input name="pcreate" type="text" disabled value="<%= datetime.format(product.getCreatedAt())%>" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                     </label>
 
-                    <!-- submit and reset button -->
+                    <!-- submit and back to previous page button -->
                     <div class="p-2 pl-0 flex flex-row">
                         <div class="p-2">
                             <input type="submit" value="Confirm" class="cursor-pointer bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded">
