@@ -60,6 +60,7 @@ public class AddStaffServlet extends HttpServlet {
 
             staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
+            session.removeAttribute("staffL");
             session.setAttribute("staffL", staffsList);
             session.setAttribute("AddStaffConfirmationMsg", "Staff added succesfully!");
             response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");

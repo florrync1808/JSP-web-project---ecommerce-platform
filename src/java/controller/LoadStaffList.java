@@ -20,6 +20,7 @@ public class LoadStaffList extends HttpServlet {
             List<Staffs> staffsList = staffsService.findAll();
 
             HttpSession session = request.getSession();
+            session.removeAttribute("staffL");
             session.setAttribute("staffL", staffsList);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {

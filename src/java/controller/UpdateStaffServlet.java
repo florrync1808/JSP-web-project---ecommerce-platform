@@ -29,10 +29,6 @@ public class UpdateStaffServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-
-            StaffsService staffsService = new StaffsService(em);
-            List<Staffs> staffsList = staffsService.findAll();
-
             String staffId = request.getParameter("staffId");
             //Staff name
             String name = request.getParameter("sName");
@@ -59,9 +55,17 @@ public class UpdateStaffServlet extends HttpServlet {
 
             DBConnection.insertUpdateFromSqlQuery(insertQuery);
 
-            staffsList = staffsService.findAll();
+            StaffsService staffsService = new StaffsService(em);
+            List<Staffs> staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
+            session.removeAttribute("staffL");
             session.setAttribute("staffL", staffsList);
+
+//            List<Staffs> st = (List) session.getAttribute("staffL");
+//            PrintWriter out = response.getWriter();
+//            for(Staffs s : st ){
+//                out.println("<p>" + s.toString() + "</p><br>");
+//            }
             session.setAttribute("EditStaffConfirmationMsg", "Staff information update succesfully!");
             response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {
