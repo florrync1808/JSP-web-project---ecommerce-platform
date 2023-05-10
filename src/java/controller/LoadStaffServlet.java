@@ -1,7 +1,7 @@
-
 package controller;
 
-import java.io.IOException;
+import model.*;
+import java.io.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,35 +12,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ProductService;
-import model.Products;
 
-
-public class SearchProductServlet extends HttpServlet {
+public class LoadStaffServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-    
-    String msg = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ProductService productService = new ProductService(em);
+            StaffsService staffsService = new StaffsService(em);
+            List<Staffs> staffsList = staffsService.findAll();
+
             HttpSession session = request.getSession();
-
-            //get productID or productName from the search bar
-            String input = request.getParameter("searchinput");
-            
-            List<Products> product = productService.findMatchingForSearch(input);
-            
-            session.setAttribute("productsearch", product);
-
-            response.sendRedirect("/pepegacoJAVAEE6/view/SearchResult.jsp");
+            session.removeAttribute("staffL");
+            session.setAttribute("staffL", staffsList);
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoadStaffList.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,7 +1,10 @@
-
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,35 +15,59 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ProductService;
-import model.Products;
+import model.DBConnection;
+import model.Staffs;
+import model.StaffsService;
 
-
-public class SearchProductServlet extends HttpServlet {
+public class UpdateStaffServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-    
-    String msg = null;
+
+    String confirmMsg = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         try {
-            ProductService productService = new ProductService(em);
+            String staffId = request.getParameter("staffId");
+            //Staff name
+            String name = request.getParameter("sName");
+            //staff birth date
+            String birthDate = request.getParameter("sBirthDate");
+            SimpleDateFormat input = new SimpleDateFormat("MM/dd/yyyy");
+            Date dateValue = input.parse(birthDate);
+            SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+            String birthDateStr = (String) output.format(dateValue);
+            //contact number
+            String contactNo = request.getParameter("sContactNo");
+            //email
+            String email = request.getParameter("sEmail");
+            //password
+            String password = request.getParameter("sPassword");
+
+            String insertQuery = "UPDATE STAFFS SET "
+                    + "NAME='" + name
+                    + "', BIRTHDATE='" + birthDateStr
+                    + "', CONTACT_NO='" + contactNo
+                    + "', EMAIL='" + email
+                    + "', PASSWORD='" + password
+                    + "' WHERE STAFF_ID='" + staffId + "'";
+
+            DBConnection.insertUpdateFromSqlQuery(insertQuery);
+
+            StaffsService staffsService = new StaffsService(em);
+            List<Staffs> staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
+            session.removeAttribute("staffL");
+            session.setAttribute("staffL", staffsList);
 
-            //get productID or productName from the search bar
-            String input = request.getParameter("searchinput");
-            
-            List<Products> product = productService.findMatchingForSearch(input);
-            
-            session.setAttribute("productsearch", product);
+            session.setAttribute("EditStaffConfirmationMsg", "Staff information update succesfully!");
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
 
-            response.sendRedirect("/pepegacoJAVAEE6/view/SearchResult.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

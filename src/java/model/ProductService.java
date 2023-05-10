@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
@@ -72,21 +71,22 @@ public class ProductService {
         List itemList = mgr.createNamedQuery("Products.findAll").getResultList();
         return itemList;
     }
-    
+
     public List<Products> findMatchingForSearch(String userInput) {
+        // retrive all the product
         List<Products> allProd = mgr.createNamedQuery("Products.findAll").getResultList();
-        List<Products> matchingProd = new ArrayList<Products>();
-        for (Products prod: allProd) {
-            
-            if (prod.getProductId().equalsIgnoreCase("FREEGIFT")){}
-            else if (prod.getProductName().contains(userInput) || prod.getProductId().contains(userInput) ){
-            matchingProd.add(prod);
+        // create array list for storing the matching result
+        List<Products> matchingProd = new ArrayList<>();
+
+        for (Products prod : allProd) {
+            if (prod.getProductId().equalsIgnoreCase("FREEGIFT")) {
+            } else if (prod.getProductName().contains(userInput) || prod.getProductId().contains(userInput)) {
+                matchingProd.add(prod);
             }
         }
         return matchingProd;
     }
-    
-    
+
     public boolean updateProduct(Products product) {
         Products tempItem = findProductByID(product.getProductId());
         if (tempItem != null) {

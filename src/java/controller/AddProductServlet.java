@@ -28,15 +28,8 @@ public class AddProductServlet extends HttpServlet {
             ProductService productService = new ProductService(em);
             List<Products> productList = productService.findAll();
 
-            //count row
-            int count = 0;
-            
-            for (Products product : productList) {
-                count++;
-            }
-
             //assign productId 
-            String id = String.format("P%07d", count);
+            String id = String.format("P%07d", productList.size());
 
             //get parameter and set to the variable
             String name = request.getParameter("pname");
@@ -46,10 +39,10 @@ public class AddProductServlet extends HttpServlet {
 
             // get current datetime and convert it from timestamp to datetime
             Timestamp ts = new Timestamp(System.currentTimeMillis());
-            Date createdAt = ts;
+            Date dateCreated = ts;
             
             // put all the input data into the constructor
-            Products product = new Products(id, name, price, desc, photo, createdAt);
+            Products product = new Products(id, name, price, desc, photo, dateCreated);
             
             // execute the function to add the product
             utx.begin();
