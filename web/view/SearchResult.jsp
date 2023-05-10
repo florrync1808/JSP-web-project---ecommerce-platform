@@ -4,7 +4,6 @@
 
 <%
     List<Products> prodList = (List) session.getAttribute("productsearch");
-    String inputError = (String) session.getAttribute("inputErrorMsg");
 %>
 
 <div class="p-8 min-h-screen ">

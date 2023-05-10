@@ -2,6 +2,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,35 +13,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ProductService;
-import model.Products;
+import model.CustomerService;
+import model.Customers;
 
-
-public class SearchProductServlet extends HttpServlet {
-
+public class LoadCustomerServlet extends HttpServlet {
+    
+    
     @PersistenceContext
     EntityManager em;
     
-    String msg = null;
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ProductService productService = new ProductService(em);
+            CustomerService custService = new CustomerService(em);
+            List<Customers> custList = custService.findAll();
             HttpSession session = request.getSession();
-
-            //get productID or productName from the search bar
-            String input = request.getParameter("searchinput");
-            
-            List<Products> product = productService.findMatchingForSearch(input);
-            
-            session.setAttribute("productsearch", product);
-
-            response.sendRedirect("/pepegacoJAVAEE6/view/SearchResult.jsp");
+            session.removeAttribute("CustomerList");
+            session.setAttribute("CustomerList", custList);
+            //response.sendRedirect("/pepegacoJAVAEE6/view/Products.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DisplayProductsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

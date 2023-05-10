@@ -92,6 +92,10 @@
         <servlet-name>TopSellProductServlet</servlet-name>
         <servlet-class>controller.TopSellProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadCustomerServlet</servlet-name>
+        <servlet-class>controller.LoadCustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
@@ -183,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>TopSellProductServlet</servlet-name>
         <url-pattern>/TopSellProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCustomerServlet</servlet-name>
+        <url-pattern>/LoadCustomerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
