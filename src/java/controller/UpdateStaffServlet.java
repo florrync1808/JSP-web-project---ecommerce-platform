@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import java.io.IOException;
@@ -36,7 +32,7 @@ public class UpdateStaffServlet extends HttpServlet {
 
             StaffsService staffsService = new StaffsService(em);
             List<Staffs> staffsList = staffsService.findAll();
-            
+
             String staffId = request.getParameter("staffId");
             //Staff name
             String name = request.getParameter("sName");
@@ -60,7 +56,7 @@ public class UpdateStaffServlet extends HttpServlet {
                     + "', EMAIL='" + email
                     + "', PASSWORD='" + password
                     + "' WHERE STAFF_ID='" + staffId + "'";
-            
+
             DBConnection.insertUpdateFromSqlQuery(insertQuery);
 
             staffsList = staffsService.findAll();
