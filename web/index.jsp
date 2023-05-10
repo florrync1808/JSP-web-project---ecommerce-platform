@@ -18,7 +18,7 @@
 
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">
-                <a href="/pepegacoJAVAEE6/DisplayProductsServlet" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
+                <a href="/pepegacoJAVAEE6/DisplayProductsServlet" class="mt-12 px-4 py-2 bg-gray-600 hover:bg-teal-500 hover:font-bold rounded">Shop Now</a>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
             </div>
 
             <template x-for="(image, index) in images">
-                <figure class="h-96" x-show="currentIndex == index + 1" x-transition:enter="transition transform duration-300"
+                <figure class="h-96 " x-show="currentIndex == index + 1" x-transition:enter="transition transform duration-300"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition transform duration-300" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0">
@@ -53,8 +53,8 @@
 <!-- top selling  -->
 <div class="2xl:container 2xl:mx-auto">
     <div class="lg:px-20 md:px-6 px-4 md:py-12 py-8">
-        <div>
-            <h1 class="text-xl font-semibold text-gray-800 dark:text-white text-center dark:text-gray-50">Top Selling Products</h1>
+        <div class="border-b border-gray-200">
+            <p class="text-2xl font-semibold text-gray-800 p-6 dark:text-white text-center dark:text-gray-50">Top Selling Products</p>
         </div>
         <!--card for product-->
         <jsp:include page="/TopSellProductServlet" flush="true"/>
@@ -62,17 +62,25 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-8 md:mt-10">
 
             <!--for loop here max loop 3-->
-        <% for (Products prod : ProdList) {%>  
-            <div class="bg-gray-50 dark:bg-gray-800 p-8">
-                <div class="">
-                    <h2 class="text-lg text-gray-600 dark:text-white"><%= prod.getProductName()%></h2>
-                    <p class="text-sm font-semibold text-gray-800 dark:text-white mt-2"><%= prod.getProductPriceinString() %></p>
+            <% for (Products prod : ProdList) {%>  
+            <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-md">
+                <div class="grid grid-cols-5">
+                    <div class="mx-6 col-span-4">
+                        <p class="text-lg font-bold  text-gray-600 dark:text-white"><%= prod.getProductName()%></p>
+                        <p class="text-sm font-semibold text-gray-800 dark:text-white mt-2">RM <%= prod.getProductPriceinString()%></p>
+                    </div>
+                    <div class="col-span-1 my-4">
+                        <% if (session.getAttribute("userName") == null || session.getAttribute("userRole").equals("userRole")) {%>
+                        <a href="/pepegacoJAVAEE6/AddToCartServlet?productId=<%=prod.getProductId()%>"><button  class="bg-gray-700 mr-5 text-white px-2 py-1 rounded-sm shadow-md duration-300 hover:-translate-y-1 hover:shadow-lg">&#10010</button>
+                        </a>
+                        <% } else if (request.isUserInRole("adminRole")) { }%>
+                    </div>
                 </div>
-                <div class="flex justify-center items-center mt-8 md:mt-24">
-                    <img class="" src="<%= prod.getProductPhoto() %>" alt="<%= prod.getProductName()%>" role="img" />
+                <div class="flex justify-center items-center mt-4">
+                    <img class="w-80 object-cover" src="<%= prod.getProductPhoto()%>" alt="<%= prod.getProductName()%>" role="img" />
                 </div>
             </div>
-        <% }%>
+            <% }%>
 
             <!--for loop end here-->
         </div>
