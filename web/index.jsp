@@ -1,8 +1,8 @@
 
+<%@page import="java.util.Vector"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.ProductOfOrderList"%>
 <%@page import="java.util.List"%>
-<% List<ProductOfOrderList> orderHistory = (ArrayList)session.getAttribute("purchaseHistory"); %>
+<%@page import="model.Products"%>
 
 <!--outermost wrapper container-->
 <div class="p-8">
@@ -15,7 +15,7 @@
                 Your passionate <br />
                 one-stop plant store
             </h1>
-            
+
             <p class="text-lg text-lime-400 inline-block sm:block">Better greens for you </p>
             <div class="mt-8">
                 <a href="/pepegacoJAVAEE6/DisplayProductsServlet" class="mt-12 px-4 py-2 bg-gray-600 rounded">Shop Now</a>
@@ -52,28 +52,31 @@
 
 <!-- top selling  -->
 <div class="2xl:container 2xl:mx-auto">
-
     <div class="lg:px-20 md:px-6 px-4 md:py-12 py-8">
         <div>
-            <h1 class="text-xl font-semibold text-gray-800 dark:text-white text-center dark:text-gray-50">Top Selling</h1>
+            <h1 class="text-xl font-semibold text-gray-800 dark:text-white text-center dark:text-gray-50">Top Selling Products</h1>
         </div>
-
         <!--card for product-->
+        <jsp:include page="/TopSellProductServlet" flush="true"/>
+        <% List<Products> ProdList = (ArrayList) session.getAttribute("top3Prod");%>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-8 md:mt-10">
 
             <!--for loop here max loop 3-->
-            
+        <% for (Products prod : ProdList) {%>  
             <div class="bg-gray-50 dark:bg-gray-800 p-8">
                 <div class="">
-                    <h2 class="text-lg text-gray-600 dark:text-white">Product Name</h2>
-                    <p class="text-sm font-semibold text-gray-800 dark:text-white mt-2">Price hre</p>
+                    <h2 class="text-lg text-gray-600 dark:text-white"><%= prod.getProductName()%></h2>
+                    <p class="text-sm font-semibold text-gray-800 dark:text-white mt-2"><%= prod.getProductPriceinString() %></p>
                 </div>
                 <div class="flex justify-center items-center mt-8 md:mt-24">
-                    <img class="" src="/pepegacoJAVAEE6/assets/images/products/Callisia_pink_1.jpeg" alt="Insert Image here" role="img" />
+                    <img class="" src="<%= prod.getProductPhoto() %>" alt="<%= prod.getProductName()%>" role="img" />
                 </div>
             </div>
+        <% }%>
+
             <!--for loop end here-->
         </div>
+
 
     </div>
 </div>  
