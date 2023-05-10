@@ -88,6 +88,10 @@
         <servlet-name>ViewReport</servlet-name>
         <servlet-class>controller.ViewReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TopSellProductServlet</servlet-name>
+        <servlet-class>controller.TopSellProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProductServlet</servlet-name>
         <url-pattern>/UpdateProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TopSellProductServlet</servlet-name>
+        <url-pattern>/TopSellProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

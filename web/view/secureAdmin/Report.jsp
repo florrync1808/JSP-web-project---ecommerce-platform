@@ -76,7 +76,7 @@
                                                 </td>
                                                 <td
                                                     class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                                                    <%= prodQty.get(prod.getProductId())* prod.getProductPriceinDouble() %>0 
+                                                    <%= prodQty.get(prod.getProductId())* prod.getProductPrice() %>0 
                                                 </td>
                                                 
                                             </tr>
