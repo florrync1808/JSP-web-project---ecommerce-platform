@@ -57,7 +57,7 @@ public class RegisterCustomerServlet extends HttpServlet {
             } else {
                 Customers newCustomer = new Customers(customerId, name, birthdate, contactNo, email, password, line1, line2, state, city, postcode, createdAt);
                 utx.begin();
-                boolean success = itemService.addItem(newCustomer);
+                boolean success = itemService.addCustomer(newCustomer);
                 utx.commit();
                 session.setAttribute("success", success);
                 response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");

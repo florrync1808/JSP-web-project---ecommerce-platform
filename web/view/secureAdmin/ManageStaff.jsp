@@ -1,7 +1,11 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Staffs"%>
 
-<% List<Staffs> sList = (List) session.getAttribute("staffL");%>
+<% 
+    List<Staffs> sList = (List) session.getAttribute("staffL");
+    SimpleDateFormat dateformat1 = new SimpleDateFormat("yyyy-MM-dd");
+%>
 
 <!-- display added staff successfully message -->
 <% if (session.getAttribute("AddStaffConfirmationMsg") != null) {%>
@@ -66,7 +70,7 @@
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= rowCount%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getStaffId()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getName()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= staff.getBirthdate()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= dateformat1.format(staff.getBirthdate())%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= staff.getContactNo()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm"><%= staff.getEmail()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= staff.getEmploymentStatus()%></td>

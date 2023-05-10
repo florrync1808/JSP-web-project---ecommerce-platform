@@ -142,7 +142,7 @@ public class PaymentService {
     
     public String GenerateOrderId(int count){
         String newOrderId;
-        newOrderId = String.format("%s%06d", "OR",count);
+        newOrderId = String.format("%s%06d", "OD",count);
         return newOrderId;
     }
     
