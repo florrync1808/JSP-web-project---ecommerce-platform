@@ -12,7 +12,6 @@
 <% List<ProductOfOrderList> purchaseHistoryDetails = (List) session.getAttribute("purchaseHistoryDetails");%>
 <%String customerOrderId = session.getAttribute("customerOrderId").toString(); %>
 <% String DateTime = session.getAttribute("DateTime").toString();%>
-<% String amount = session.getAttribute("amount").toString();%>
 
 <% if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "userRole") {
         response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
@@ -52,7 +51,7 @@
             <div class="col-span-1"> 
                 <p class="text-base font-black leading-none text-gray-800 dark:text-white  underline">Subtotal Price </p>
             </div> 
-            <% double subtotal = 0.00, shipping = 25.00, free = 0.00; %>
+            <% double subtotal = 0.00, shipping = 25.00; %>
 
             <%for (ProductOfOrderList po : purchaseHistoryDetails) {%>
             <div class="col-span-1  w-full">
@@ -65,7 +64,7 @@
                     <p class="text-base font-medium leading-none text-gray-800 dark:text-white"><%=po.getProductName()%></p>
                 </div>
 
-                <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=po.getProductPrice()%></p>
+                    <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=String.format("%.2f", Double.parseDouble(po.getProductPrice()))%></p>
 
             </div>
 
@@ -78,7 +77,7 @@
             </div>
             <div class="col-span-1"> 
 
-                <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=Double.parseDouble(po.getOrderQty()) * Double.parseDouble(po.getProductPrice())%> </p>
+                <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=String.format("%.2f",Double.parseDouble(po.getOrderQty()) * Double.parseDouble(po.getProductPrice()))%> </p>
             </div>
 
             <% subtotal += Double.parseDouble(po.getProductPrice()) * Double.parseDouble(po.getOrderQty());
@@ -92,9 +91,12 @@
                 <div class="flex items-center justify-between pt-5">
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Shipping Fee (RM)</p>
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><% if (subtotal >= 200.00) {
-                            out.print(String.format("RM %.2f", free));
+                            shipping = 0.00;
+                            out.print(String.format("RM %.2f", shipping));
                         } else if (subtotal == 0) {
-                            out.print(String.format("RM %.2f", free));
+                            shipping = 0.00;
+
+                            out.print(String.format("RM %.2f", shipping));
                         } else {
                             out.print(String.format("RM %.2f", shipping));
                         } %></p>
@@ -105,7 +107,8 @@
                 </div>
                 <div class="flex items-center justify-between pt-5">
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Total Payment </p>
-                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%="RM" + amount%></p>
+                    <% Double amount = subtotal + shipping + subtotal *0.06;%>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%="RM" + String.format("%.2f", amount)%></p>
                 </div>
             </div>
         </div>

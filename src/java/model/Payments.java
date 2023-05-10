@@ -65,7 +65,7 @@ public class Payments implements Serializable {
         this.paymentId = paymentId;
         this.paymentAmount = paymentAmount;
         this.paymentMethod = paymentMethod;
-        this.createdAt = createdAt;
+        this.createdAt = new java.util.Date();
     }
 
     public String getPaymentId() {
@@ -93,7 +93,7 @@ public class Payments implements Serializable {
     }
 
     public Date getCreatedAt() {
-        return createdAt;
+        return new java.util.Date();
     }
 
     public void setCreatedAt(Date createdAt) {
