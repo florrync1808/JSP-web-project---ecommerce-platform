@@ -10,13 +10,12 @@
             </div>
             <div class="mt-4">
                 <!--if thr is login user redirect to dashboard else do nth-->
-                <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") == "userRole") { 
+                <% if (session.getAttribute("userName") != null && session.getAttribute("userRole") == "userRole") {
                         response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/UserDashboard.jsp");
-                   }
-                   else if(session.getAttribute("userName") != null && session.getAttribute("userRole") == "staffRole") {
+                    } else if (session.getAttribute("userName") != null && session.getAttribute("userRole") == "staffRole") {
                         response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/StaffDashboard.jsp");
-                   }     
-                   else { }%>
+                    } else {
+                    }%>
                 <form name="form" action="/pepegacoJAVAEE6/UserLoginServlet" method="POST" onsubmit="return validate()">
                     <!--E-mail input-->
                     <div class="relative mb-6">
@@ -46,8 +45,8 @@
                         class="mt-3 text-lg font-semibold bg-gray-800 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:text-white hover:bg-black">   
                     </input>
                 </form>
-                         <% session.setAttribute("errMessage", ""); %>
-                   
+                <% session.setAttribute("errMessage", "");%>
+
                 <script>
                     function validate()
                     {

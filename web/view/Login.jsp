@@ -1,4 +1,3 @@
-
 <div x-show.transition="status || isError"  
      class="bg-slate-200 mx-aut my-auto absolute w-full h-full flex items-center
      shadow-lg overflow-y-auto">
