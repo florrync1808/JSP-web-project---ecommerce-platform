@@ -1,9 +1,6 @@
- <% if (request.isUserInRole("adminRole")) {
-       
-    }else if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "staffRole") {
-             
-       response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");}
-    else { }%>
+ <% if ( request.isUserInRole("adminRole") ||  session.getAttribute("userRole").equals("staffRole"))  {} else { 
+   response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");  
+    }%>
 <!--this page can be viewed by admin & staff-->
     
     
