@@ -61,11 +61,6 @@ public class UpdateStaffServlet extends HttpServlet {
             session.removeAttribute("staffL");
             session.setAttribute("staffL", staffsList);
 
-//            List<Staffs> st = (List) session.getAttribute("staffL");
-//            PrintWriter out = response.getWriter();
-//            for(Staffs s : st ){
-//                out.println("<p>" + s.toString() + "</p><br>");
-//            }
             session.setAttribute("EditStaffConfirmationMsg", "Staff information update succesfully!");
             response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {
