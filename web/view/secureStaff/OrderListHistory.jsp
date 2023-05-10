@@ -63,7 +63,7 @@
                     <p class="text-base font-medium leading-none text-gray-800 dark:text-white"><%=po.getProductName()%></p>
                 </div>
 
-                <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=po.getProductPrice()%></p>
+                <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=String.format("%.2f",Double.parseDouble(po.getProductPrice()))%></p>
 
             </div>
 
@@ -76,7 +76,7 @@
             </div>
             <div class="col-span-1"> 
 
-                <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=Double.parseDouble(po.getOrderQty()) * Double.parseDouble(po.getProductPrice())%> </p>
+                <p class="mr-2 text-base font-medium leading-none text-gray-800 dark:text-white"><%=String.format("%.2f",Double.parseDouble(po.getOrderQty()) * Double.parseDouble(po.getProductPrice()))%> </p>
             </div>
             <% subtotal += Double.parseDouble(po.getProductPrice()) * Double.parseDouble(po.getOrderQty()); }
             %>    
@@ -103,7 +103,7 @@
                 </div>
                 <div class="flex items-center justify-between pt-5">
                     <p class="text-base leading-none text-gray-800 dark:text-white font-medium">Total Payment </p>
-                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%="RM" + amount%></p>
+                    <p class="text-base leading-none text-gray-800 dark:text-white font-medium"><%="RM" + String.format("%.2f",Double.parseDouble(amount))%></p>
                 </div>
             </div>
 

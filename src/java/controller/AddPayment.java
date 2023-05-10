@@ -47,24 +47,17 @@ public class AddPayment extends HttpServlet {
             int x = paymentService.getDBPaymentCount();
             payId = paymentService.GeneratePaymentId(x);
             int y = paymentService.getDBOrderCount();
-            System.out.println(cartList);
-            System.out.println("1");
             String orderId = paymentService.GenerateOrderId(y);
+            System.out.println(orderId);
             int z = paymentService.getDBOrderListCount();
-            System.out.println("2");
             String orderListId = paymentService.GenerateOrderListId(z);
 
 //            int max = paymentService.getDBStaffListCount();
             int max = 3;
             int min = 1;
-            System.out.println("3");
             int staffIndex = (int) Math.floor(Math.random() * (max - min + 1) + min);
-            System.out.println("4");
             int a = paymentService.getDBOrderStatusCount();
             String orderStatusId = paymentService.GenerateOrderStatusId(a);
-            System.out.println("5");
-            System.out.println(z);
-            System.out.println(orderListId);
             DBConnection.insertUpdateFromSqlQuery("INSERT INTO PAYMENTS (PAYMENT_ID, PAYMENT_AMOUNT, PAYMENT_METHOD, CREATED_AT) VALUES ('" + payId + "'," + doubleAmount + ",'" + paymentMethod + "','" + datetime.format(payment.getCreatedAt()) + "')");
             DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDERS VALUES ('" + orderId + "'," + staffIndex + ",'" + staffId + "','" + custId + "','" + payId + "','" + address + "','" + customer.getName() + "','" + customer.getContactNo() + "','" + datetime.format(payment.getCreatedAt()) + "')");
             DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_STATUSES VALUES ('" + orderStatusId + "','packaging','" + orderId + "','" + datetime.format(payment.getCreatedAt()) + "')");
@@ -85,11 +78,11 @@ public class AddPayment extends HttpServlet {
                 
                 DBConnection.insertUpdateFromSqlQuery("INSERT INTO ORDER_LISTS VALUES ('" + orderListId + "','FREEGIFT','" + orderId + "', 1"  + ")");
             }
-//            
             DBConnection.insertUpdateFromSqlQuery("DELETE FROM CART_LISTS WHERE CUSTOMER_ID = '" + custId + "'");
-            response.sendRedirect("/pepegacoJAVAEE6/");
+            session.setAttribute("CuOrderId", orderId);
+            session.setAttribute("CuDateTime", datetime.format(payment.getCreatedAt()));
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/thankyoupage.jsp");
         } catch (Exception ex) {
-//            Logger.getLogger(AddItem.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
         }
     }
