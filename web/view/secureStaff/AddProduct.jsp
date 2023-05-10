@@ -1,3 +1,11 @@
+<% if (request.isUserInRole("adminRole")) {
+
+    } else if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "staffRole") {
+
+        response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
+    } else {
+    }%>
+<!--this page can be viewed by admin & staff-->
 
 <!-- form container -->
 <div class="min-h-screen p-8 bg-gray-100 flex items-center justify-center">

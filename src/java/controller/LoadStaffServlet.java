@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoadStaffList extends HttpServlet {
+public class LoadStaffServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
@@ -27,7 +27,7 @@ public class LoadStaffList extends HttpServlet {
             HttpSession session = request.getSession();
             session.removeAttribute("staffL");
             session.setAttribute("staffL", staffsList);
-            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp");
         } catch (Exception ex) {
             Logger.getLogger(LoadStaffList.class.getName()).log(Level.SEVERE, null, ex);
         }

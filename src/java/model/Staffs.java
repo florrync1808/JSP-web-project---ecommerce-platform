@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Staffs.findByEmploymentStatus", query = "SELECT s FROM Staffs s WHERE s.employmentStatus = :employmentStatus"),
     @NamedQuery(name = "Staffs.findByPassword", query = "SELECT s FROM Staffs s WHERE s.password = :password"),
     @NamedQuery(name = "Staffs.findByCreatedAt", query = "SELECT s FROM Staffs s WHERE s.createdAt = :createdAt")})
+@Cacheable(false)
 public class Staffs implements Serializable {
 
     private static final long serialVersionUID = 1L;

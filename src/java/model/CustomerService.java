@@ -15,28 +15,28 @@ public class CustomerService {
         this.mgr = mgr;
     }
 
-    public boolean addItem(Customers item) {
-        mgr.persist(item);
+    public boolean addCustomer(Customers customer) {
+        mgr.persist(customer);
         return true;
     }
 
-    public Customers findItemByCode(String code) {
-        Customers item = mgr.find(Customers.class, code);
-        return item;
+    public Customers findCustomerByCode(String id) {
+        Customers customer = mgr.find(Customers.class, id);
+        return customer;
     }
 
-    public boolean deleteItem(String code) {
-        Customers item = findItemByCode(code);
-        if (item != null) {
-            mgr.remove(item);
+    public boolean deleteItem(String id) {
+        Customers customer = findCustomerByCode(id);
+        if (customer != null) {
+            mgr.remove(customer);
             return true;
         }
         return false;
     }
 
     public List<Customers> findAll() {
-        List itemList = mgr.createNamedQuery("Customers.findAll").getResultList();
-        return itemList;
+        List custList = mgr.createNamedQuery("Customers.findAll").getResultList();
+        return custList;
     }
 
     //get count of cust in DB
@@ -54,15 +54,23 @@ public class CustomerService {
         return newCustId;
     }
     
-//    public boolean updateItem(Item item) {
-//        Countryflags tempItem = findItemByCode(item.getCode());
-//        if (tempItem != null) {
-//            tempItem.setDescription(item.getDescription());
-//            tempItem.setPrice(item.getPrice());
-//            return true;
-//        }
-//        return false;
-//    }
+    public boolean updateCustomer(Customers customer) {
+        Customers tempItem = findCustomerByCode(customer.getCustomerId());
+        if (tempItem != null) {
+            tempItem.setName(customer.getName());
+            tempItem.setBirthdate(customer.getBirthdate());
+            tempItem.setContactNo(customer.getContactNo());
+            tempItem.setEmail(customer.getEmail());
+            tempItem.setPassword(customer.getPassword());
+            tempItem.setLine1(customer.getLine1());
+            tempItem.setLine2(customer.getLine2());
+            tempItem.setState(customer.getState());
+            tempItem.setCity(customer.getCity());
+            tempItem.setPostcode(customer.getPostcode());
+            return true;
+        }
+        return false;
+    }
     
    
 }
