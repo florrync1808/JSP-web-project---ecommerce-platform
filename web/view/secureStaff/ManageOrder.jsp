@@ -28,7 +28,7 @@
                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</th>
                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Status ID</th>
                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Order ID</th>
-                        <th colspan="3" scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Description</th>
+                        <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Description</th>
                         <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Created At</th>
                         <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                             <span class="sr-only">Actions</span>
@@ -38,23 +38,54 @@
                 <tbody class="divide-y divide-gray-200 bg-white">
                     <% int rowCount = 0; %>
                     <% for (OrderStatuses oStatus : osList) {
-                            if (!oStatus.getDescription().equals("delivered")) {
-                                rowCount++;%>
+                            rowCount++;%>
                     <tr>
-                        <!-- loop through staff-info database, now show one row only -->
+                        <!-- loop through staff-info database -->
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= rowCount%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= oStatus.getStatusId()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= oStatus.getOrderId()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= oStatus.getDescription()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">here</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm">here</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500">here</td>
+
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-950">
+                            <label for="packaging" class="orderStatLabel">
+                                <input type="radio" name="OStatus" id="packaging" class="orderStat" value="packaging">
+                                Packaging
+                            </label>
+
+                            <label for="shipping" class="orderStatLabel">
+                                <input type="radio" name="OStatus" id="shipping" class="orderStat" value="shipping">
+                                shipping
+                            </label>
+                            <label for="delivered" class="orderStatLabel">
+                                <input type="radio" name="OStatus" id="delivered" class="orderStat" value="delivered">
+                                delivered
+                            </label>
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">
+                            <a href="/pepegacoJAVAEE6/ManageOrderServlet?statusId=<%= oStatus.getStatusId()%>&OStatus=" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50 block px-4 py-2 text-sm" id="showChange">
+                                Update<br>Status
+                            </a>
+                        </td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm"><%= oStatus.getCreatedAt()%></td>
                     </tr>
-                    <%      }
+                    <%  }
                         }%>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<script>
+    window.onload = function () {
+        [].forEach.call(document.querySelectorAll(".orderStat"), function (el) {
+            el.addEventListener("click", function () {
+                [].forEach.call(document.querySelectorAll(".orderStatLabel"), function (label) {
+                    label.style.color = "gray";
+                });
+
+                document.querySelector("label[for='" + this.id + "']").style.color = "blue";
+            });
+        });
+    }
+</script>

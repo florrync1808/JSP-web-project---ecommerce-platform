@@ -16,7 +16,6 @@
                 <a href="/pepegacoJAVAEE6/DisplayOrderManagedHistory" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Order Managed History</a>
                 <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Log out</a>
             </div>
-
         </div>
     </div>
 </div>
