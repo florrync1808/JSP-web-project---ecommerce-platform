@@ -3,10 +3,10 @@
 <%@page import="model.Staffs"%>
 
 <% List<Staffs> sList = (List) session.getAttribute("staffL");
-SimpleDateFormat datetime = new SimpleDateFormat("dd/MM/yyyy");
-Staffs staff = null;
+    SimpleDateFormat datetime = new SimpleDateFormat("MM/dd/yyyy");
+    Staffs staff = null;
 
-for (Staffs st : sList) {
+    for (Staffs st : sList) {
         if (st.getStaffId().equals(request.getParameter("staffId"))) {
             staff = st;
         }
@@ -21,11 +21,12 @@ for (Staffs st : sList) {
             </div>
             <div class="lg:col-span-2">
                 <form action="/pepegacoJAVAEE6/UpdateStaffServlet">
+                    <input name="staffId" type="hidden" value="<%= staff.getStaffId()%>">
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                         <div class="md:col-span-5">
                             <label>Full Name</label>
                             <input type="text" name="sName" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" 
-                                   value="<%= staff.getName() %>" required/>
+                                   value="<%= staff.getName()%>" required/>
                         </div>
                         <div class="md:col-span-2">
                             <label>Birth Date</label>
@@ -34,28 +35,30 @@ for (Staffs st : sList) {
                             </div>
                             <input name="sBirthDate" datepicker datepicker-autohide type="text"
                                    class="bg-gray-50 border  mt-1 rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                                   value="<%= datetime.format(staff.getBirthdate()) %>" placeholder="Select date" required/>
+                                   value="<%= datetime.format(staff.getBirthdate())%>" placeholder="Select date" required/>
                         </div>
                         <div class="md:col-span-3">
                             <label>Contact No</label>
                             <input type="tel" name="sContactNo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                    placeholder="Phone number without &#34;-&#34;" pattern="[0-9]{10}|[0-9]{11}" 
-                                   value="<%= staff.getContactNo() %>" required/>
+                                   value="<%= staff.getContactNo()%>" required/>
                         </div>
                         <div class="md:col-span-5">
                             <label>Email Address</label>
                             <input type="email" name="sEmail" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" 
-                                   value="<%= staff.getEmail() %>" placeholder="example@email.com" required/>
+                                   value="<%= staff.getEmail()%>" placeholder="example@email.com" required/>
                         </div>
                         <div class="md:col-span-5">
                             <label>Password</label>
                             <input type="text" name="sPassword" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" 
-                                   value="<%= staff.getPassword() %>" required/>
+                                   value="<%= staff.getPassword()%>" required/>
                         </div>
 
                         <div class="md:col-span-5 text-right">
                             <div class="inline-flex items-end">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Edit</button>
+                                <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="editStaff">
+                                    <input type="submit" value="Save Edit">
+                                </button>
                             </div>
                         </div>
 

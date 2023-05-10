@@ -7,6 +7,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,43 +36,38 @@ public class UpdateStaffServlet extends HttpServlet {
 
             StaffsService staffsService = new StaffsService(em);
             List<Staffs> staffsList = staffsService.findAll();
-
-            //StaffID auto generated
-            int numStaffs = staffsList.size();
-            String staffId = String.format("ST%06d", numStaffs + 1);
+            
+            String staffId = request.getParameter("staffId");
             //Staff name
             String name = request.getParameter("sName");
             //staff birth date
-            String birthDateStr = request.getParameter("sBirthDate");
+            String birthDate = request.getParameter("sBirthDate");
+            SimpleDateFormat input = new SimpleDateFormat("MM/dd/yyyy");
+            Date dateValue = input.parse(birthDate);
+            SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+            String birthDateStr = (String) output.format(dateValue);
             //contact number
             String contactNo = request.getParameter("sContactNo");
             //email
             String email = request.getParameter("sEmail");
-            //activate emploment status
-            String employmentStatus = "active";
-            //default password staffpw1
-            String password = "staffpw1";
+            //password
+            String password = request.getParameter("sPassword");
 
-            //created at, time NOW; convert the timestamp to datetime
-            Timestamp ts = new Timestamp(System.currentTimeMillis());
-            Date createdAt = ts;
-
-            String insertQuery = "INSERT INTO STAFFS (STAFF_ID, NAME, BIRTHDATE, CONTACT_NO, EMAIL, EMPLOYMENT_STATUS, PASSWORD, CREATED_AT) VALUES ('"
-                    + staffId + "','"
-                    + name + "','"
-                    + birthDateStr + "','"
-                    + contactNo + "','"
-                    + email + "','"
-                    + employmentStatus + "','"
-                    + password + "','"
-                    + createdAt + "')";
+            String insertQuery = "UPDATE STAFFS SET "
+                    + "NAME='" + name
+                    + "', BIRTHDATE='" + birthDateStr
+                    + "', CONTACT_NO='" + contactNo
+                    + "', EMAIL='" + email
+                    + "', PASSWORD='" + password
+                    + "' WHERE STAFF_ID='" + staffId + "'";
+            
             DBConnection.insertUpdateFromSqlQuery(insertQuery);
 
             staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
             session.setAttribute("staffL", staffsList);
             session.setAttribute("EditStaffConfirmationMsg", "Staff information update succesfully!");
-            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/EditStaff.jsp");
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {
             Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
