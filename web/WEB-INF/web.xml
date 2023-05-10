@@ -103,7 +103,7 @@
     <servlet>
         <servlet-name>LoadOrderStatusList</servlet-name>
         <servlet-class>controller.LoadOrderStatusList</servlet-class>
-</servlet>
+    </servlet>
     <servlet>
         <servlet-name>LoadCustomerServlet</servlet-name>
         <servlet-class>controller.LoadCustomerServlet</servlet-class>
@@ -223,7 +223,7 @@
     <servlet-mapping>
         <servlet-name>LoadOrderStatusList</servlet-name>
         <url-pattern>/LoadOrderStatusList</url-pattern>
-        </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadCustomerServlet</servlet-name>
         <url-pattern>/LoadCustomerServlet</url-pattern>

@@ -27,7 +27,7 @@ public class OrderStatusesService {
     }
     
     public List<OrderStatuses> findAll() {
-        List itemList = mgr.createNamedQuery("Order_Statuses.findAll").getResultList();
+        List itemList = mgr.createNamedQuery("OrderStatuses.findAll").getResultList();
         return itemList;
     }
 }
