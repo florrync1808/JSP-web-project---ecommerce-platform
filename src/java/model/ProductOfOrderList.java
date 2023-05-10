@@ -15,6 +15,14 @@ public class ProductOfOrderList {
     public ProductOfOrderList() {
     }
 
+    public ProductOfOrderList(String orderId, String createdAt, String description) {
+        this.orderId = orderId;
+        this.createdAt = createdAt;
+        this.description = description;
+    }
+
+    
+    
     public ProductOfOrderList(String orderId, String createdAt, String productPhoto, String productId, String productName, String productPrice, String orderQty, String paymentAmt, String description) {
         this.orderId = orderId;
         this.createdAt = createdAt;
@@ -26,6 +34,8 @@ public class ProductOfOrderList {
         this.paymentAmt = paymentAmt;
         this.description = description;
     }
+    
+    
 
     public String getDescription() {
         return description;
