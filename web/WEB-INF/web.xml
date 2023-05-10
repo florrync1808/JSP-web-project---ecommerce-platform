@@ -101,7 +101,7 @@
         <servlet-class>controller.ManageOrderServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoadOrderList</servlet-name>
+        <servlet-name>LoadOrderStatusList</servlet-name>
         <servlet-class>controller.LoadOrderStatusList</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -205,8 +205,8 @@
         <url-pattern>/ManageOrderServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadOrderList</servlet-name>
-        <url-pattern>/LoadOrderList</url-pattern>
+        <servlet-name>LoadOrderStatusList</servlet-name>
+        <url-pattern>/LoadOrderStatusList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

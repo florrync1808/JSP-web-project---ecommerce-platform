@@ -11,7 +11,7 @@
 
             <div>
                 <a href="/pepegacoJAVAEE6/view/secureStaff/StaffAccount.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Account</a>
-                <a href="/pepegacoJAVAEE6/ManageOrderServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
+                <a href="/pepegacoJAVAEE6/LoadOrderStatusList" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Order</a>
                 <a href="/pepegacoJAVAEE6/ProductListServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Manage Products</a>
                 <a href="/pepegacoJAVAEE6/DisplayOrderManagedHistory" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Order Managed History</a>
                 <a href="/pepegacoJAVAEE6/LogoutServlet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" tabindex="-1">Log out</a>
