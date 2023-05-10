@@ -100,6 +100,10 @@
         <servlet-name>ManageOrderServlet</servlet-name>
         <servlet-class>controller.ManageOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadOrderList</servlet-name>
+        <servlet-class>controller.LoadOrderStatusList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
@@ -199,6 +203,10 @@
     <servlet-mapping>
         <servlet-name>ManageOrderServlet</servlet-name>
         <url-pattern>/ManageOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadOrderList</servlet-name>
+        <url-pattern>/LoadOrderList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

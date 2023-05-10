@@ -53,7 +53,6 @@
                             <input type="text" name="sPassword" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" 
                                    value="<%= staff.getPassword() %>" required/>
                         </div>
-
                         <div class="md:col-span-5 text-right">
                             <div class="inline-flex items-end">
                                 <button class="bg-blue-950 hover:bg-white hover:text-blue-950 border hover:border-blue-950 text-white font-bold py-2 px-4 rounded" type="button" onclick="" id="editStaff">
