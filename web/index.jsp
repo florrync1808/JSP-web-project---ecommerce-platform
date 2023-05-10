@@ -64,18 +64,11 @@
             <!--for loop here max loop 3-->
             <% for (Products prod : ProdList) {%>  
             <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-md">
-                <div class="grid grid-cols-5">
-                    <div class="mx-6 col-span-4">
+                    <div class="mx-6">
                         <p class="text-lg font-bold  text-gray-600 dark:text-white"><%= prod.getProductName()%></p>
-                        <p class="text-sm font-semibold text-gray-800 dark:text-white mt-2">RM <%= prod.getProductPriceinString()%></p>
+                        <p class="text-md font-semibold text-gray-800 dark:text-white mt-2">RM <%= prod.getProductPriceinString()%></p>
                     </div>
-                    <div class="col-span-1 my-4">
-                        <% if (session.getAttribute("userName") == null || session.getAttribute("userRole").equals("userRole")) {%>
-                        <a href="/pepegacoJAVAEE6/AddToCartServlet?productId=<%=prod.getProductId()%>"><button  class="bg-gray-700 mr-5 text-white px-2 py-1 rounded-sm shadow-md duration-300 hover:-translate-y-1 hover:shadow-lg">&#10010</button>
-                        </a>
-                        <% } else if (request.isUserInRole("adminRole")) { }%>
-                    </div>
-                </div>
+
                 <div class="flex justify-center items-center mt-4">
                     <img class="w-80 object-cover" src="<%= prod.getProductPhoto()%>" alt="<%= prod.getProductName()%>" role="img" />
                 </div>
