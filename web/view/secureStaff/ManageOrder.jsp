@@ -26,8 +26,8 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</th>
-                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Status ID</th>
-                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Order ID</th>
+                        <th scope="col" class="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900">Status ID</th>
+                        <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Order ID</th>
                         <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Created At</th>
                         <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Description</th>
                     </tr>
@@ -39,10 +39,10 @@
                     <tr>
                         <!-- loop through staff-info database -->
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= rowCount%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= oStatus.getStatusId()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= oStatus.getOrderId()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getStatusId()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getOrderId().getOrderId()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getCreatedAt()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getDescription()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getDescription() %></td>
 
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-950">
                             <form action="/pepegacoJAVAEE6/ManageOrderServlet">
