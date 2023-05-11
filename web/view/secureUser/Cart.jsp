@@ -10,7 +10,7 @@
 <%@page import="model.Products"%>
 
 <%
-    List<CartLists> cartList = (List) session.getAttribute("CartLists");
+    List<CartLists> cartList = (List) session.getAttribute("cartList");
     List<Products> ProductList = (List) session.getAttribute("ProductList");
 %>
 
