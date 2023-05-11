@@ -1,8 +1,8 @@
-<% if (request.isUserInRole("adminRole")) {
-
-    } else if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "staffRole") {
+<% if  (session.getAttribute("userName") == null) {
 
         response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
+    } else if (request.isUserInRole("adminRole")) {
+
     } else {
     }%>
 

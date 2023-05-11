@@ -296,7 +296,6 @@
             <web-resource-name>admin</web-resource-name>
             <description/>
             <url-pattern>/view/secureAdmin/*</url-pattern>
-            <url-pattern>/view/secureStaff/ManageOrder.jsp</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
