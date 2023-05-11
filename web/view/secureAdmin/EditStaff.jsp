@@ -11,8 +11,6 @@
             staff = st;
         }
     }
-    
-    session.setAttribute("AdminEditStaff", "AdminEditStaff");
 %>
 
 

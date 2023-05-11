@@ -112,6 +112,14 @@
         <servlet-name>UpdateStaffAccount</servlet-name>
         <servlet-class>controller.UpdateStaffAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadCustomerList</servlet-name>
+        <servlet-class>controller.LoadCustomerList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCustomerList</servlet-name>
+        <servlet-class>controller.UpdateCustomerList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
@@ -223,6 +231,14 @@
     <servlet-mapping>
         <servlet-name>UpdateStaffAccount</servlet-name>
         <url-pattern>/UpdateStaffAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCustomerList</servlet-name>
+        <url-pattern>/LoadCustomerList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCustomerList</servlet-name>
+        <url-pattern>/UpdateCustomerList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
