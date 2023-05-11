@@ -132,6 +132,10 @@
         <servlet-name>DeleteCustomerServlet</servlet-name>
         <servlet-class>controller.DeleteCustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteStaffServlet</servlet-name>
+        <servlet-class>controller.DeleteStaffServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddPayment</servlet-name>
         <url-pattern>/AddPayment</url-pattern>
@@ -267,6 +271,10 @@
     <servlet-mapping>
         <servlet-name>DeleteCustomerServlet</servlet-name>
         <url-pattern>/DeleteCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStaffServlet</servlet-name>
+        <url-pattern>/DeleteStaffServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
