@@ -297,12 +297,6 @@
             <description/>
             <url-pattern>/view/secureAdmin/*</url-pattern>
         </web-resource-collection>
-        <web-resource-collection>
-            <web-resource-name>staff</web-resource-name>
-            <description/>
-            <url-pattern>/view/secureStaff/ManageOrder.jsp</url-pattern>
-            <url-pattern>/view/secureStaff/ProductList.jsp</url-pattern>
-        </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>adminRole</role-name>
