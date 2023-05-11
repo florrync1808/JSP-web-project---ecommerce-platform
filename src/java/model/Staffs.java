@@ -222,7 +222,7 @@ public class Staffs implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Staffs[ staffIndex=" + staffIndex + " ]";
+        return "model.Staffs[ staffIndex=" + staffIndex + " ] " + email;
     }
     
 }

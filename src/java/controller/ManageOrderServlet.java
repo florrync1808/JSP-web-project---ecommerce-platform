@@ -1,10 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.DBConnection;
-import model.Staffs;
-import model.StaffsService;
+import model.OrderStatuses;
+import model.OrderStatusesService;
 
-public class UpdateStaffServlet extends HttpServlet {
+public class ManageOrderServlet extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
@@ -28,46 +26,24 @@ public class UpdateStaffServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+            
         try {
-            String staffId = request.getParameter("staffId");
-            //Staff name
-            String name = request.getParameter("sName");
-            //staff birth date
-            String birthDate = request.getParameter("sBirthDate");
-            SimpleDateFormat input = new SimpleDateFormat("MM/dd/yyyy");
-            Date dateValue = input.parse(birthDate);
-            SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
-            String birthDateStr = (String) output.format(dateValue);
-            //contact number
-            String contactNo = request.getParameter("sContactNo");
-            //email
-            String email = request.getParameter("sEmail");
-            //password
-            String password = request.getParameter("sPassword");
+            String statusId = request.getParameter("statusId");
+            String descStatus = request.getParameter("OStatus_" + statusId);
 
-            String insertQuery = "UPDATE STAFFS SET "
-                    + "NAME='" + name
-                    + "', BIRTHDATE='" + birthDateStr
-                    + "', CONTACT_NO='" + contactNo
-                    + "', EMAIL='" + email
-                    + "', PASSWORD='" + password
-                    + "' WHERE STAFF_ID='" + staffId + "'";
-
+            String insertQuery = "UPDATE ORDER_STATUSES SET DESCRIPTION='" + descStatus + "' WHERE STATUS_ID='" + statusId + "'";
             DBConnection.insertUpdateFromSqlQuery(insertQuery);
-
-            StaffsService staffsService = new StaffsService(em);
-            List<Staffs> staffsList = staffsService.findAll();
+            
+            OrderStatusesService oSService = new OrderStatusesService(em);
+            List<OrderStatuses> osList = oSService.findAll();
             HttpSession session = request.getSession();
-            session.removeAttribute("staffL");
-            session.setAttribute("staffL", staffsList);
-
-            session.setAttribute("EditStaffConfirmationMsg", "Staff information update succesfully!");
-            response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
-
+            session.removeAttribute("OrderStatList");
+            session.setAttribute("OrderStatList", osList);
+            response.sendRedirect("/pepegacoJAVAEE6/view/secureStaff/ManageOrder.jsp");
         } catch (Exception ex) {
-            Logger.getLogger(AddStaffServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -25,12 +25,18 @@
     SimpleDateFormat dateformat1 = new SimpleDateFormat("MM/dd/yyyy");
     SimpleDateFormat dateformat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
+<% for (Customers cust : custList) {
+        if (cust.getCustomerId().equals(session.getAttribute("customerId"))) {
+           session.setAttribute("UserDBName", cust.getName());
+            break;
+        };
+    }%>
 
 <div class="min-h-screen p-8 bg-gray-100 flex items-center justify-center">
     <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
         <div class="grid gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
             <div class="text-gray-600">
-                <p class="font-medium text-lg capitalize">Hello, <%= session.getAttribute("UserDBName")%>!</p>
+                <p class="font-medium text-lg capitalize">Hello,<%=  session.getAttribute("UserDBName")%>!</p>
             </div>
             <div class="lg:col-span-2">
                 <form action="/pepegacoJAVAEE6/UpdateCustomerServlet">
