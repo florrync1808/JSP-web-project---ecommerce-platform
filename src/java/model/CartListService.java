@@ -10,9 +10,9 @@ public class CartListService {
     EntityManager mgr;
     @Resource
     Query query;
-    
-    public CartListService(){}
-    
+
+    public CartListService() {
+    }
 
     public CartListService(EntityManager mgr) {
         this.mgr = mgr;
@@ -39,6 +39,13 @@ public class CartListService {
 
     public List<CartLists> findAll() {
         List itemList = mgr.createNamedQuery("CartLists.findAll").getResultList();
+        return itemList;
+    }
+
+    public List<CartLists> findCartListbyCustId(String custId) {
+        Query q = mgr.createNamedQuery("CartLists.findByCustId");
+        q.setParameter(1, custId);
+        List itemList = q.getResultList();
         return itemList;
     }
 

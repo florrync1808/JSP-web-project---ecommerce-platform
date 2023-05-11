@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CartLists.findAll", query = "SELECT c FROM CartLists c"),
     @NamedQuery(name = "CartLists.findById", query = "SELECT c FROM CartLists c WHERE c.id = :id"),
     @NamedQuery(name = "CartLists.findByItemQty", query = "SELECT c FROM CartLists c WHERE c.itemQty = :itemQty")})
+@NamedNativeQuery(name = "CartLists.findByCustId", query = "SELECT * FROM Cart_Lists WHERE customer_id = ?", resultClass = CartLists.class)
 @Cacheable(false)
 public class CartLists implements Serializable {
 
