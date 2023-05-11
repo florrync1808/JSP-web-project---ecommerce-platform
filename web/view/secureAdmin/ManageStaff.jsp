@@ -26,8 +26,6 @@
 <% session.removeAttribute("EditStaffConfirmationMsg");
     } %>
 
-<% session.removeAttribute("AdminEditStaff");%>
-
 <div class="p-8 min-h-screen bg-gray-100">
     <div class="inline-block min-w-full py-2 align-middle">
         <div class="px-12">
@@ -102,7 +100,7 @@
                             </div>
                         </td>
                     </tr>
-                    <% }%>
+                    <% } %>
                 </tbody>
             </table>
         </div>

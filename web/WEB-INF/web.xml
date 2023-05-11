@@ -89,8 +89,20 @@
         <servlet-class>controller.ViewReport</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateStaffServlet</servlet-name>
+        <servlet-class>controller.UpdateStaffServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>TopSellProductServlet</servlet-name>
         <servlet-class>controller.TopSellProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageOrderServlet</servlet-name>
+        <servlet-class>controller.ManageOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadOrderStatusList</servlet-name>
+        <servlet-class>controller.LoadOrderStatusList</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadCustomerServlet</servlet-name>
@@ -99,10 +111,6 @@
     <servlet>
         <servlet-name>UpdateCustomerServlet</servlet-name>
         <servlet-class>controller.UpdateCustomerServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateStaffServlet</servlet-name>
-        <servlet-class>controller.UpdateStaffServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadStaffServlet</servlet-name>
@@ -201,8 +209,20 @@
         <url-pattern>/UpdateProductServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UpdateStaffServlet</servlet-name>
+        <url-pattern>/UpdateStaffServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>TopSellProductServlet</servlet-name>
         <url-pattern>/TopSellProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageOrderServlet</servlet-name>
+        <url-pattern>/ManageOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadOrderStatusList</servlet-name>
+        <url-pattern>/LoadOrderStatusList</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadCustomerServlet</servlet-name>

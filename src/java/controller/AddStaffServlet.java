@@ -5,6 +5,7 @@ import model.StaffsService;
 import model.DBConnection;
 import java.io.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
@@ -59,6 +60,7 @@ public class AddStaffServlet extends HttpServlet {
 
             staffsList = staffsService.findAll();
             HttpSession session = request.getSession();
+            session.removeAttribute("staffL");
             session.setAttribute("staffL", staffsList);
             session.setAttribute("AddStaffConfirmationMsg", "Staff added succesfully!");
             response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
