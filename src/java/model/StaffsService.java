@@ -43,7 +43,7 @@ public class StaffsService {
         }
     }
 
-    public boolean deleteItem(String staffId) {
+    public boolean deleteStaff(String staffId) {
         Staffs staff = findStaffByStaffId(staffId);
         if (staff != null) {
             mgr.remove(staff);
