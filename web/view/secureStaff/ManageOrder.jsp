@@ -41,8 +41,8 @@
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6"><%= rowCount%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= oStatus.getStatusId()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= oStatus.getOrderId()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= oStatus.getCreatedAt()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-500"><%= oStatus.getDescription()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getCreatedAt()%></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getDescription()%></td>
 
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-950">
                             <form action="/pepegacoJAVAEE6/ManageOrderServlet">
@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<script>
+<!--<script>
     function changeTextColor(elementId) {
         const selectedRadio = document.getElementById(elementId);
         const labels = document.getElementsByTagName('label');
@@ -93,4 +93,4 @@
             selectedLabel.style.fontWeight = 'bold';
         }
     }
-</script>
+</script>-->
