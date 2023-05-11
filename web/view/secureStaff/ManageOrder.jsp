@@ -1,8 +1,8 @@
-<% if (request.isUserInRole("adminRole")) {
-    } else if (session.getAttribute("userName") == null && session.getAttribute("userRole") != "staffRole") {
-        response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
-    } else {
-    }%>
+<%
+    if (session.getAttribute("userName") == null || session.getAttribute("userRole") == "userRole") {
+        response.sendRedirect("/pepegacoJAVAEE6/view/ErrorPage.jsp");
+    }
+%>
 
 <%@page import="java.util.List"%>
 <%@page import="model.OrderStatuses"%>
@@ -42,12 +42,12 @@
                         <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getStatusId()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getOrderId().getOrderId()%></td>
                         <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getCreatedAt()%></td>
-                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getDescription() %></td>
+                        <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getDescription()%></td>
 
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-950">
                             <form action="/pepegacoJAVAEE6/ManageOrderServlet">
                                 <input type="hidden" name="statusId" value="<%= oStatus.getStatusId()%>">
-                                <input type="hidden" name="orderId" value="<%= oStatus.getOrderId() %>">
+                                <input type="hidden" name="orderId" value="<%= oStatus.getOrderId()%>">
                                 <label for="packaging<%= oStatus.getStatusId()%>" class="orderStatLabel">
                                     <input type="radio" name="OStatus_<%= oStatus.getStatusId()%>" id="packaging<%= rowCount%>" value="packaging" onchange="changeTextColor('packaging<%= oStatus.getStatusId()%>')">
                                     Packaging
