@@ -28,13 +28,16 @@
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                                 <div class="block mb-20">
-                                    
-                                <div class="absolute left-5">
+                                    <div class="px-3">
+            <p class="text-xl font-bold dark:text-white">Product Sales</p>
+            <hr class="my-4 border-gray-900"/>
+        </div> 
+<!--                                <div class="absolute left-5">
                                     <input class="bg-blue-950 my-1 mr-1 text-white px-4 py-3 rounded-md focus:outline-none" type="date" id="reportDay" name="reportDay">
                                 </div>
                                     <div class="absolute right-5">
                                     <button class="bg-blue-950 my-1 ml-1 text-white px-4 py-3 rounded-md focus:outline-none">Sort Ascending / Descending</button>
-                                </div>
+                                </div>-->
                                 </div>
                                 <div class="overflow-hidden">
                                     <table

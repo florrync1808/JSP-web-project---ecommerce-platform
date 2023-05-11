@@ -25,7 +25,7 @@
 
                     <!-- for passing value purpose -->
                     <input type="hidden" name="customerId" value="<%= cust.getCustomerId()%>" />
-                    <input type="hidden" name="createdAt" value="<%= dateformat2.format(cust.getCreatedAt())%>" />
+                    <input type="hidden" name="createdAt" value="<%= dateformat1.format(cust.getCreatedAt())%>" />
 
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                         <div class="md:col-span-5">

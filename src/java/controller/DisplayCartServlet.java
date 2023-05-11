@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import model.CartListService;
 import model.CartLists;
+import model.DBConnection;
 
 public class DisplayCartServlet extends HttpServlet {
 
@@ -33,9 +34,9 @@ public class DisplayCartServlet extends HttpServlet {
             }
             
             CartListService cartlistService = new CartListService(em);
-            List<CartLists> cartList = cartlistService.findAll();
-//              DBConnection.getRSfromQuery("SELECT * FROM CART_LISTS WHERE CUSTOMER_ID='"+customerId+"'");
-            session.setAttribute("CartLists", cartList);
+            List<CartLists> cartList = cartlistService.findCartListbyCustId(customerId);
+//            DBConnection.getRSfromQuery("SELECT * FROM CART_LISTS WHERE CUSTOMER_ID='"+customerId+"'");
+            session.setAttribute("cartList", cartList);
             response.sendRedirect("/pepegacoJAVAEE6/view/secureUser/Cart.jsp");
             
         } catch (Exception ex) {
