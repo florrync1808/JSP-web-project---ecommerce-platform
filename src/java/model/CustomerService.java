@@ -25,7 +25,7 @@ public class CustomerService {
         return customer;
     }
 
-    public boolean deleteItem(String id) {
+    public boolean deleteCustomer(String id) {
         Customers customer = findCustomerByCode(id);
         if (customer != null) {
             mgr.remove(customer);
