@@ -45,6 +45,7 @@
                         <td class="whitespace-nowrap px-3 py-4 text-center text-gray-500"><%= oStatus.getDescription()%></td>
 
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-950">
+                            <% if (!oStatus.getDescription().equals("delivered")) {%>
                             <form action="/pepegacoJAVAEE6/ManageOrderServlet">
                                 <input type="hidden" name="statusId" value="<%= oStatus.getStatusId()%>">
                                 <input type="hidden" name="orderId" value="<%= oStatus.getOrderId()%>">
@@ -66,6 +67,7 @@
                                     </button>
                                 </div>
                             </form>
+                            <% } %>
                         </td>
                     </tr>
                     <% }%>
