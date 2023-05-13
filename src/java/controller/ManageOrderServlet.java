@@ -31,8 +31,12 @@ public class ManageOrderServlet extends HttpServlet {
             String statusId = request.getParameter("statusId");
             String descStatus = request.getParameter("OStatus_" + statusId);
 
+            if (descStatus == null) {
+               
+            } else {
             String insertQuery = "UPDATE ORDER_STATUSES SET DESCRIPTION='" + descStatus + "' WHERE STATUS_ID='" + statusId + "'";
             DBConnection.insertUpdateFromSqlQuery(insertQuery);
+            }
             
             OrderStatusesService oSService = new OrderStatusesService(em);
             List<OrderStatuses> osList = oSService.findAll();
