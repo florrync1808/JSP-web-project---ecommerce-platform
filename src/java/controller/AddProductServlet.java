@@ -50,7 +50,7 @@ public class AddProductServlet extends HttpServlet {
             utx.commit();
 
             if (success) {
-                confirmMsg = "Added Product " + id + "Succesfully!";
+                confirmMsg = "Added Product " + id + " Succesfully!";
             } else {
                 confirmMsg = "Add Product Failed!";
             }
