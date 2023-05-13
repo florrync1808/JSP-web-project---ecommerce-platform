@@ -24,18 +24,19 @@ public class DeleteStaffServlet extends HttpServlet {
         try {
             StaffsService staffService = new StaffsService(em);
             HttpSession session = request.getSession();
-            String id = request.getParameter("staffId") ;
-               
-            utx.begin();
-            boolean success = staffService.deleteStaff(id);
-            utx.commit();
+            String staffId = request.getParameter("staffId") ;
+            String empStatus = "inactive";
             
-            if (success) {
-                confirmMsg = "Deleted Customer " + id + " Successfully!";
+            String insertQuery = "UPDATE STAFFS SET "
+                    + "EMPLOYMENT_STATUS='" + empStatus
+                    + "' WHERE STAFF_ID='" + staffId + "'";
 
-            } else {
-                confirmMsg = "Delete Customer Failed!";
-            }
+            DBConnection.insertUpdateFromSqlQuery(insertQuery);
+
+            StaffsService staffsService = new StaffsService(em);
+            List<Staffs> staffsList = staffsService.findAll();
+            session.removeAttribute("staffL");
+            session.setAttribute("staffL", staffsList);
             
             // reload the customer list
             List<Staffs> staffList = staffService.findAll();
@@ -43,7 +44,7 @@ public class DeleteStaffServlet extends HttpServlet {
             session.setAttribute("staffL", staffList);
             
             // set the delete comfirm msg to the attribute
-            session.setAttribute("DeleteConfirmMsg", confirmMsg);
+            session.setAttribute("DeleteConfirmMsg", "Deleted Customer " + staffId + " Successfully!");
             
             response.sendRedirect("/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp");
         } catch (Exception ex) {

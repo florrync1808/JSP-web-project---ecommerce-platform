@@ -18,13 +18,13 @@
         <div class="grid gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
 
             <div class="lg:col-span-2">
-                <form action="/pepegacoJAVAEE6/DeleteCustomerServlet">
+                <form action="/pepegacoJAVAEE6/DeleteStaffServlet">
                     <!-- show the customer details by matching the id -->
                     <% for (Staffs st : staffList) {
                             if (st.getStaffId().equals(request.getParameter("staffId"))) {%>
 
                     <!-- for passing value purpose -->
-                    <input type="hidden" name="customerId" value="<%= st.getStaffId()%>" />
+                    <input type="hidden" name="staffId" value="<%= st.getStaffId()%>" />
 
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                         <div class="md:col-span-5">
@@ -70,7 +70,7 @@
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Confirm</button>
                             </div>
                             <div class="inline-flex items-end">
-                                <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageCustomer.jsp">
+                                <a href="/pepegacoJAVAEE6/view/secureAdmin/ManageStaff.jsp">
                                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back</button>
                                 </a>
                             </div>
