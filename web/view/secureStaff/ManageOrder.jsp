@@ -1,8 +1,6 @@
-<% if  (session.getAttribute("userName") == null) {
-
+<% if (request.isUserInRole("adminRole") ||  session.getAttribute("userRole") == "staffRole") {
+    } else if (session.getAttribute("userName") == null || !request.isUserInRole("adminRole") ) {
         response.sendRedirect("/pepegacoJAVAEE6/view/UserLogin.jsp");
-    } else if (request.isUserInRole("adminRole")) {
-
     } else {
     }%>
 
@@ -51,14 +49,13 @@
                             <form action="/pepegacoJAVAEE6/ManageOrderServlet">
                                 <input type="hidden" name="statusId" value="<%= oStatus.getStatusId()%>">
                                 <input type="hidden" name="orderId" value="<%= oStatus.getOrderId()%>">
-                                <label for="packaging<%= oStatus.getStatusId()%>" class="orderStatLabel">
-                                    <input type="radio" name="OStatus_<%= oStatus.getStatusId()%>" id="packaging<%= rowCount%>" value="packaging" onchange="changeTextColor('packaging<%= oStatus.getStatusId()%>')">
-                                    Packaging
-                                </label>
+                                <% if (!oStatus.getDescription().equals("shipping")) {%>    
+     
                                 <label for="shipping<%= oStatus.getStatusId()%>" class="orderStatLabel">
                                     <input type="radio" name="OStatus_<%= oStatus.getStatusId()%>" id="shipping<%= rowCount%>" value="shipping" onchange="changeTextColor('shipping<%= oStatus.getStatusId()%>')">
                                     Shipping
                                 </label>
+                                    <% } %>
                                 <label for="delivered<%= oStatus.getStatusId()%>" class="orderStatLabel">
                                     <input type="radio" name="OStatus_<%= oStatus.getStatusId()%>" id="delivered<%= rowCount%>" value="delivered" onchange="changeTextColor('delivered<%= oStatus.getStatusId()%>')">
                                     Delivered
