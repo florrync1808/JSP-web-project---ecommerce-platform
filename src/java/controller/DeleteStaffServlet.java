@@ -25,7 +25,7 @@ public class DeleteStaffServlet extends HttpServlet {
             StaffsService staffService = new StaffsService(em);
             HttpSession session = request.getSession();
             String staffId = request.getParameter("staffId") ;
-            String empStatus = "Inactive";
+            String empStatus = "inactive";
             
             String insertQuery = "UPDATE STAFFS SET "
                     + "EMPLOYMENT_STATUS='" + empStatus
