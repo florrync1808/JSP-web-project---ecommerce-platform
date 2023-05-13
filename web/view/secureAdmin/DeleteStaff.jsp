@@ -18,7 +18,7 @@
         <div class="grid gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
 
             <div class="lg:col-span-2">
-                <form action="/pepegacoJAVAEE6/DeleteCustomerServlet">
+                <form action="/pepegacoJAVAEE6/DeleteStaffServlet">
                     <!-- show the customer details by matching the id -->
                     <% for (Staffs st : staffList) {
                             if (st.getStaffId().equals(request.getParameter("staffId"))) {%>
